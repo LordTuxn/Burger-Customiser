@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Burger_Customiser"
         mc:Ignorable="d"
-        Title="BurgerCustomiser" Height="1000" Width="720">
+        Title="BurgerCustomiser" Height="1000" Width="720"
+        ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
@@ -19,5 +20,12 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="35"/>
         </Grid.ColumnDefinitions>
+
+        <!-- Background Colour -->
+        <Grid Background="#242424" Grid.ColumnSpan="3" Grid.RowSpan="5"/>
+        
+        <!-- Footer and Header -->
+        <Grid Background="#3B3B3B" Grid.ColumnSpan="3"/>
+        <Grid Background="#3B3B3B" Grid.ColumnSpan="3" Grid.Row="3" Grid.RowSpan="2"/>
     </Grid>
 </Window>
