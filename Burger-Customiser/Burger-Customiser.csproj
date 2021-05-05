@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Burger_Customiser</RootNamespace>
     <UseWPF>true</UseWPF>
     <StartupObject>Burger_Customiser.App</StartupObject>
