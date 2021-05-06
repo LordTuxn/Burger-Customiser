@@ -49,6 +49,14 @@
         </Grid>
 
         <!-- Footer -->
-        <Grid Background="#3B3B3B" Grid.ColumnSpan="3" Grid.Row="3" Grid.RowSpan="2"/>
+        <Grid Background="#3B3B3B" Grid.ColumnSpan="3" Grid.Row="3" Grid.RowSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="35"/>
+                <ColumnDefinition Width="25"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="25"/>
+                <ColumnDefinition Width="35"/>
+            </Grid.ColumnDefinitions>
+        </Grid>
     </Grid>
 </Window>
