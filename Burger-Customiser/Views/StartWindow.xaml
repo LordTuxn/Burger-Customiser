@@ -16,7 +16,7 @@
             <RowDefinition Height="35" />
             <RowDefinition />
             <RowDefinition Height="35" />
-            <RowDefinition Height="70" />
+            <RowDefinition Height="150" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="35" />
@@ -25,7 +25,9 @@
         </Grid.ColumnDefinitions>
 
         <!-- Main Section -->
-        <Grid Background="#242424" Grid.ColumnSpan="3" Grid.RowSpan="2" Grid.Row="1" />
+        <Grid Background="#242424" Grid.ColumnSpan="3" Grid.RowSpan="3" Grid.Row="1">
+            <Image Source="/Resources/LandingPageBurger.jpg" Stretch="UniformToFill"></Image>
+        </Grid>
 
         <!-- Header -->
         <Grid Background="#3B3B3B" Grid.ColumnSpan="3">
@@ -37,7 +39,7 @@
                 <ColumnDefinition Width="25" />
                 <ColumnDefinition Width="35" />
             </Grid.ColumnDefinitions>
-            <Image Source="/Resources/Images/Logo.png" Grid.Column="1" />
+            <Image Source="/Resources/Logo.png" Grid.Column="1" />
             <TextBlock Text="Burger Customiser"
                        Grid.Column="2"
                        VerticalAlignment="Center"
@@ -45,11 +47,17 @@
                        FontFamily="Segoe UI"
                        FontSize="18"
                        FontWeight="Bold" />
-            <Image Source="/Resources/Images/ShoppingCart.png" Grid.Column="4" />
+            <Image Source="/Resources/ShoppingCart.png" Grid.Column="4" />
         </Grid>
 
         <!-- Footer -->
-        <Grid Background="#3B3B3B" Grid.ColumnSpan="3" Grid.Row="3" Grid.RowSpan="2">
+        <Grid Background="#3B3B3B" Grid.ColumnSpan="3" Grid.Row="3" Grid.RowSpan="2" Margin="0,35,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition Height="35"/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="35" />
                 <ColumnDefinition Width="25" />
@@ -57,6 +65,22 @@
                 <ColumnDefinition Width="25" />
                 <ColumnDefinition Width="35" />
             </Grid.ColumnDefinitions>
+            <TextBlock 
+                Text="Berühren, um zu beginnen..."
+                Foreground="White" Grid.Column="2"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                TextWrapping="Wrap"
+                FontSize="30" Grid.Row="1" Height="40" Width="370"
+                />
+            <TextBlock 
+                Text="Touch to begin..."
+                Foreground="White" Grid.Column="2"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                TextWrapping="Wrap"
+                FontSize="30" Grid.Row="2" Height="40" Width="218"
+                />
         </Grid>
     </Grid>
 </Window>

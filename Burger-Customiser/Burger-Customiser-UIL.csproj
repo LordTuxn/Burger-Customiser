@@ -11,8 +11,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\Images\Logo.png" />
-    <None Remove="Resources\Images\ShoppingCart.png" />
+    <None Remove="Resources\LandingPageBurger.jpg" />
+    <None Remove="Resources\Logo.png" />
+    <None Remove="Resources\ShoppingCart.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,10 +21,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\Images\Logo.png">
+    <Resource Include="Resources\LandingPageBurger.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\Images\ShoppingCart.png">
+    <Resource Include="Resources\Logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\ShoppingCart.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
