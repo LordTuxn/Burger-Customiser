@@ -5,19 +5,27 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Burger_Customiser</RootNamespace>
     <UseWPF>true</UseWPF>
-    <StartupObject>Burger_Customiser.App</StartupObject>
+    <StartupObject></StartupObject>
     <ApplicationIcon />
     <Win32Resource />
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\Logo.png" />
-    <None Remove="Resources\ShoppingCart.png" />
+    <None Remove="Resources\Images\Logo.png" />
+    <None Remove="Resources\Images\ShoppingCart.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\Logo.png" />
-    <Resource Include="Resources\ShoppingCart.png" />
+    <Page Include="App.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Images\Logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\ShoppingCart.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
