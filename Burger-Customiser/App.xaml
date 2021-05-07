@@ -4,6 +4,5 @@
              xmlns:local="clr-namespace:Burger_Customiser"
              StartupUri="Template.xaml">
     <Application.Resources>
-         
     </Application.Resources>
 </Application>

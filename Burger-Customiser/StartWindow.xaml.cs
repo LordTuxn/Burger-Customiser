@@ -3,11 +3,11 @@
 namespace Burger_Customiser {
 
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for StartWindow.xaml
     /// </summary>
-    public partial class Template : Window {
+    public partial class StartWindow : Window {
 
-        public Template() {
+        public StartWindow() {
             InitializeComponent();
         }
     }

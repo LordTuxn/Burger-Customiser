@@ -11,13 +11,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\Logo.png" />
-    <None Remove="Resources\ShoppingCart.png" />
+    <None Remove="Resources\Images\Logo.png" />
+    <None Remove="Resources\Images\ShoppingCart.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\Logo.png" />
-    <Resource Include="Resources\ShoppingCart.png" />
+    <Resource Include="Resources\Images\Logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\ShoppingCart.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
