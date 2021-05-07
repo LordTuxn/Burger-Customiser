@@ -5,7 +5,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Burger_Customiser</RootNamespace>
     <UseWPF>true</UseWPF>
-    <StartupObject>Burger_Customiser.App</StartupObject>
+    <StartupObject></StartupObject>
     <ApplicationIcon />
     <Win32Resource />
   </PropertyGroup>
@@ -13,6 +13,10 @@
   <ItemGroup>
     <None Remove="Resources\Images\Logo.png" />
     <None Remove="Resources\Images\ShoppingCart.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Include="App.xaml" />
   </ItemGroup>
 
   <ItemGroup>
