@@ -37,7 +37,7 @@
                 <ColumnDefinition Width="25"/>
                 <ColumnDefinition Width="35"/>
             </Grid.ColumnDefinitions>
-            <Image Source="/Resources/Logo.png" Grid.Column="1"/>
+            <Image Source="/Resources/Images/Logo.png" Grid.Column="1"/>
             <TextBlock Text="Burger Customiser" 
                        Grid.Column="2"
                        VerticalAlignment="Center"
@@ -45,7 +45,7 @@
                        FontFamily="Segoe UI"
                        FontSize="18"
                        FontWeight="Bold"/>
-            <Image Source="/Resources/ShoppingCart.png" Grid.Column="4"/>
+            <Image Source="/Resources/Images/ShoppingCart.png" Grid.Column="4"/>
         </Grid>
 
         <!-- Footer -->
