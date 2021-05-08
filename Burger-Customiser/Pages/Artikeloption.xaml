@@ -1,4 +1,4 @@
-﻿<Page x:Class="Burger_Customiser.Pages.Bestelloption"
+﻿<Page x:Class="Burger_Customiser.Pages.Artikeloption"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Burger_Customiser.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="774" d:DesignWidth="650"
-      Title="Bestelloption">
+      Title="Artikeloption">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -23,14 +23,14 @@
             </Grid.RowDefinitions>
             <Image Source="/Resources/LandingPageBurger.jpg" Stretch="UniformToFill" Grid.RowSpan="3" Opacity="0.6"/>
             <TextBlock 
-                Text="Zum Hier Essen"
+                Text="Burger Zusammenstellen"
                 Foreground="White"
                 FontSize="30"
                 FontWeight="Bold"
                 VerticalAlignment="Bottom"
                 HorizontalAlignment="Center" Grid.Row="0"/>
             <TextBlock 
-                Text="Eat Here"
+                Text="Burger Customiser"
                 Foreground="White"
                 FontSize="30"
                 FontWeight="Bold"
@@ -46,14 +46,14 @@
             </Grid.RowDefinitions>
             <Image Source="/Resources/LandingPageBurger.jpg" Stretch="UniformToFill" Grid.RowSpan="3" Opacity="0.6"/>
             <TextBlock 
-                Text="Zum Mitnehmen"
+                Text="Beilagen Hinzufügen"
                 Foreground="White"
                 FontSize="30"
                 FontWeight="Bold"
                 VerticalAlignment="Bottom"
                 HorizontalAlignment="Center" Grid.Row="0"/>
             <TextBlock 
-                Text="Takeaway"
+                Text="Add Side Dish"
                 Foreground="White"
                 FontSize="30"
                 FontWeight="Bold"
