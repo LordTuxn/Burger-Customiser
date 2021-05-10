@@ -11,5 +11,11 @@ namespace Burger_Customiser {
         public StartWindow() {
             InitializeComponent();
         }
+
+        private void IdleScreenLMBDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Main.Content = new Pages.Bestelloption();
+            IdleScreen.Visibility = Visibility.Hidden;
+        }
     }
 }
