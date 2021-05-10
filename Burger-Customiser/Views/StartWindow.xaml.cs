@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Burger_Customiser_DAL;
+using System.Windows;
 
 namespace Burger_Customiser {
 
