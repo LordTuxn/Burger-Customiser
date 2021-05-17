@@ -3,7 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using System.Windows;
-using System.IO;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Hosting;
+using System;
 
 namespace Burger_Customiser {
 
@@ -12,32 +14,41 @@ namespace Burger_Customiser {
     /// </summary>
     public partial class App : Application {
 
-        private readonly ServiceProvider serviceProvider;
+        private readonly IHost host;
         private IConfiguration config;
-        
+
         public App() {
-            ConfigureConfiguration();
-            
-            ServiceCollection services = new ServiceCollection();
-            ConfigureServices(services);
-            serviceProvider = services.BuildServiceProvider();
+            host = new HostBuilder()
+                .ConfigureAppConfiguration((context, configurationBuilder) => {
+                    configurationBuilder.SetBasePath(context.HostingEnvironment.ContentRootPath);
+                    configurationBuilder.AddJsonFile("appsettings.json", optional: false);
+                    config = configurationBuilder.Build();
+                })
+                .ConfigureServices((context, services) => {
+                    services.AddDbContext<ApplicationDBContext>(options => {
+                         string connectionString = config.GetConnectionString("SQLConnection");
+                         options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+                    });
+
+                    // Add Services
+                    services.AddSingleton<StartWindow>();
+                })
+                .ConfigureLogging(logging => {
+                    logging.AddDebug();
+                })
+                .Build();
         }
 
-        public void ConfigureServices(IServiceCollection service) {
-            service.AddSingleton<StartWindow>();
-            service.Configure<StartWindow>(config.GetSection("Application"));
+        private async void Application_Startup(object sender, StartupEventArgs args) {
+            await host.StartAsync();
 
-            service.AddDbContext<ArticleDBContext>(options => {
-                string connectionString = config.GetSection("Database").GetSection("ConnectionString").Value;
-                options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
-            });
+            host.Services.GetService<StartWindow>().Show();
         }
-        
-        public void ConfigureConfiguration() {
-            IConfigurationBuilder configBuilder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json");
-            config = configBuilder.Build();
+
+        private async void Application_Exit(object sender, ExitEventArgs e) {
+            using (host) {
+                await host.StopAsync(TimeSpan.FromSeconds(5));
+            }
         }
     }
 }

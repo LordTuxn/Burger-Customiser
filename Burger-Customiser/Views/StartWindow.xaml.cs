@@ -1,4 +1,4 @@
-﻿using Burger_Customiser_DAL;
+﻿using Microsoft.Extensions.Logging;
 using System.Windows;
 
 namespace Burger_Customiser {
@@ -8,12 +8,15 @@ namespace Burger_Customiser {
     /// </summary>
     public partial class StartWindow : Window {
 
-        public StartWindow() {
+        private readonly ILogger logger;
+
+        public StartWindow(ILogger<StartWindow> logger) {
+            this.logger = logger;
             InitializeComponent();
         }
 
-        private void IdleScreenLMBDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
+        private void IdleScreenLMBDown(object sender, System.Windows.Input.MouseButtonEventArgs e) {
+            logger.LogInformation("Starting Window...");
             Main.Content = new Pages.Bestelloption();
             IdleScreen.Visibility = Visibility.Hidden;
         }
