@@ -25,7 +25,7 @@ namespace Burger_Customiser {
             Main.Content = new Pages.Bestelloption();
             IdleScreen.Visibility = Visibility.Hidden;
 
-            logger.LogInformation(article.getArticleName(logger, 1));
+            logger.LogInformation(article.getArticles()[0].Name);
         }
     }
 }

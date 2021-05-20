@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Hosting;
 using System;
 using Burger_Customiser_DAL.Database;
-using System.Data.Entity.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 
 namespace Burger_Customiser {
 
@@ -27,9 +27,10 @@ namespace Burger_Customiser {
                 })
                 .ConfigureServices((context, services) => {
                     // Add Services
-                    services.AddScoped<ApplicationDBContext>(s => new ApplicationDBContext(config["Data:Database:ConnectionString"]));
+                    string connectionString = config["Data:Database:ConnectionString"];
+                    services.AddDbContextPool<ApplicationDBContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
-                    services.AddTransient<ArticleDAL>();
+                    services.AddScoped<ArticleDAL>();
 
                     services.AddSingleton<StartWindow>();
                 })
