@@ -1,5 +1,4 @@
 ﻿using Burger_Customiser_DAL;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using System.Windows;
@@ -25,12 +24,8 @@ namespace Burger_Customiser {
                     config = configurationBuilder.Build();
                 })
                 .ConfigureServices((context, services) => {
-                    services.AddDbContext<ApplicationDBContext>(options => {
-                         string connectionString = config.GetConnectionString("SQLConnection");
-                         options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
-                    });
-
                     // Add Services
+                    services.AddScoped<ApplicationDBContext>();
                     services.AddSingleton<StartWindow>();
                 })
                 .ConfigureLogging(logging => {
