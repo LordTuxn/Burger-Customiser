@@ -20,12 +20,14 @@ namespace Burger_Customiser {
 
         public App() {
             host = new HostBuilder()
-                .ConfigureAppConfiguration((context, configurationBuilder) => {
+                .ConfigureAppConfiguration((context, configurationBuilder) =>
+                {
                     configurationBuilder.SetBasePath(context.HostingEnvironment.ContentRootPath);
                     configurationBuilder.AddJsonFile("appsettings.json", optional: false);
                     config = configurationBuilder.Build();
                 })
-                .ConfigureServices((context, services) => {
+                .ConfigureServices((context, services) =>
+                {
                     // Add Services
                     string connectionString = config["Data:Database:ConnectionString"];
                     services.AddDbContextPool<ApplicationDBContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
@@ -34,7 +36,8 @@ namespace Burger_Customiser {
 
                     services.AddSingleton<StartWindow>();
                 })
-                .ConfigureLogging(logging => {
+                .ConfigureLogging(logging =>
+                {
                     logging.AddDebug();
                 })
                 .Build();

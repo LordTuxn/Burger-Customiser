@@ -22,20 +22,8 @@
                 <RowDefinition Height="35"/>
             </Grid.RowDefinitions>
             <Image Source="/Resources/LandingPageBurger.jpg" Stretch="UniformToFill" Grid.RowSpan="3" Opacity="0.6" MouseLeftButtonDown="EatHereLMBDown"/>
-            <TextBlock 
-                Text="Zum Hier Essen"
-                Foreground="White"
-                FontSize="30"
-                FontWeight="Bold"
-                VerticalAlignment="Bottom"
-                HorizontalAlignment="Center" Grid.Row="0"/>
-            <TextBlock 
-                Text="Eat Here"
-                Foreground="White"
-                FontSize="30"
-                FontWeight="Bold"
-                VerticalAlignment="Bottom"
-                HorizontalAlignment="Center" Grid.Row="1"/>
+            <TextBlock Text="Zum Hier Essen" Style="{StaticResource Header1}" VerticalAlignment="Bottom" Grid.Row="0"/>
+            <TextBlock Text="Eat Here" Style="{StaticResource Header1}" VerticalAlignment="Bottom" Grid.Row="1"/>
         </Grid>
 
         <Grid Grid.Row="2">
@@ -45,20 +33,8 @@
                 <RowDefinition Height="35"/>
             </Grid.RowDefinitions>
             <Image Source="/Resources/LandingPageBurger.jpg" Stretch="UniformToFill" Grid.RowSpan="3" Opacity="0.6" MouseLeftButtonDown="TakeawayLMBDown"/>
-            <TextBlock 
-                Text="Zum Mitnehmen"
-                Foreground="White"
-                FontSize="30"
-                FontWeight="Bold"
-                VerticalAlignment="Bottom"
-                HorizontalAlignment="Center" Grid.Row="0"/>
-            <TextBlock 
-                Text="Takeaway"
-                Foreground="White"
-                FontSize="30"
-                FontWeight="Bold"
-                VerticalAlignment="Bottom"
-                HorizontalAlignment="Center" Grid.Row="1"/>
+            <TextBlock Text="Zum Mitnehmen" Style="{StaticResource Header1}" VerticalAlignment="Bottom" Grid.Row="0"/>
+            <TextBlock Text="Takeaway" Style="{StaticResource Header1}" VerticalAlignment="Bottom" Grid.Row="1"/>
         </Grid>
     </Grid>
 </Page>

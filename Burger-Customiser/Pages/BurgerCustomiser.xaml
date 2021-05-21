@@ -13,27 +13,15 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="35"/>
-            <RowDefinition Height="60"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="150"/>
-            <RowDefinition Height="60"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="35"/>
             <RowDefinition Height="35"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock 
-                Text="Burger Zusammenstellen"
-                Foreground="White"
-                FontSize="30"
-                FontWeight="Bold"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center" Grid.Row="1"/>
-        <TextBlock 
-                Text="Kategorie"
-                Foreground="White"
-                FontSize="30"
-                FontWeight="Bold"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center" Grid.Row="5"/>
+        <TextBlock Text="Burger Zusammenstellen" Style="{StaticResource Header1}"  Grid.Row="1"/>
+        <TextBlock Text="Kategorie" Style="{StaticResource Header1}" Grid.Row="5"/>
         <controls:Navigator Grid.Row="3"/>
         <controls:ProductList Grid.Row="7"/>
     </Grid>

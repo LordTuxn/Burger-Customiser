@@ -9,5 +9,6 @@
     <Grid>
         <Rectangle Fill="#595959" RadiusX="20" RadiusY="20">
         </Rectangle>
+        <TextBlock Text="Produktname" Margin="20,0,0,0" Style="{StaticResource Header2}"/>
     </Grid>
 </UserControl>
