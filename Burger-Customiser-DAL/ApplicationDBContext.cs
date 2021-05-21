@@ -1,12 +1,14 @@
 ﻿using Burger_Customiser_BLL;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace Burger_Customiser_DAL {
     public class ApplicationDBContext : DbContext {
 
-        public DbSet<Article> Article { get; set; }
+        public DbSet<Product> Product { get; set; }
+        public DbSet<Category> Category { get; set; }
 
-        public ApplicationDBContext(DbContextOptions<ApplicationDBContext> options) : base(options) {}
+        public ApplicationDBContext(DbContextOptions<ApplicationDBContext> options) : base(options) {
+            Database.EnsureCreated();
+        }
     }
 }
