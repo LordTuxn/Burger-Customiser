@@ -1,4 +1,5 @@
-﻿using Burger_Customiser_DAL.Database;
+﻿using Burger_Customiser_BLL;
+using Burger_Customiser_DAL.Database;
 using Microsoft.Extensions.Logging;
 using System.Windows;
 
@@ -11,12 +12,12 @@ namespace Burger_Customiser {
 
         private readonly ILogger logger;
 
-        private readonly ArticleDAL article;
+        private readonly ProductDAL products;
 
-        public StartWindow(ILogger<StartWindow> logger, ArticleDAL article) {
+        public StartWindow(ILogger<StartWindow> logger, ProductDAL products) {
             this.logger = logger;
 
-            this.article = article;
+            this.products = products;
             InitializeComponent();
         }
 
@@ -24,7 +25,11 @@ namespace Burger_Customiser {
             logger.LogInformation("Starting Window...");
             Main.Content = new Pages.Bestelloption(this);
             IdleScreen.Visibility = Visibility.Hidden;
-            logger.LogInformation(article.getArticles()[0].Name);
+            
+            foreach(Category c in products.getCategories()) {
+                //logger.LogInformation($"Product {p.ID}: {p.Name} ({p.Price})");
+                logger.LogInformation($"Category {c.ID}: {c.Name}");
+            }
         }
     }
 }
