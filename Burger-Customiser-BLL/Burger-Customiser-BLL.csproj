@@ -6,10 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="C:\Users\Jonas\.nuget\packages\mysql.data.entityframework\8.0.25\contentFiles\any\netstandard2.1\web.config.transform" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.6" />
   </ItemGroup>
 
