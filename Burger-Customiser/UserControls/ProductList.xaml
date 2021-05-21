@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="Burger_Customiser.UserControls.ProductList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Burger_Customiser.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="#3B3B3B">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" Grid.Row="1">
+            <WrapPanel Orientation="Vertical">
+                <Grid Width="783">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+                <local:ProductItem Grid.ColumnSpan="1" Height="60" Margin="10,10,10,0"/>
+                <local:ProductItem Grid.ColumnSpan="1" Height="60" Margin="10,10,10,0"/>
+                <local:ProductItem Grid.ColumnSpan="1" Height="60" Margin="10,10,10,0"/>
+                <local:ProductItem Grid.ColumnSpan="1" Height="60" Margin="10,10,10,0"/>
+                <local:ProductItem Grid.ColumnSpan="1" Height="60" Margin="10,10,10,0"/>
+                <local:ProductItem Grid.ColumnSpan="1" Height="60" Margin="10,10,10,0"/>
+                <local:ProductItem Grid.ColumnSpan="1" Height="60" Margin="10,10,10,0"/>
+            </WrapPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

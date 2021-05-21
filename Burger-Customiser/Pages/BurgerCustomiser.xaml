@@ -1,0 +1,40 @@
+﻿<Page x:Class="Burger_Customiser.Pages.BurgerCustomiser"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Burger_Customiser.Pages"
+      xmlns:controls="clr-namespace:Burger_Customiser.UserControls"
+      mc:Ignorable="d" 
+      d:DesignHeight="774" d:DesignWidth="650"
+      Title="BurgerCustomiser">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock 
+                Text="Burger Zusammenstellen"
+                Foreground="White"
+                FontSize="30"
+                FontWeight="Bold"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center" Grid.Row="1"/>
+        <TextBlock 
+                Text="Kategorie"
+                Foreground="White"
+                FontSize="30"
+                FontWeight="Bold"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center" Grid.Row="5"/>
+        <controls:Navigator Grid.Row="3"/>
+        <controls:ProductList Grid.Row="7"/>
+    </Grid>
+</Page>

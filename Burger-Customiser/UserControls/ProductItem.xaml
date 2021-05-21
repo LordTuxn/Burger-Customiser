@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="Burger_Customiser.UserControls.ProductItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Burger_Customiser.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="80" d:DesignWidth="800">
+    <Grid>
+        <Rectangle Fill="#595959" RadiusX="20" RadiusY="20">
+        </Rectangle>
+    </Grid>
+</UserControl>

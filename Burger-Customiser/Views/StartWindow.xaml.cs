@@ -13,7 +13,7 @@ namespace Burger_Customiser {
 
         private void IdleScreenLMBDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            Main.Content = new Pages.Bestelloption();
+            Main.Content = new Pages.Bestelloption(this);
             IdleScreen.Visibility = Visibility.Hidden;
         }
     }
