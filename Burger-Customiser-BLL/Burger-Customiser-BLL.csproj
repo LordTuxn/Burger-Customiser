@@ -5,4 +5,8 @@
     <RootNamespace>Burger_Customiser_BLL</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.6" />
+  </ItemGroup>
+
 </Project>
