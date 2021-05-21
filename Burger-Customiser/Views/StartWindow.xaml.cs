@@ -22,9 +22,8 @@ namespace Burger_Customiser {
 
         private void IdleScreenLMBDown(object sender, System.Windows.Input.MouseButtonEventArgs e) {
             logger.LogInformation("Starting Window...");
-            Main.Content = new Pages.Bestelloption();
+            Main.Content = new Pages.Bestelloption(this);
             IdleScreen.Visibility = Visibility.Hidden;
-
             logger.LogInformation(article.getArticles()[0].Name);
         }
     }

@@ -14,26 +14,16 @@ using System.Windows.Shapes;
 namespace Burger_Customiser.Pages
 {
     /// <summary>
-    /// Interaction logic for Bestelloption.xaml
+    /// Interaction logic for BurgerCustomiser.xaml
     /// </summary>
-    public partial class Bestelloption : Page
+    public partial class BurgerCustomiser : Page
     {
-        public Bestelloption(StartWindow startWindow)
+        public BurgerCustomiser(StartWindow startWindow)
         {
             InitializeComponent();
             _startWindow = startWindow;
         }
 
         private StartWindow _startWindow;
-
-        private void EatHereLMBDown(object sender, MouseButtonEventArgs e)
-        {
-            _startWindow.Main.Content = new Pages.Artikeloption(_startWindow);
-        }
-
-        private void TakeawayLMBDown(object sender, MouseButtonEventArgs e)
-        {
-            _startWindow.Main.Content = new Pages.Artikeloption(_startWindow);
-        }
     }
 }

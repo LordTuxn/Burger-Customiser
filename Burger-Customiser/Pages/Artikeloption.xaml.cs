@@ -18,9 +18,22 @@ namespace Burger_Customiser.Pages
     /// </summary>
     public partial class Artikeloption : Page
     {
-        public Artikeloption()
+        public Artikeloption(StartWindow startWindow)
         {
             InitializeComponent();
+            _startWindow = startWindow;
+        }
+
+        private StartWindow _startWindow;
+
+        private void BurgerLMBDown(object sender, MouseButtonEventArgs e)
+        {
+            _startWindow.Main.Content = new BurgerCustomiser(_startWindow);
+        }
+
+        private void CatalogueLMBDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

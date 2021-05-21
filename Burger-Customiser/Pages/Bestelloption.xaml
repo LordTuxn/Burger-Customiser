@@ -21,7 +21,7 @@
                 <RowDefinition Height="35"/>
                 <RowDefinition Height="35"/>
             </Grid.RowDefinitions>
-            <Image Source="/Resources/LandingPageBurger.jpg" Stretch="UniformToFill" Grid.RowSpan="3" Opacity="0.6"/>
+            <Image Source="/Resources/LandingPageBurger.jpg" Stretch="UniformToFill" Grid.RowSpan="3" Opacity="0.6" MouseLeftButtonDown="EatHereLMBDown"/>
             <TextBlock 
                 Text="Zum Hier Essen"
                 Foreground="White"
@@ -44,7 +44,7 @@
                 <RowDefinition Height="35"/>
                 <RowDefinition Height="35"/>
             </Grid.RowDefinitions>
-            <Image Source="/Resources/LandingPageBurger.jpg" Stretch="UniformToFill" Grid.RowSpan="3" Opacity="0.6"/>
+            <Image Source="/Resources/LandingPageBurger.jpg" Stretch="UniformToFill" Grid.RowSpan="3" Opacity="0.6" MouseLeftButtonDown="TakeawayLMBDown"/>
             <TextBlock 
                 Text="Zum Mitnehmen"
                 Foreground="White"
