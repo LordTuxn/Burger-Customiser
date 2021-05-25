@@ -12,12 +12,12 @@ namespace Burger_Customiser {
 
         private readonly ILogger logger;
 
-        private readonly ProductDAL products;
+        private readonly IngredientDAL ingredientDAL;
 
-        public StartWindow(ILogger<StartWindow> logger, ProductDAL products) {
+        public StartWindow(ILogger<StartWindow> logger, IngredientDAL ingredientDAL) {
             this.logger = logger;
 
-            this.products = products;
+            this.ingredientDAL = ingredientDAL;
             InitializeComponent();
         }
 
@@ -26,10 +26,13 @@ namespace Burger_Customiser {
             Main.Content = new Pages.Bestelloption(this);
             IdleScreen.Visibility = Visibility.Hidden;
             
-            foreach(Category c in products.getCategories()) {
-                //logger.LogInformation($"Product {p.ID}: {p.Name} ({p.Price})");
-                logger.LogInformation($"Category {c.ID}: {c.Name}");
+            foreach(Ingredient i in ingredientDAL.GetIngredients()) {
+                logger.LogInformation($"Category {i.Name}: {i.ID}");
+                i.BackgroundImage = "Test";
+                ingredientDAL.UpdateIngredient(i);
             }
+
+           
         }
     }
 }

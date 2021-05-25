@@ -37,6 +37,7 @@ namespace Burger_Customiser {
                         options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
                     services.AddScoped<ProductDAL>();
+                    services.AddScoped<IngredientDAL>();
 
                     services.AddSingleton<StartWindow>();
                 })
