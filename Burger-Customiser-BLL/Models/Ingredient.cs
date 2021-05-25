@@ -1,10 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Burger_Customiser_BLL.Relationships;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Burger_Customiser_BLL {
-    public class Product {
+    public class Ingredient {
 
-        [Key, Column("P_ID")]
+        [Key, Column("I_ID")]
         public int ID { get; set; }
 
         [Column("Name")]
@@ -13,10 +15,15 @@ namespace Burger_Customiser_BLL {
         [Column("Price")]
         public decimal Price { get; set; }
 
+        [Column("InStock")]
+        public int InStock { get; set; }
+
         [Column("BackgroundImage")]
-        public string BackgroundImageLink { get; set; }
+        public string BackgroundImage { get; set; }
 
         [ForeignKey("Category"), Column("C_ID")]
         public int CategoryID { get; set; }
+
+        public IList<BurgerHasIngredients> BurgerIngredient { get; set; }
     }
 }

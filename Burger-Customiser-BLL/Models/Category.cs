@@ -15,6 +15,6 @@ namespace Burger_Customiser_BLL {
         public int Type { get; set; }
 
         [Column("BackgroundImage")]
-        public string BackgroundImageLink { get; set; }
+        public string BackgroundImage { get; set; }
     }
 }
