@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Burger_Customiser.Pages {
@@ -6,10 +7,10 @@ namespace Burger_Customiser.Pages {
     /// <summary>
     /// Interaction logic for Artikeloption.xaml
     /// </summary>
-    public partial class Artikeloption : Page {
+    public partial class ArticleOptionPage : Page, IDisposable {
         private readonly PageManager pageManager;
 
-        public Artikeloption(PageManager pageManager) {
+        public ArticleOptionPage(PageManager pageManager) {
             this.pageManager = pageManager;
 
             InitializeComponent();
@@ -21,6 +22,10 @@ namespace Burger_Customiser.Pages {
 
         private void CatalogueLMBDown(object sender, MouseButtonEventArgs e) {
 
+        }
+
+        public void Dispose() {
+            this.Dispose();
         }
     }
 }
