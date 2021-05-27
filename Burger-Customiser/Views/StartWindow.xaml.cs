@@ -10,9 +10,18 @@ namespace Burger_Customiser {
     /// </summary>
     public partial class StartWindow : Window {
 
+        private readonly ILogger logger;
+
         public StartWindow(ILogger<StartWindow> logger) {
-            logger.LogInformation("Starting Application...");
+            this.logger = logger;
+
             InitializeComponent();
+        }
+
+        private void IdleScreenLMBDown(object sender, MouseButtonEventArgs e) {
+            logger.LogInformation("Starting Window...");
+            Main.Content = new Bestelloption(new PageManager(this));
+            IdleScreen.Visibility = Visibility.Hidden;
         }
     }
 }
