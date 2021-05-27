@@ -40,6 +40,8 @@ namespace Burger_Customiser {
                     services.AddScoped<ProductDAL>();
                     services.AddScoped<IngredientDAL>();
 
+                    services.AddScoped<IDisposable, BurgerCustomiserPage>();
+
                     services.AddSingleton<PageManager>();
                     services.AddSingleton<StartWindow>();
                 })
@@ -52,8 +54,10 @@ namespace Burger_Customiser {
 
         private async void Application_Startup(object sender, StartupEventArgs args) {
             await host.StartAsync();
-            
-            host.Services.GetService<StartWindow>().Show();
+
+            StartWindow window = host.Services.GetService<StartWindow>();
+            window.Main.Content = new StartSitePage(host.Services.GetService<PageManager>());
+            window.Show();
         }
 
         private async void Application_Exit(object sender, ExitEventArgs e) {

@@ -1,35 +1,53 @@
 ﻿using Burger_Customiser.Pages;
+using Burger_Customiser_DAL.Database;
 using System.Windows.Controls;
 
 namespace Burger_Customiser {
 
     public enum MenuPages {
-        Artikeloption, Bestelloption, BurgerCustomiser
+        StartSite, OrderOption, ArticleOption, BurgerCustomiser, ShoppingCart, Catalogue, Confirmation
     }
 
     public class PageManager {
 
-        private readonly StartWindow startWindow;
+        private readonly IngredientDAL ingredientDAL;
 
-        public PageManager(StartWindow startWindow) {
-            this.startWindow = startWindow;
+        public PageManager(StartWindow startWindow, IngredientDAL ingredientDAL) {
+            StartWindow = startWindow;
+
+            this.ingredientDAL = ingredientDAL;
         }
+
+        public StartWindow StartWindow { get; set; } // TODO: Try to inject pages and create them using service provider
 
         public Page CurrentPage { get; private set; }
 
         public void Navigate(MenuPages page) {
             switch(page) {
-                case MenuPages.Bestelloption:
-                    CurrentPage = new Bestelloption(this);
+                case MenuPages.StartSite:
+                    CurrentPage = new StartSitePage(this);
                     break;
-                case MenuPages.Artikeloption:
-                    CurrentPage = new Artikeloption(this);
+                case MenuPages.OrderOption:
+                    CurrentPage = new OrderOptionPage(this);
+                    break;
+                case MenuPages.ArticleOption:
+                    CurrentPage = new ArticleOptionPage(this);
                     break;
                 case MenuPages.BurgerCustomiser:
-                    CurrentPage = new BurgerCustomiser(this);
+                    CurrentPage = new BurgerCustomiserPage(this, ingredientDAL);
+                    break;
+                case MenuPages.Catalogue:
+
+                    break;
+                case MenuPages.ShoppingCart:
+
+                    break;
+                case MenuPages.Confirmation:
+
                     break;
             }
-            startWindow.Main.Content = CurrentPage;
+
+            StartWindow.Main.Navigate(CurrentPage);
         }
     }
 }
