@@ -1,7 +1,7 @@
-﻿using Burger_Customiser_BLL;
-using Burger_Customiser_DAL.Database;
+﻿using Burger_Customiser.Pages;
 using Microsoft.Extensions.Logging;
 using System.Windows;
+using System.Windows.Input;
 
 namespace Burger_Customiser {
 
@@ -12,27 +12,16 @@ namespace Burger_Customiser {
 
         private readonly ILogger logger;
 
-        private readonly IngredientDAL ingredientDAL;
-
-        public StartWindow(ILogger<StartWindow> logger, IngredientDAL ingredientDAL) {
+        public StartWindow(ILogger<StartWindow> logger) {
             this.logger = logger;
 
-            this.ingredientDAL = ingredientDAL;
             InitializeComponent();
         }
 
-        private void IdleScreenLMBDown(object sender, System.Windows.Input.MouseButtonEventArgs e) {
+        private void IdleScreenLMBDown(object sender, MouseButtonEventArgs e) {
             logger.LogInformation("Starting Window...");
-            Main.Content = new Pages.Bestelloption(this);
+            Main.Content = new Bestelloption(new PageManager(this));
             IdleScreen.Visibility = Visibility.Hidden;
-            
-            foreach(Ingredient i in ingredientDAL.GetIngredients()) {
-                logger.LogInformation($"Category {i.Name}: {i.ID}");
-                i.BackgroundImage = "Test";
-                ingredientDAL.UpdateIngredient(i);
-            }
-
-           
         }
     }
 }
