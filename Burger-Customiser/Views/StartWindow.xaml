@@ -27,7 +27,7 @@
 
         <!-- Main Section -->
         <Grid Grid.Column="1" Grid.Row="2">
-            <Frame x:Name="Main"/>
+            <Frame x:Name="Main" NavigationUIVisibility="Hidden" />
         </Grid>
 
         <!-- Header -->

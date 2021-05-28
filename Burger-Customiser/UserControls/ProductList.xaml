@@ -13,19 +13,12 @@
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" Grid.Row="1">
-            <WrapPanel Orientation="Vertical">
+            <WrapPanel Name="ProductListWrapPanel" Orientation="Vertical">
                 <Grid Width="783">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                 </Grid>
-                <local:ProductItem Grid.ColumnSpan="1" Height="60" Margin="10,10,10,0"/>
-                <local:ProductItem Grid.ColumnSpan="1" Height="60" Margin="10,10,10,0"/>
-                <local:ProductItem Grid.ColumnSpan="1" Height="60" Margin="10,10,10,0"/>
-                <local:ProductItem Grid.ColumnSpan="1" Height="60" Margin="10,10,10,0"/>
-                <local:ProductItem Grid.ColumnSpan="1" Height="60" Margin="10,10,10,0"/>
-                <local:ProductItem Grid.ColumnSpan="1" Height="60" Margin="10,10,10,0"/>
-                <local:ProductItem Grid.ColumnSpan="1" Height="60" Margin="10,10,10,0"/>
             </WrapPanel>
         </ScrollViewer>
     </Grid>

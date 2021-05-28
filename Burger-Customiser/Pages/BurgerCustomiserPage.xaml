@@ -7,9 +7,10 @@
       xmlns:controls="clr-namespace:Burger_Customiser.UserControls"
       mc:Ignorable="d" 
       d:DesignHeight="774" d:DesignWidth="650"
+      ShowsNavigationUI="False"
       Title="BurgerCustomiser">
 
-    <Grid>
+    <Grid x:Name="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="35"/>
@@ -22,7 +23,5 @@
         </Grid.RowDefinitions>
         <TextBlock Text="Burger Zusammenstellen" Style="{StaticResource Header1}"  Grid.Row="1"/>
         <TextBlock Text="Kategorie" Style="{StaticResource Header1}" Grid.Row="5"/>
-        <controls:Navigator Grid.Row="3"/>
-        <controls:ProductList Grid.Row="7"/>
     </Grid>
 </Page>

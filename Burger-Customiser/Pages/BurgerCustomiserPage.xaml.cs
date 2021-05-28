@@ -1,4 +1,5 @@
-﻿using Burger_Customiser_DAL.Database;
+﻿using Burger_Customiser.UserControls;
+using Burger_Customiser_DAL.Database;
 using System;
 using System.Windows.Controls;
 
@@ -17,6 +18,17 @@ namespace Burger_Customiser.Pages {
             this.ingredientDAL = ingredientDAL;
 
             InitializeComponent();
+
+            // Add ItemList
+            ProductList productList = new ProductList(ingredientDAL, 4);
+            MainGrid.Children.Add(productList);
+
+            // Add Navigator
+            MainGrid.Children.Add(new Navigator(ingredientDAL, productList));
+        }
+
+        public void Dispose() {
+            this.Dispose();
         }
     }
 }

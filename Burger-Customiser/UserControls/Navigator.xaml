@@ -5,23 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Burger_Customiser.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="200" d:DesignWidth="600">
     <Grid Background="#3B3B3B">
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
-            <WrapPanel Orientation="Horizontal" Grid.Row="0">
-                <Grid Height="450">
+            <WrapPanel Name="NavigationWrapPanel" Orientation="Horizontal" Grid.Row="0">
+                <Grid Height="200">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                 </Grid>
-                <Button Grid.ColumnSpan="1" Width="150">1</Button>
-                <Button Grid.ColumnSpan="1" Width="150">1</Button>
-                <Button Grid.ColumnSpan="1" Width="150">1</Button>
-                <Button Grid.ColumnSpan="1" Width="150">1</Button>
-                <Button Grid.ColumnSpan="1" Width="150">1</Button>
-                <Button Grid.ColumnSpan="1" Width="150">1</Button>
-                <Button Grid.ColumnSpan="1" Width="150">1</Button>
-                <Button Grid.ColumnSpan="1" Width="150">1</Button>
             </WrapPanel>
         </ScrollViewer>
     </Grid>
