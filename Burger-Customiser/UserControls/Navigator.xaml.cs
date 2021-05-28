@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Burger_Customiser_BLL;
+using Burger_Customiser_DAL.Database;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -18,28 +20,40 @@ namespace Burger_Customiser.UserControls
     /// </summary>
     public partial class Navigator : UserControl
     {
-        public Navigator()
+        public Navigator(IngredientDAL ingredientDAL, ProductList productList)
         {
             InitializeComponent();
-            //TODO: Get Categories
-            //For now this will do for testing
-            Dictionary<string, string> categoryDict = new Dictionary<string, string>();
-            categoryDict.Add("Fleisch", "");
-            categoryDict.Add("Brot", "");
-            categoryDict.Add("Käse", "");
-            categoryDict.Add("Beläge", "");
-
-            SetNavigator(categoryDict);
+            Grid.SetRow(this, 3);
+            this.productList = productList;
+            this.categories = ingredientDAL.GetCategories();
+            SetNavigator(categories);
         }
 
-        private void SetNavigator(Dictionary<string, string> dict)
+        private ProductList productList;
+        private List<Category> categories;
+
+        private void SetNavigator(List<Category> list)
         {
-            foreach (KeyValuePair<string, string> entry in dict)
+            foreach (Category item in list)
             {
-                NavigationWrapPanel.Children.Add(new Button {
+                // Get Image
+                string url = item.BackgroundImage.Trim();
+                url = (url == "" ? $@"https://i.imgur.com/BnQNYQS.jpg" : item.BackgroundImage); // Check if there is a Background Image in the database, if not set default image
+
+                BitmapImage bitimg = new BitmapImage();
+                bitimg.BeginInit();
+                bitimg.UriSource = new Uri($@"{url}", UriKind.RelativeOrAbsolute);
+                bitimg.EndInit();
+
+                ImageBrush img = new ImageBrush(bitimg);
+                img.Stretch = Stretch.UniformToFill;
+
+                Button btn = new Button() {
                     Width = 150,
-                    Content = entry.Key
-                });
+                    Content = item.Name,
+                    Background = img
+                };
+                NavigationWrapPanel.Children.Add(btn);
             }
         }
     }

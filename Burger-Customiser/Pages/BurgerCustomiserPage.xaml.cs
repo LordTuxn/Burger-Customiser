@@ -20,7 +20,11 @@ namespace Burger_Customiser.Pages {
             InitializeComponent();
 
             // Add ItemList
-            MainGrid.Children.Add(new ProductList(ingredientDAL));
+            ProductList productList = new ProductList(ingredientDAL, 4);
+            MainGrid.Children.Add(productList);
+
+            // Add Navigator
+            MainGrid.Children.Add(new Navigator(ingredientDAL, productList));
         }
 
         public void Dispose() {

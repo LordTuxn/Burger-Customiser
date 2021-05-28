@@ -20,11 +20,11 @@ namespace Burger_Customiser.UserControls
     /// </summary>
     public partial class ProductList : UserControl
     {
-        public ProductList(IngredientDAL ingredientDAL)
+        public ProductList(IngredientDAL ingredientDAL, int categoryID)
         {
             InitializeComponent();
             this.ingredientDAL = ingredientDAL;
-            this.categoryID = 4;
+            this.categoryID = categoryID;
             Grid.SetRow(this, 7);
             UpdateList();
         }
@@ -43,25 +43,12 @@ namespace Burger_Customiser.UserControls
                     Margin = new Thickness(10, 10, 10, 0)
                 });
             }
+        }
 
-
-            ////For now this will do for testing
-            ////Will probably change to a List<Product>() later
-            //Dictionary<string, double> productDict = new Dictionary<string, double>();
-            //productDict.Add("Salat", 0.69);
-            //productDict.Add("Tomaten", 4.20);
-            //productDict.Add("Gurken", 69.11);
-            //productDict.Add("Zwiebeln", 9.11);
-            //productDict.Add("Speck", 6.90);
-
-            //foreach (KeyValuePair<string, double> entry in productDict)
-            //{
-            //    ProductListWrapPanel.Children.Add(new ProductItem(entry.Key, 0, entry.Value)
-            //    {
-            //        Height = 60,
-            //        Margin = new Thickness(10,10,10,0)
-            //    });
-            //}
+        public void ChangeCategory(int categoryID)
+        {
+            this.categoryID = categoryID;
+            UpdateList();
         }
     }
 }
