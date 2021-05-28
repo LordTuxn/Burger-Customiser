@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Burger_Customiser_DAL.Database;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -18,17 +19,19 @@ namespace Burger_Customiser.Pages
     /// </summary>
     public partial class Artikeloption : Page
     {
-        public Artikeloption(StartWindow startWindow)
+        public Artikeloption(IngredientDAL ingredientDAL, StartWindow startWindow)
         {
             InitializeComponent();
             _startWindow = startWindow;
+            this.ingredientDAL = ingredientDAL;
         }
 
         private StartWindow _startWindow;
+        private IngredientDAL ingredientDAL;
 
         private void BurgerLMBDown(object sender, MouseButtonEventArgs e)
         {
-            _startWindow.Main.Content = new BurgerCustomiser(_startWindow);
+            _startWindow.Main.Content = new BurgerCustomiser(ingredientDAL, _startWindow);
         }
 
         private void CatalogueLMBDown(object sender, MouseButtonEventArgs e)

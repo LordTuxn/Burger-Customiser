@@ -23,7 +23,7 @@ namespace Burger_Customiser {
 
         private void IdleScreenLMBDown(object sender, System.Windows.Input.MouseButtonEventArgs e) {
             logger.LogInformation("Starting Window...");
-            Main.Content = new Pages.Bestelloption(this);
+            Main.Content = new Pages.Bestelloption(ingredientDAL, this);
             IdleScreen.Visibility = Visibility.Hidden;
             
             foreach(Ingredient i in ingredientDAL.GetIngredients()) {

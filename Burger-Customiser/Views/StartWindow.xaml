@@ -35,7 +35,7 @@
                     <TextBlock Text="Touch to begin..." TextWrapping="Wrap" Style="{StaticResource Header1}"/>
                 </StackPanel>
             </Grid>
-            <Frame x:Name="Main" />
+            <Frame x:Name="Main" NavigationUIVisibility="Hidden" />
         </Grid>
 
         <!-- Header -->

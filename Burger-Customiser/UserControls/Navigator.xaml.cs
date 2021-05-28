@@ -22,7 +22,25 @@ namespace Burger_Customiser.UserControls
         {
             InitializeComponent();
             //TODO: Get Categories
-            
+            //For now this will do for testing
+            Dictionary<string, string> categoryDict = new Dictionary<string, string>();
+            categoryDict.Add("Fleisch", "");
+            categoryDict.Add("Brot", "");
+            categoryDict.Add("Käse", "");
+            categoryDict.Add("Beläge", "");
+
+            SetNavigator(categoryDict);
+        }
+
+        private void SetNavigator(Dictionary<string, string> dict)
+        {
+            foreach (KeyValuePair<string, string> entry in dict)
+            {
+                NavigationWrapPanel.Children.Add(new Button {
+                    Width = 150,
+                    Content = entry.Key
+                });
+            }
         }
     }
 }
