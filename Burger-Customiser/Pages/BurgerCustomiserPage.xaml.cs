@@ -7,7 +7,7 @@ namespace Burger_Customiser.Pages {
     /// <summary>
     /// Interaction logic for BurgerCustomiser.xaml
     /// </summary>
-    public partial class BurgerCustomiserPage : Page, IDisposable { // Add IDisposable interface to fix memory leaks
+    public partial class BurgerCustomiserPage : Page { // Add IDisposable interface to fix memory leaks
 
         private readonly PageManager pageManager;
         private readonly IngredientDAL ingredientDAL;
@@ -17,12 +17,6 @@ namespace Burger_Customiser.Pages {
             this.ingredientDAL = ingredientDAL;
 
             InitializeComponent();
-
-
-        }
-
-        public void Dispose() {
-            this.Dispose();
         }
     }
 }

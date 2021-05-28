@@ -27,6 +27,8 @@ namespace Burger_Customiser {
                     config = configurationBuilder.Build();
                 })
                 .ConfigureServices((context, services) => {
+
+                    // Inject Database
                     string connectionString =
                         $@"server={config["Data:Server"]}; " +
                         $@"port={config["Data:Port"]}; " +
@@ -37,11 +39,17 @@ namespace Burger_Customiser {
                     services.AddDbContextPool<ApplicationDBContext>(options => 
                         options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
+                    // Inject Database DALs
                     services.AddScoped<ProductDAL>();
                     services.AddScoped<IngredientDAL>();
 
-                    services.AddScoped<IDisposable, BurgerCustomiserPage>();
+                    // Inject Pages
+                    services.AddScoped<StartSitePage>();
+                    services.AddScoped<OrderOptionPage>();
+                    services.AddScoped<ArticleOptionPage>();
+                    services.AddScoped<BurgerCustomiserPage>();
 
+                    // Inject Window and Managers
                     services.AddSingleton<PageManager>();
                     services.AddSingleton<StartWindow>();
                 })
@@ -55,9 +63,8 @@ namespace Burger_Customiser {
         private async void Application_Startup(object sender, StartupEventArgs args) {
             await host.StartAsync();
 
-            StartWindow window = host.Services.GetService<StartWindow>();
-            window.Main.Content = new StartSitePage(host.Services.GetService<PageManager>());
-            window.Show();
+            host.Services.GetService<PageManager>().Navigate(MenuPages.StartSite);
+            host.Services.GetService<StartWindow>().Show();
         }
 
         private async void Application_Exit(object sender, ExitEventArgs e) {

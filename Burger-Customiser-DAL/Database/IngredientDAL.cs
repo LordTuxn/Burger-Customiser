@@ -23,7 +23,5 @@ namespace Burger_Customiser_DAL.Database {
         public List<Category> GetCategories() {
             return context.Category.FromSqlRaw("SELECT * FROM category WHERE type = 0").ToList();
         }
-
-       // public void SaveIngredient*
     }
 }

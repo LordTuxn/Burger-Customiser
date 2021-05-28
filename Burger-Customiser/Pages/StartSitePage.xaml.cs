@@ -7,7 +7,7 @@ namespace Burger_Customiser.Pages {
     /// <summary>
     /// Interaction logic for StartSite.xaml
     /// </summary>
-    public partial class StartSitePage : Page, IDisposable {
+    public partial class StartSitePage : Page{
 
         private readonly PageManager pageManager;
 
@@ -18,11 +18,7 @@ namespace Burger_Customiser.Pages {
         }
 
         private void IdleScreenLMBDown(object sender, MouseButtonEventArgs e) {
-            pageManager.Navigate(MenuPages.OrderOption);
-        }
-
-        public void Dispose() {
-            this.Dispose();
+            pageManager.NextPage();  
         }
     }
 }

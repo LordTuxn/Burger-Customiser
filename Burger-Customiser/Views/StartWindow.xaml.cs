@@ -12,6 +12,7 @@ namespace Burger_Customiser {
 
         public StartWindow(ILogger<StartWindow> logger) {
             logger.LogInformation("Starting Application...");
+
             InitializeComponent();
         }
     }

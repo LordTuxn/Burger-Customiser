@@ -7,7 +7,7 @@ namespace Burger_Customiser.Pages {
     /// <summary>
     /// Interaction logic for Artikeloption.xaml
     /// </summary>
-    public partial class ArticleOptionPage : Page, IDisposable {
+    public partial class ArticleOptionPage : Page {
         private readonly PageManager pageManager;
 
         public ArticleOptionPage(PageManager pageManager) {
@@ -17,15 +17,11 @@ namespace Burger_Customiser.Pages {
         }
 
         private void BurgerLMBDown(object sender, MouseButtonEventArgs e) {
-            pageManager.Navigate(MenuPages.BurgerCustomiser);
+            pageManager.NextPage();
         }
 
         private void CatalogueLMBDown(object sender, MouseButtonEventArgs e) {
-
-        }
-
-        public void Dispose() {
-            this.Dispose();
+            pageManager.NextPage();
         }
     }
 }
