@@ -27,15 +27,6 @@
 
         <!-- Main Section -->
         <Grid Grid.Column="1" Grid.Row="2">
-            <Grid x:Name="IdleScreen">
-                <Image Source="/Resources/LandingPageBurger.jpg" 
-                       Stretch="UniformToFill"
-                       Opacity="0.6" MouseLeftButtonDown="IdleScreenLMBDown"/>
-                <StackPanel VerticalAlignment="Center">
-                    <TextBlock Text="Berühren, um zu beginnen..." TextWrapping="Wrap" Style="{StaticResource Header1}"/>
-                    <TextBlock Text="Touch to begin..." TextWrapping="Wrap" Style="{StaticResource Header1}"/>
-                </StackPanel>
-            </Grid>
             <Frame x:Name="Main" NavigationUIVisibility="Hidden" />
         </Grid>
 

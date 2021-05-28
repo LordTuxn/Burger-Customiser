@@ -20,19 +20,19 @@ namespace Burger_Customiser.UserControls
     /// </summary>
     public partial class ProductList : UserControl
     {
-        public ProductList(IngredientDAL ingredientDAL, int categoryID)
+        public ProductList(IngredientDAL ingredientDAL)
         {
             InitializeComponent();
             this.ingredientDAL = ingredientDAL;
-            this.categoryID = categoryID;
+            this.categoryID = 4;
             Grid.SetRow(this, 7);
-            UpdateList("");
+            UpdateList();
         }
 
         private IngredientDAL ingredientDAL;
         private int categoryID;
         
-        public void UpdateList(string category)
+        public void UpdateList()
         {
             List<Ingredient> ingredients = ingredientDAL.GetIngredientsByCategory(categoryID);
             foreach (Ingredient item in ingredients)
