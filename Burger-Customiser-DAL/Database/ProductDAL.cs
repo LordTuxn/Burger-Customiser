@@ -14,11 +14,11 @@ namespace Burger_Customiser_DAL.Database {
         }
 
         public List<Product> GetProducts () {
-            return context.Product.FromSqlRaw("SELECT * FROM product").ToList();
+            return context.Product.ToList(); // SELECT * FROM product
         }
 
-        public List<Ingredient> GetIngredientsByCategory(int categoryID) {
-            return context.Ingredient.FromSqlRaw("SELECT * FROM products WHERE C_ID = {0}", categoryID).ToList();
+        public List<Product> GetProductsByCategory(int categoryID) {
+            return context.Product.FromSqlRaw("SELECT * FROM products WHERE C_ID = {0}", categoryID).ToList();
         }
 
         public List<Category> GetCategories() {

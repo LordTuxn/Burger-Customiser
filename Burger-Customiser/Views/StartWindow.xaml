@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Burger_Customiser"
+        d:DataContext="{d:DesignInstance Type=local:StartWindow, IsDesignTimeCreatable=True}"
         mc:Ignorable="d"
         Title="Burger-Customiser" Height="800" Width="600"
         >
@@ -67,3 +68,4 @@
         </Grid>
     </Grid>
 </Window>
+   
