@@ -40,8 +40,9 @@ namespace Burger_Customiser {
                         options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
                     // Inject Database DALs
-                    services.AddScoped<ProductDAL>();
-                    services.AddScoped<IngredientDAL>();
+                    services.AddSingleton<ProductDAL>();
+                    services.AddSingleton<IngredientDAL>();
+                    services.AddSingleton<BurgerDAL>();
 
                     // Inject Pages
                     services.AddScoped<StartSitePage>();

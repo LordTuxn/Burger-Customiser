@@ -24,6 +24,6 @@ namespace Burger_Customiser_BLL {
         [ForeignKey("Category"), Column("C_ID")]
         public int CategoryID { get; set; }
 
-        public IList<BurgerHasIngredients> BurgerIngredient { get; set; }
+        public List<BurgerIngredient> BurgerIngredient { get; set; }
     }
 }

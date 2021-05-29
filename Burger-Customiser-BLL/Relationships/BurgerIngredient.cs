@@ -2,7 +2,8 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Burger_Customiser_BLL.Relationships {
-    public class BurgerHasIngredients {
+    [Table("Burger_Has_Ingredient")]
+    public class BurgerIngredient {
 
         [Key, ForeignKey("Burger"), Column("B_ID")]
         public int BurgerID { get; set; }
