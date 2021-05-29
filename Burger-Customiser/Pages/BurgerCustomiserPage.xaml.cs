@@ -21,11 +21,11 @@ namespace Burger_Customiser.Pages {
 
             // Add ItemList
             // Set default category, that the user will see first
-            ProductList productList = new ProductList(ingredientDAL, ingredientDAL.GetCategories()[0]);
-            categoryName.Text = ingredientDAL.GetCategories()[0].Name;
+            ProductList productList = new ProductList(ingredientDAL, categoryDAL.GetIngredientCategories()[0]);
+            categoryName.Text = categoryDAL.GetIngredientCategories()[0].Name;
             MainGrid.Children.Add(productList);
             // Add Navigator
-            MainGrid.Children.Add(new Navigator(categoryDAL, ingredientDAL, productList, categoryName));
+            MainGrid.Children.Add(new Navigator(categoryDAL, categoryDAL.GetIngredientCategories(), productList, categoryName));
         }
 
         public void Dispose() {

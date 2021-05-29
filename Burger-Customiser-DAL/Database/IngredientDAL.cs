@@ -20,9 +20,9 @@ namespace Burger_Customiser_DAL.Database {
             return context.Ingredient.FromSqlRaw("SELECT * FROM ingredient WHERE C_ID = {0}", categoryID).ToList();
         }
 
-        public List<Category> GetCategories() {
-            return context.Category.FromSqlRaw("SELECT * FROM category WHERE type = 0").ToList();
-        }
+        //public List<Category> GetCategories() {
+        //    return context.Category.FromSqlRaw("SELECT * FROM category WHERE type = 0").ToList();
+        //}
 
         public void UpdateIngredient(Ingredient ingredient) {
             context.Update(ingredient);

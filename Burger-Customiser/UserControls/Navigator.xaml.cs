@@ -20,14 +20,13 @@ namespace Burger_Customiser.UserControls
     /// </summary>
     public partial class Navigator : UserControl
     {
-        public Navigator(CategoryDAL categoryDAL, IngredientDAL ingredientDAL, ProductList productList, TextBlock categoryName)
+        public Navigator(CategoryDAL categoryDAL, List<Category> categories, ProductList productList, TextBlock categoryName)
         {
             InitializeComponent();
             Grid.SetRow(this, 3);
             this.productList = productList;
-            this.categories = ingredientDAL.GetCategories();
+            this.categories = categories;
             this.categoryName = categoryName;
-            this.ingredientDAL = ingredientDAL;
             this.categoryDAL = categoryDAL;
             SetNavigator(categories);
         }
@@ -35,7 +34,6 @@ namespace Burger_Customiser.UserControls
         private readonly ProductList productList;
         private readonly List<Category> categories;
         private readonly TextBlock categoryName;
-        private readonly IngredientDAL ingredientDAL;
         private readonly CategoryDAL categoryDAL;
 
         private void SetNavigator(List<Category> list)

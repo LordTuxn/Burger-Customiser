@@ -12,7 +12,7 @@ namespace Burger_Customiser {
         ArticleOption = 2, 
         BurgerCustomiser = 3, 
         ShoppingCart = 4, 
-        Catalogue = 5, 
+        ProductCatalogue = 5, 
         Confirmation = 6
     }
 
@@ -38,6 +38,17 @@ namespace Burger_Customiser {
         }
 
         private int GetCurrentPageIndex() {
+            if (CurrentPage.Title == "Catalogue")
+            {
+                Catalogue catalogue = (Catalogue)CurrentPage;
+                switch (catalogue.Type)
+                {
+                    case 1:
+                        return (int)Enum.Parse(typeof(MenuPages), "BurgerCustomiser");
+                    case 2:
+                        return (int)Enum.Parse(typeof(MenuPages), "Catalogue");
+                }
+            }
             return (int)Enum.Parse(typeof(MenuPages), CurrentPage.Title);
         }
 
@@ -55,7 +66,7 @@ namespace Burger_Customiser {
                 case MenuPages.BurgerCustomiser:
                     CurrentPage = serviceProvider.Services.GetService<BurgerCustomiserPage>();
                     break;
-                case MenuPages.Catalogue:
+                case MenuPages.ProductCatalogue:
 
                     break;
                 case MenuPages.ShoppingCart:
