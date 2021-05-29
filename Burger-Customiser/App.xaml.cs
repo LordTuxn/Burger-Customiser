@@ -43,6 +43,7 @@ namespace Burger_Customiser {
                     services.AddSingleton<ProductDAL>();
                     services.AddSingleton<IngredientDAL>();
                     services.AddSingleton<BurgerDAL>();
+                    services.AddSingleton<CategoryDAL>();
 
                     // Inject Pages
                     services.AddScoped<StartSitePage>();
