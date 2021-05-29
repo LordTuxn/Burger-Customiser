@@ -36,7 +36,7 @@ namespace Burger_Customiser {
                         $@"user={config["Data:Username"]}; " +
                         $@"password={config["Data:Password"]}; " +
                         "Persist Security Info=False; Connect Timeout=300;";
-                    services.AddDbContextPool<ApplicationDBContext>(options => 
+                    services.AddDbContextPool<ApplicationDBContext>(options =>
                         options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
                     // Inject Database DALs

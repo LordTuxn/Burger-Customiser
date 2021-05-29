@@ -30,11 +30,11 @@ namespace Burger_Customiser {
         public Page CurrentPage { get; private set; }
 
         public void NextPage() {
-            Navigate((MenuPages)(GetCurrentPageIndex() + 1 >= Enum.GetValues(typeof(MenuPages)).Length ? 0 : GetCurrentPageIndex() + 1));
+            Navigate((MenuPages)(GetCurrentPageIndex() > Enum.GetValues(typeof(MenuPages)).Length ? 0 : GetCurrentPageIndex() + 1));
         }
 
         public void PreviousPage() {
-            Navigate((MenuPages)(GetCurrentPageIndex() - 1 >= Enum.GetValues(typeof(MenuPages)).Length ? 0 : GetCurrentPageIndex() - 1));
+            Navigate((MenuPages)(GetCurrentPageIndex() < 0 ? Enum.GetValues(typeof(MenuPages)).Length : GetCurrentPageIndex() - 1));
         }
 
         private int GetCurrentPageIndex() {
