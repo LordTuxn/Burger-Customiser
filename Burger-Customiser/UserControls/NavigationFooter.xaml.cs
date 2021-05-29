@@ -18,17 +18,22 @@ namespace Burger_Customiser.UserControls
     /// </summary>
     public partial class NavigationFooter : UserControl
     {
-        public NavigationFooter()
+        public NavigationFooter(PageManager pm)
         {
             InitializeComponent();
+            Grid.SetColumn(this, 1);
+            Grid.SetRow(this, 4);
+            this.pageManager = pm;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e) {
+        private readonly PageManager pageManager;
 
+        private void Button_Back_Click(object sender, RoutedEventArgs e) {
+            pageManager.NextPage();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e) {
-
+        private void Button_Next_Click(object sender, RoutedEventArgs e) {
+            pageManager.PreviousPage();
         }
     }
 }
