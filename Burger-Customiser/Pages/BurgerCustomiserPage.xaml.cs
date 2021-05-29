@@ -13,18 +13,19 @@ namespace Burger_Customiser.Pages {
         private readonly PageManager pageManager;
         private readonly IngredientDAL ingredientDAL;
 
-        public BurgerCustomiserPage(PageManager pageManager, IngredientDAL ingredientDAL) {
+        public BurgerCustomiserPage(PageManager pageManager, IngredientDAL ingredientDAL, CategoryDAL categoryDAL) { //lmao xd ich hass dependency injections xDDDD :kms:
             this.pageManager = pageManager;
             this.ingredientDAL = ingredientDAL;
 
             InitializeComponent();
 
             // Add ItemList
-            ProductList productList = new ProductList(ingredientDAL, 4);
+            // Set default category, that the user will see first
+            ProductList productList = new ProductList(ingredientDAL, ingredientDAL.GetCategories()[0]);
+            categoryName.Text = ingredientDAL.GetCategories()[0].Name;
             MainGrid.Children.Add(productList);
-
             // Add Navigator
-            MainGrid.Children.Add(new Navigator(ingredientDAL, productList));
+            MainGrid.Children.Add(new Navigator(categoryDAL, ingredientDAL, productList, categoryName));
         }
 
         public void Dispose() {

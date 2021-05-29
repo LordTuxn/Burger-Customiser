@@ -14,7 +14,7 @@
         </Grid.RowDefinitions>
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" Grid.Row="1">
             <WrapPanel Name="ProductListWrapPanel" Orientation="Vertical">
-                <Grid Width="783">
+                <Grid Width="800">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>

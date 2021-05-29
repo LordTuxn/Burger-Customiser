@@ -20,17 +20,23 @@ namespace Burger_Customiser.UserControls
     /// </summary>
     public partial class Navigator : UserControl
     {
-        public Navigator(IngredientDAL ingredientDAL, ProductList productList)
+        public Navigator(CategoryDAL categoryDAL, IngredientDAL ingredientDAL, ProductList productList, TextBlock categoryName)
         {
             InitializeComponent();
             Grid.SetRow(this, 3);
             this.productList = productList;
             this.categories = ingredientDAL.GetCategories();
+            this.categoryName = categoryName;
+            this.ingredientDAL = ingredientDAL;
+            this.categoryDAL = categoryDAL;
             SetNavigator(categories);
         }
 
-        private ProductList productList;
-        private List<Category> categories;
+        private readonly ProductList productList;
+        private readonly List<Category> categories;
+        private readonly TextBlock categoryName;
+        private readonly IngredientDAL ingredientDAL;
+        private readonly CategoryDAL categoryDAL;
 
         private void SetNavigator(List<Category> list)
         {
@@ -53,8 +59,16 @@ namespace Burger_Customiser.UserControls
                     Content = item.Name,
                     Background = img
                 };
+                btn.Click += new RoutedEventHandler(BtnClick);
                 NavigationWrapPanel.Children.Add(btn);
             }
+        }
+
+        void BtnClick(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            categoryName.Text = button.Content.ToString();
+            productList.ChangeCategory(categoryDAL.GetCategoryByName(categoryName.Text));
         }
     }
 }

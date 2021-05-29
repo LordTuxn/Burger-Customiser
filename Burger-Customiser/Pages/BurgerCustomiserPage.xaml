@@ -22,6 +22,6 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <TextBlock Text="Burger Zusammenstellen" Style="{StaticResource Header1}"  Grid.Row="1"/>
-        <TextBlock Text="Kategorie" Style="{StaticResource Header1}" Grid.Row="5"/>
+        <TextBlock x:Name="categoryName" Text="Kategorie" Style="{StaticResource Header1}" Grid.Row="5"/>
     </Grid>
 </Page>
