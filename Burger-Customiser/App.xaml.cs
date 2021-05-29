@@ -50,8 +50,10 @@ namespace Burger_Customiser {
                     services.AddScoped<ArticleOptionPage>();
                     services.AddScoped<BurgerCustomiserPage>();
 
-                    // Inject Window and Managers
+                    // Inject Application Window and Managers
+                    services.AddSingleton<IDisposable, OrderManager>();
                     services.AddSingleton<PageManager>();
+
                     services.AddSingleton<StartWindow>();
                 })
                 .ConfigureLogging(logging => {

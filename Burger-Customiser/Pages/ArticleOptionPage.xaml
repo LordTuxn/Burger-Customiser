@@ -21,7 +21,7 @@
                 <RowDefinition Height="35"/>
                 <RowDefinition Height="35"/>
             </Grid.RowDefinitions>
-            <Image Source="/Resources/LandingPageBurger.jpg" Stretch="UniformToFill" Grid.RowSpan="3" Opacity="0.6" MouseLeftButtonDown="BurgerLMBDown"/>
+            <Image Source="/Resources/BurgerCustomiserBackground.jpg" Stretch="UniformToFill" Grid.RowSpan="3" Opacity="0.6" MouseLeftButtonDown="BurgerLMBDown"/>
             <TextBlock Text="Burger Zusammenstellen" Style="{StaticResource Header1}" VerticalAlignment="Bottom" Grid.Row="0"/>
             <TextBlock Text="Burger Customiser" Style="{StaticResource Header1}" VerticalAlignment="Bottom" Grid.Row="1"/>
         </Grid>
@@ -32,7 +32,7 @@
                 <RowDefinition Height="35"/>
                 <RowDefinition Height="35"/>
             </Grid.RowDefinitions>
-            <Image Source="/Resources/LandingPageBurger.jpg" Stretch="UniformToFill" Grid.RowSpan="3" Opacity="0.6" MouseLeftButtonDown="CatalogueLMBDown"/>
+            <Image Source="/Resources/AddSidedishBackground.jpg" Stretch="UniformToFill" Grid.RowSpan="3" Opacity="0.6" MouseLeftButtonDown="CatalogueLMBDown"/>
             <TextBlock Text="Beilagen Hinzufügen" Style="{StaticResource Header1}" VerticalAlignment="Bottom" Grid.Row="0"/>
             <TextBlock Text="Add Side Dish" Style="{StaticResource Header1}" VerticalAlignment="Bottom" Grid.Row="1"/>
         </Grid>
