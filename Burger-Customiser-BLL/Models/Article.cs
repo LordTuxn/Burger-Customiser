@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Burger_Customiser_BLL {
-    public class Ingredient {
+    public class Article {
 
-        [Key, Column("I_ID")]
+        [Key, Column("A_ID")]
         public int ID { get; set; }
 
         [Column("Name")]
@@ -14,6 +14,9 @@ namespace Burger_Customiser_BLL {
 
         [Column("Price")]
         public decimal Price { get; set; }
+
+        [Column("Type")]
+        public string Type { get; set; }
 
         [Column("InStock")]
         public int InStock { get; set; }
@@ -23,7 +26,17 @@ namespace Burger_Customiser_BLL {
 
         [ForeignKey("Category"), Column("C_ID")]
         public int CategoryID { get; set; }
+    }
 
-        public List<BurgerIngredient> BurgerIngredient { get; set; }
+    // [Table("Ingredient")]
+    public class Ingredient : Article {
+
+        public List<BurgerIngredient> BurgerIngredients { get; set; }
+    }
+
+    //[Table("Product")]
+    public class Product : Article {
+
+        public List<OrderProduct> ProductOrders { get; set; }
     }
 }

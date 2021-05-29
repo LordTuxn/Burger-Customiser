@@ -11,21 +11,21 @@ namespace Burger_Customiser.Pages {
     public partial class BurgerCustomiserPage : Page { // Add IDisposable interface to fix memory leaks
 
         private readonly PageManager pageManager;
-        private readonly IngredientDAL ingredientDAL;
+        private readonly ArticleDAL articleDAL;
 
-        public BurgerCustomiserPage(PageManager pageManager, IngredientDAL ingredientDAL, CategoryDAL categoryDAL) { //lmao xd ich hass dependency injections xDDDD :kms:
+        public BurgerCustomiserPage(PageManager pageManager, ArticleDAL articleDAL, CategoryDAL categoryDAL) { //lmao xd ich hass dependency injections xDDDD :kms:
             this.pageManager = pageManager;
-            this.ingredientDAL = ingredientDAL;
+            this.articleDAL = articleDAL;
 
             InitializeComponent();
 
             // Add ItemList
             // Set default category, that the user will see first
-            ProductList productList = new ProductList(ingredientDAL, categoryDAL.GetIngredientCategories()[0]);
-            categoryName.Text = categoryDAL.GetIngredientCategories()[0].Name;
+            CatalogueList productList = new CatalogueList(articleDAL, CatalogueType.Ingredient);
+            //categoryName.Text = Catalogue.GetCategories()[0].Name;
             MainGrid.Children.Add(productList);
             // Add Navigator
-            MainGrid.Children.Add(new Navigator(categoryDAL, categoryDAL.GetIngredientCategories(), productList, categoryName));
+            MainGrid.Children.Add(new Navigator(categoryDAL, productList, categoryName));
         }
 
         public void Dispose() {

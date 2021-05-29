@@ -11,21 +11,21 @@ namespace Burger_Customiser.Pages {
         private readonly PageManager pageManager;
         private readonly OrderManager orderManager;
 
-        public OrderOptionPage(PageManager pageManager, OrderManager orderManager) {
+        public OrderOptionPage(PageManager pageManager) {
             this.pageManager = pageManager;
-            this.orderManager = orderManager;
+        //    this.orderManager = orderManager;
 
             InitializeComponent();
         }
 
         private void EatHereLMBDown(object sender, MouseButtonEventArgs e) {
-            orderManager.Order.ToTakeAway = false;
+           // orderManager.Order.ToTakeAway = false;
             
             pageManager.NextPage();
         }
 
         private void TakeawayLMBDown(object sender, MouseButtonEventArgs e) {
-            orderManager.Order.ToTakeAway = true;
+           // orderManager.Order.ToTakeAway = true;
 
             pageManager.NextPage();
         }

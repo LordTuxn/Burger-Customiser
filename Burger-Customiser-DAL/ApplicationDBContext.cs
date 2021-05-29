@@ -5,8 +5,9 @@ using Microsoft.EntityFrameworkCore;
 namespace Burger_Customiser_DAL {
     public class ApplicationDBContext : DbContext {
 
-        public DbSet<Product> Product { get; set; }
+        public DbSet<Article> Article { get; set; }
         public DbSet<Ingredient> Ingredient { get; set; }
+        public DbSet<Product> Product { get; set; }
         public DbSet<Category> Category { get; set; }
 
         public DbSet<BurgerIngredient> BurgerIngredients { get; set; }
@@ -16,6 +17,14 @@ namespace Burger_Customiser_DAL {
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Article>()
+                .HasDiscriminator<string>("Type")
+                .HasValue<Article>("Article")
+                .HasValue<Ingredient>("Ingredient")
+                .HasValue<Product>("Product");
+
             // Add relation between Ingredient and Burger
             modelBuilder.Entity<BurgerIngredient>()
                 .HasOne(b => b.Burger)
@@ -24,7 +33,7 @@ namespace Burger_Customiser_DAL {
 
             modelBuilder.Entity<BurgerIngredient>()
                 .HasOne(i => i.Ingredient)
-                .WithMany(i => i.BurgerIngredient)
+                .WithMany(i => i.BurgerIngredients)
                 .HasForeignKey(i => i.IngredientID);
 
             // Add relation between Order and Product
@@ -48,8 +57,6 @@ namespace Burger_Customiser_DAL {
                 .HasOne(b => b.Burger)
                 .WithMany(b => b.BurgerOrders)
                 .HasForeignKey(b => b.BurgerID);
-
-            base.OnModelCreating(modelBuilder);
         }
     }
 }
