@@ -9,18 +9,24 @@ namespace Burger_Customiser.Pages {
     public partial class OrderOptionPage : Page {
 
         private readonly PageManager pageManager;
+        private readonly OrderManager orderManager;
 
-        public OrderOptionPage(PageManager pageManager) {
+        public OrderOptionPage(PageManager pageManager, OrderManager orderManager) {
             this.pageManager = pageManager;
+            this.orderManager = orderManager;
 
             InitializeComponent();
         }
 
         private void EatHereLMBDown(object sender, MouseButtonEventArgs e) {
+            orderManager.Order.ToTakeAway = false;
+            
             pageManager.NextPage();
         }
 
         private void TakeawayLMBDown(object sender, MouseButtonEventArgs e) {
+            orderManager.Order.ToTakeAway = true;
+
             pageManager.NextPage();
         }
     }
