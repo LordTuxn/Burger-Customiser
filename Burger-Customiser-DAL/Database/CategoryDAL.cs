@@ -21,16 +21,6 @@ namespace Burger_Customiser_DAL.Database {
         }
 
         public List<Category> GetProductCategories() {
-            return context.Category.FromSqlRaw("SELECT * FROM category WHERE Type = 1").ToList();
-        }
-
-        public List<Category> GetProductCategories()
-        {
-            return context.Category.FromSqlRaw("SELECT * FROM category WHERE type = 1").ToList();
-        }
-
-        public List<Category> GetIngredientCategories()
-        {
             return context.Category.FromSqlRaw("SELECT * FROM category WHERE type = 1").ToList();
         }
     }

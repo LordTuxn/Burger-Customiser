@@ -21,34 +21,21 @@ namespace Burger_Customiser.Pages
     public partial class Catalogue : Page { // Add IDisposable interface to fix memory leaks
 
         private readonly PageManager pageManager;
-        private readonly IngredientDAL ingredientDAL;
-        private readonly ProductDAL productDAL;
+        private readonly ArticleDAL articleDAL;
 
-        // Again... haben immer noch keine Vererbung...
-        public Catalogue(PageManager pm, IngredientDAL ingredientDAL, CategoryDAL categoryDAL) : this(pm, ingredientDAL, null, categoryDAL) {
-            title.Text = "Burger Customiser";
-            Type = 0;
-        }
-        public Catalogue(PageManager pm, ProductDAL productDAL, CategoryDAL categoryDAL) : this(pm, null, productDAL, categoryDAL) {
-            title.Text = "Product Catalogue";
-            Type = 1;
-        }
-
-        public Catalogue(PageManager pm, IngredientDAL ingredientDAL, ProductDAL productDAL, CategoryDAL categoryDAL)
-        {
+        public Catalogue(PageManager pm, ArticleDAL articleDAL, CategoryDAL categoryDAL) {
             this.pageManager = pm;
-            this.ingredientDAL = ingredientDAL;
-            this.productDAL = productDAL;
-
-            InitializeComponent();
+            this.articleDAL = articleDAL;
 
             // Add ItemList
             // Set default category, that the user will see first
-            ProductList productList = new ProductList(ingredientDAL, categoryDAL.GetIngredientCategories()[0]);
-            categoryName.Text = categoryDAL.GetIngredientCategories()[0].Name;
-            MainGrid.Children.Add(productList);
+            CatalogueList catalogueList = new CatalogueList(articleDAL, CatalogueType.Ingredient);
+            //categoryName.Text = categoryDAL.GetIngredientCategories()[0].Name;
+            MainGrid.Children.Add(catalogueList);
             // Add Navigator
-            MainGrid.Children.Add(new Navigator(categoryDAL, categoryDAL.GetIngredientCategories(), productList, categoryName));
+            MainGrid.Children.Add(new Navigator(categoryDAL, catalogueList, categoryName));
+
+            InitializeComponent();
         }
 
         public int Type { get; set; }
