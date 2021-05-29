@@ -9,7 +9,7 @@ namespace Burger_Customiser_BLL {
         public int P_ID { get; set; }
 
         [Column("Name")]
-        public string ProductName { get; set; }
+        public string Name { get; set; }
 
         [Column("Price")]
         public decimal Price { get; set; }
