@@ -1,5 +1,6 @@
 ﻿using Burger_Customiser_BLL;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Burger_Customiser_DAL.Database {
@@ -15,9 +16,12 @@ namespace Burger_Customiser_DAL.Database {
             return context.Category.FromSqlRaw("SELECT * FROM category WHERE Name = {0}", name).ToList()[0];
         }
 
-        public Category GetCategoryByID(int id)
-        {
-            return context.Category.FromSqlRaw("SELECT * FROM category WHERE C_ID = {0}", id).ToList()[0];
+        public List<Category> GetIngriedentCategories() {
+            return context.Category.FromSqlRaw("SELECT * FROM category WHERE Type = 0").ToList();
+        }
+
+        public List<Category> GetProductCategories() {
+            return context.Category.FromSqlRaw("SELECT * FROM category WHERE Type = 1").ToList();
         }
     }
 }

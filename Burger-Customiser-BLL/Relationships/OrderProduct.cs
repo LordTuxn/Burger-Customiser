@@ -15,7 +15,7 @@ namespace Burger_Customiser_BLL.Relationships {
 
         [ForeignKey("Category"), Column("C_ID")]
         public int CategoryID { get; set; }
-        public Ingredient Category { get; set; }
+        public Category Category { get; set; }
 
         [Column("Amount")]
         public int Amount { get; set; }

@@ -40,8 +40,7 @@ namespace Burger_Customiser {
                         options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
                     // Inject Database DALs
-                    services.AddSingleton<ProductDAL>();
-                    services.AddSingleton<IngredientDAL>();
+                    services.AddSingleton<ArticleDAL>();
                     services.AddSingleton<BurgerDAL>();
                     services.AddSingleton<CategoryDAL>();
 
@@ -52,7 +51,7 @@ namespace Burger_Customiser {
                     services.AddScoped<BurgerCustomiserPage>();
 
                     // Inject Application Window and Managers
-                    services.AddSingleton<IDisposable, OrderManager>();
+                    services.AddSingleton<OrderManager>();
                     services.AddSingleton<PageManager>();
 
                     services.AddSingleton<StartWindow>();

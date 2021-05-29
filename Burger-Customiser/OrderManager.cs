@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace Burger_Customiser {
-    public class OrderManager : IDisposable {
+    public class OrderManager {
 
         private readonly OrderDAL orderDAL;
 
@@ -16,12 +16,6 @@ namespace Burger_Customiser {
             this.orderDAL = orderDAL;
 
             Order = new Order();
-        }
-
-
-
-        public void Dispose() {
-            Dispose();
         }
     }
 }
