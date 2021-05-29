@@ -15,6 +15,7 @@ namespace Burger_Customiser_DAL.Database {
         public Category GetCategoryByName(string name) {
             return context.Category.FromSqlRaw("SELECT * FROM category WHERE Name = {0}", name).ToList()[0];
         }
+
         public Category GetCategoryByID(int id)
         {
             return context.Category.FromSqlRaw("SELECT * FROM category WHERE C_ID = {0}", id).ToList()[0];

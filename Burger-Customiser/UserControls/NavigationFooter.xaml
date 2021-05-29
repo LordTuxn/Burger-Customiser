@@ -6,7 +6,10 @@
              xmlns:local="clr-namespace:Burger_Customiser.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="200" d:DesignWidth="800">
-    <Grid Background="#FFF">
-            
+    <Grid>
+        <Button Content="ZURÜCK" HorizontalAlignment="Left" Margin="38,0,0,0" VerticalAlignment="Center" Height="62" Width="210" Style="{StaticResource CornerButton}" Background="White" Click="Button_Click"/>
+
+        <Button Content="WEITER" HorizontalAlignment="Left" Margin="551,0,0,0" VerticalAlignment="Center" Height="62" Width="210" Style="{StaticResource CornerButton}" Background="White" Click="Button_Click_1"/>
+
     </Grid>
 </UserControl>
