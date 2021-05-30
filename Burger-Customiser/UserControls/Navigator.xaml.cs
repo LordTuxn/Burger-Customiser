@@ -52,8 +52,11 @@ namespace Burger_Customiser.UserControls {
                 ImageBrush img = new ImageBrush(bitimg);
                 img.Stretch = Stretch.UniformToFill;
 
+                // Get Style
+                Style style = this.FindResource("NavigatorButton") as Style;
+
                 Button btn = new Button() {
-                    Width = 150,
+                    Style = style,
                     Content = item.Name,
                     Background = img
                 };
