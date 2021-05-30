@@ -33,7 +33,7 @@ namespace Burger_Customiser.Pages
         public Catalogue(PageManager pm, ArticleDAL articleDAL, CategoryDAL categoryDAL) {
             this.pageManager = pm;
             this.articleDAL = articleDAL;
-            this.Type = pm.CurrentMenuPage == MenuPages.BurgerCustomiser ? CatalogueType.Ingredient : CatalogueType.Product;
+            this.Type = pm.CatalogueType == 0 ? CatalogueType.Ingredient : CatalogueType.Product; //TODO: Get that somehow else...
 
             InitializeComponent();
 
