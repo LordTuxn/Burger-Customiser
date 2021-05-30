@@ -28,6 +28,8 @@ namespace Burger_Customiser {
 
         public Page CurrentPage { get; private set; }
 
+        public int CatalogueType { get; set; }
+
         public void NextPage() {
             Navigate((MenuPages)(GetCurrentPageIndex() > Enum.GetValues(typeof(MenuPages)).Length ? 0 : GetCurrentPageIndex() + 1));
         }

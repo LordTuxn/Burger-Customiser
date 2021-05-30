@@ -22,5 +22,10 @@ namespace Burger_Customiser.Pages
         {
             InitializeComponent();
         }
+
+        private void IdleScreenLMBDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }
