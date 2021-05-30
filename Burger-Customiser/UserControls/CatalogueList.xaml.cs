@@ -36,10 +36,10 @@ namespace Burger_Customiser.UserControls {
 
             List<Article> articles = Type == CatalogueType.Product ?
                 articleDAL.GetProductsByCategory(CurrentCategory).ConvertAll(x => new Article { Name = x.Name, Price = x.Price }) :
-                articleDAL.GetIngredientsByCategory(CurrentCategory).ConvertAll(x => new Article { Name = x.Name, Price = x.Price }); // TODO: "Cast" the whole Product and Ingredient List to a universal Article List
+                articleDAL.GetIngredientsByCategory(CurrentCategory).ConvertAll(x => new Article { Name = x.Name, Price = x.Price }); // "Cast" the whole Product and Ingredient List to a universal Article List
             
             foreach (Article article in articles) {
-                ProductListWrapPanel.Children.Add(new ProductItem(article.Name, 0, (double)article.Price) {
+                ProductListWrapPanel.Children.Add(new ProductItem(article, 0) {
                     Height = 60,
                     Margin = new Thickness(10, 10, 10, 0)
                 });

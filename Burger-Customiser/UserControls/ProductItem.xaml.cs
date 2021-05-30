@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Burger_Customiser_BLL;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -18,13 +19,13 @@ namespace Burger_Customiser.UserControls
     /// </summary>
     public partial class ProductItem : UserControl
     {
-        public ProductItem(string name, int amount, double price)
+        public ProductItem(Article article, int amount)
         {
             InitializeComponent();
             //TODO: Set Product name and price via Product class from constructor
-            this.ProductName = name;
+            this.ProductName = article.Name;
             this.Amount = amount;
-            this.Price = price;
+            this.Price = (double)article.Price;
         }
 
         private int amount;
