@@ -17,11 +17,11 @@ namespace Burger_Customiser.Pages {
         }
 
         private void BurgerLMBDown(object sender, MouseButtonEventArgs e) {
-            pageManager.NextPage();
+            pageManager.Navigate(MenuPages.BurgerCustomiser);
         }
 
         private void CatalogueLMBDown(object sender, MouseButtonEventArgs e) {
-            pageManager.NextPage();
+            pageManager.Navigate(MenuPages.ProductCatalogue);
         }
     }
 }

@@ -3,16 +3,18 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Windows.Controls;
+using System.Windows.Navigation;
 
 namespace Burger_Customiser {
 
     public enum MenuPages {
         StartSite = 0, 
         OrderOption = 1, 
-        ArticleOption = 2, 
-        Catalogue = 3,
-        ShoppingCart = 4, 
-        Confirmation = 5
+        ArticleOption = 2,
+        BurgerCustomiser = 3,
+        ProductCatalogue = 4,
+        ShoppingCart = 5, 
+        Confirmation = 6
     }
 
     public class PageManager {
@@ -26,7 +28,7 @@ namespace Burger_Customiser {
 
         public StartWindow StartWindow { get; set; }
 
-        public Page CurrentPage { get; private set; }
+        public MenuPages CurrentMenuPage { get; private set; }
 
         public void NextPage() {
             Navigate((MenuPages)(GetCurrentPageIndex() > Enum.GetValues(typeof(MenuPages)).Length ? 0 : GetCurrentPageIndex() + 1));
@@ -37,44 +39,28 @@ namespace Burger_Customiser {
         }
 
         private int GetCurrentPageIndex() {
-            if (CurrentPage.Title == "Catalogue")
-            {
-                Catalogue catalogue = (Catalogue)CurrentPage;
-                switch ((int) catalogue.Type)
-                {
-                    case 0:
-                        return (int)Enum.Parse(typeof(MenuPages), "BurgerCustomiser");
-                    case 1:
-                        return (int)Enum.Parse(typeof(MenuPages), "Catalogue");
-                }
-            }
-            return (int)Enum.Parse(typeof(MenuPages), CurrentPage.Title);
+            return (int)Enum.Parse(typeof(MenuPages), CurrentMenuPage.ToString());
         }
 
         public void Navigate(MenuPages page) {
+            Page currentPage;
             switch (page) {
                 case MenuPages.StartSite:
-                    CurrentPage = serviceProvider.Services.GetService<StartSitePage>();
+                    currentPage = serviceProvider.Services.GetService<StartSitePage>();
                     break;
                 case MenuPages.OrderOption:
-                    CurrentPage = serviceProvider.Services.GetService<OrderOptionPage>();
+                    currentPage = serviceProvider.Services.GetService<OrderOptionPage>();
                     break;
                 case MenuPages.ArticleOption:
-                    CurrentPage = serviceProvider.Services.GetService<ArticleOptionPage>();
+                    currentPage = serviceProvider.Services.GetService<ArticleOptionPage>();
                     break;
-                case MenuPages.Catalogue:
-                    // Do stuff
-                    CurrentPage = serviceProvider.Services.GetService<Catalogue>();
-                    break;
-                case MenuPages.ShoppingCart:
-
-                    break;
-                case MenuPages.Confirmation:
-
+                default:
+                    currentPage = serviceProvider.Services.GetService<Catalogue>();
                     break;
             }
 
-            StartWindow.Main.Navigate(CurrentPage);
+            CurrentMenuPage = (MenuPages)Enum.Parse(typeof(MenuPages), currentPage.Title, true);
+            StartWindow.Main.Navigate(currentPage);
         }
     }
 }

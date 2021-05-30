@@ -19,15 +19,15 @@ namespace Burger_Customiser.Pages {
         }
 
         private void EatHereLMBDown(object sender, MouseButtonEventArgs e) {
-           // orderManager.Order.ToTakeAway = false;
-            
-            pageManager.NextPage();
+            // orderManager.Order.ToTakeAway = false;
+
+            pageManager.Navigate(MenuPages.ArticleOption);
         }
 
         private void TakeawayLMBDown(object sender, MouseButtonEventArgs e) {
-           // orderManager.Order.ToTakeAway = true;
+            // orderManager.Order.ToTakeAway = true;
 
-            pageManager.NextPage();
+            pageManager.Navigate(MenuPages.ArticleOption);
         }
     }
 }
