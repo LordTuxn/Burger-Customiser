@@ -28,11 +28,11 @@ namespace Burger_Customiser.UserControls
 
         private readonly PageManager pageManager;
 
-        private void Button_Back_Click(object sender, RoutedEventArgs e) {
+        private void Button_Next_Click(object sender, RoutedEventArgs e) {
             pageManager.NextPage();
         }
 
-        private void Button_Next_Click(object sender, RoutedEventArgs e) {
+        private void Button_Back_Click(object sender, RoutedEventArgs e) {
             pageManager.PreviousPage();
         }
     }

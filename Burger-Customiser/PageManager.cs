@@ -11,10 +11,9 @@ namespace Burger_Customiser {
         StartSite = 0, 
         OrderOption = 1, 
         ArticleOption = 2,
-        BurgerCustomiser = 3,
-        ProductCatalogue = 4,
-        ShoppingCart = 5, 
-        Confirmation = 6
+        Catalogue = 3,
+        ShoppingCart = 4, 
+        Confirmation = 5
     }
 
     public class PageManager {
@@ -28,7 +27,7 @@ namespace Burger_Customiser {
 
         public StartWindow StartWindow { get; set; }
 
-        public MenuPages CurrentMenuPage { get; private set; }
+        public Page CurrentPage { get; private set; }
 
         public int CatalogueType { get; set; }
 
@@ -41,28 +40,26 @@ namespace Burger_Customiser {
         }
 
         private int GetCurrentPageIndex() {
-            return (int)Enum.Parse(typeof(MenuPages), CurrentMenuPage.ToString());
+            return (int)Enum.Parse(typeof(MenuPages), CurrentPage.Title);
         }
 
         public void Navigate(MenuPages page) {
-            Page currentPage;
             switch (page) {
                 case MenuPages.StartSite:
-                    currentPage = serviceProvider.Services.GetService<StartSitePage>();
+                    CurrentPage = serviceProvider.Services.GetService<StartSitePage>();
                     break;
                 case MenuPages.OrderOption:
-                    currentPage = serviceProvider.Services.GetService<OrderOptionPage>();
+                    CurrentPage = serviceProvider.Services.GetService<OrderOptionPage>();
                     break;
                 case MenuPages.ArticleOption:
-                    currentPage = serviceProvider.Services.GetService<ArticleOptionPage>();
+                    CurrentPage = serviceProvider.Services.GetService<ArticleOptionPage>();
                     break;
-                default:
-                    currentPage = serviceProvider.Services.GetService<Catalogue>();
+                case MenuPages.Catalogue:
+                    CurrentPage = serviceProvider.Services.GetService<Catalogue>();
                     break;
             }
 
-            CurrentMenuPage = (MenuPages)Enum.Parse(typeof(MenuPages), currentPage.Title, true);
-            StartWindow.Main.Navigate(currentPage);
+            StartWindow.Main.Navigate(CurrentPage);
         }
     }
 }
