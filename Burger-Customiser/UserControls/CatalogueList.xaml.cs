@@ -1,19 +1,16 @@
-﻿using Burger_Customiser_BLL;
+﻿using Burger_Customiser.Pages;
+using Burger_Customiser_BLL;
 using Burger_Customiser_DAL.Database;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using static Burger_Customiser.Pages.Catalogue;
 
 namespace Burger_Customiser.UserControls {
     /// <summary>
     /// User Control List of all Products/Ingredients of one category
     /// </summary>
     /// 
-
-    public enum CatalogueType {
-        Ingredient, 
-        Product
-    }
 
     public partial class CatalogueList : UserControl {
 
@@ -23,9 +20,10 @@ namespace Burger_Customiser.UserControls {
 
         public int CurrentCategory { get; set; }
 
-        public CatalogueList(ArticleDAL articleDAL, CatalogueType type) {
+        public CatalogueList(ArticleDAL articleDAL, CatalogueType type, int categoryID) {
             InitializeComponent();
 
+            this.CurrentCategory = categoryID;
             this.articleDAL = articleDAL;
             Type = type;
 
@@ -38,7 +36,7 @@ namespace Burger_Customiser.UserControls {
 
             List<Article> articles = Type == CatalogueType.Product ?
                 articleDAL.GetProductsByCategory(CurrentCategory).ConvertAll(x => new Article { Name = x.Name, Price = x.Price }) :
-                articleDAL.GetIngredientsByCategory(CurrentCategory).ConvertAll(x => new Article { Name = x.Name, Price = x.Price }); // TODO: Description
+                articleDAL.GetIngredientsByCategory(CurrentCategory).ConvertAll(x => new Article { Name = x.Name, Price = x.Price }); // TODO: "Cast" the whole Product and Ingredient List to a universal Article List
             
             foreach (Article article in articles) {
                 ProductListWrapPanel.Children.Add(new ProductItem(article.Name, 0, (double)article.Price) {

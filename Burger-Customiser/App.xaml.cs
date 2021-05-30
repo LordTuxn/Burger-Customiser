@@ -48,7 +48,7 @@ namespace Burger_Customiser {
                     services.AddScoped<StartSitePage>();
                     services.AddScoped<OrderOptionPage>();
                     services.AddScoped<ArticleOptionPage>();
-                    services.AddScoped<BurgerCustomiserPage>();
+                    services.AddScoped<Catalogue>();
 
                     // Inject Application Window and Managers
                     services.AddSingleton<OrderManager>();

@@ -32,8 +32,7 @@ namespace Burger_Customiser.UserControls {
             this.catalogueList = catalogueList;
             this.categoryName = categoryName;
 
-            categories = catalogueList.Type == CatalogueType.Product ?
-                categoryDAL.GetProductCategories() : categoryDAL.GetIngriedentCategories();
+            categories = categoryDAL.GetCategoriesByType((int)catalogueList.Type);
 
             Grid.SetRow(this, 3);
             SetNavigator(categories);

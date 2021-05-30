@@ -10,10 +10,9 @@ namespace Burger_Customiser {
         StartSite = 0, 
         OrderOption = 1, 
         ArticleOption = 2, 
-        BurgerCustomiser = 3, 
+        Catalogue = 3,
         ShoppingCart = 4, 
-        ProductCatalogue = 5, 
-        Confirmation = 6
+        Confirmation = 5
     }
 
     public class PageManager {
@@ -41,11 +40,11 @@ namespace Burger_Customiser {
             if (CurrentPage.Title == "Catalogue")
             {
                 Catalogue catalogue = (Catalogue)CurrentPage;
-                switch (catalogue.Type)
+                switch ((int) catalogue.Type)
                 {
-                    case 1:
+                    case 0:
                         return (int)Enum.Parse(typeof(MenuPages), "BurgerCustomiser");
-                    case 2:
+                    case 1:
                         return (int)Enum.Parse(typeof(MenuPages), "Catalogue");
                 }
             }
@@ -63,11 +62,9 @@ namespace Burger_Customiser {
                 case MenuPages.ArticleOption:
                     CurrentPage = serviceProvider.Services.GetService<ArticleOptionPage>();
                     break;
-                case MenuPages.BurgerCustomiser:
-                    CurrentPage = serviceProvider.Services.GetService<BurgerCustomiserPage>();
-                    break;
-                case MenuPages.ProductCatalogue:
-
+                case MenuPages.Catalogue:
+                    // Do stuff
+                    CurrentPage = serviceProvider.Services.GetService<Catalogue>();
                     break;
                 case MenuPages.ShoppingCart:
 

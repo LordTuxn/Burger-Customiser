@@ -15,10 +15,17 @@ using System.Windows.Shapes;
 
 namespace Burger_Customiser.Pages
 {
+    public enum CatalogueType
+    {
+        Ingredient = 0,
+        Product = 1
+    }
+
     /// <summary>
     /// Interaction logic for Catalogue.xaml
     /// </summary>
     public partial class Catalogue : Page { // Add IDisposable interface to fix memory leaks
+
 
         private readonly PageManager pageManager;
         private readonly ArticleDAL articleDAL;
@@ -26,19 +33,21 @@ namespace Burger_Customiser.Pages
         public Catalogue(PageManager pm, ArticleDAL articleDAL, CategoryDAL categoryDAL) {
             this.pageManager = pm;
             this.articleDAL = articleDAL;
+            this.Type = CatalogueType.Ingredient; //TODO: Get that somehow else...
+
+            InitializeComponent();
 
             // Add ItemList
             // Set default category, that the user will see first
-            CatalogueList catalogueList = new CatalogueList(articleDAL, CatalogueType.Ingredient);
-            //categoryName.Text = categoryDAL.GetIngredientCategories()[0].Name;
+            
+            CatalogueList catalogueList = new CatalogueList(articleDAL, Type, categoryDAL.GetCategoriesByType((int)Type)[0].ID);
+            categoryName.Text = categoryDAL.GetCategoriesByType((int)Type)[0].Name;
             MainGrid.Children.Add(catalogueList);
             // Add Navigator
             MainGrid.Children.Add(new Navigator(categoryDAL, catalogueList, categoryName));
-
-            InitializeComponent();
         }
 
-        public int Type { get; set; }
+        public CatalogueType Type { get; set; }
 
         public void Dispose()
         {
