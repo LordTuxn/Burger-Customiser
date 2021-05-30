@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Burger_Customiser.Pages {
@@ -7,8 +6,7 @@ namespace Burger_Customiser.Pages {
     /// <summary>
     /// Interaction logic for StartSite.xaml
     /// </summary>
-    public partial class StartSitePage : Page{
-
+    public partial class StartSitePage : Page {
         private readonly PageManager pageManager;
 
         public StartSitePage(PageManager pageManager) {
@@ -18,7 +16,7 @@ namespace Burger_Customiser.Pages {
         }
 
         private void IdleScreenLMBDown(object sender, MouseButtonEventArgs e) {
-            pageManager.NextPage();  
+            pageManager.NextPage();
         }
     }
 }

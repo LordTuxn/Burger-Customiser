@@ -13,6 +13,7 @@ namespace Burger_Customiser.Pages {
     /// Interaction logic for Catalogue.xaml
     /// </summary>
     public partial class CataloguePage : Page {
+
         public CataloguePage(PageManager pm, ArticleDAL articleDAL, CategoryDAL categoryDAL) {
             Type = pm.CatalogueType == 0 ? CatalogueType.Ingredient : CatalogueType.Product; //TODO: Get that somehow else...
 

@@ -33,8 +33,8 @@ namespace Burger_Customiser.UserControls {
         public void UpdateList() {
             ClearListItems();
             List<Article> articles = Type == CatalogueType.Product ?
-                articleDAL.GetProductsByCategory(CurrentCategory).ConvertAll(x => new Article { Name = x.Name, Price = x.Price }) :
-                articleDAL.GetIngredientsByCategory(CurrentCategory).ConvertAll(x => new Article { Name = x.Name, Price = x.Price }); // "Cast" the whole Product and Ingredient List to a universal Article List
+                articleDAL.GetProductsByCategory(CurrentCategory).ConvertAll(x => new Article { Name = x.Name, Price = x.Price, BackgroundImage = x.BackgroundImage }) :
+                articleDAL.GetIngredientsByCategory(CurrentCategory).ConvertAll(x => new Article { Name = x.Name, Price = x.Price, BackgroundImage = x.BackgroundImage }); // "Cast" the whole Product and Ingredient List to a universal Article List
 
             foreach (Article article in articles) {
                 ProductListWrapPanel.Children.Add(new ProductItem(this, article, 0) {

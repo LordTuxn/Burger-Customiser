@@ -1,13 +1,11 @@
 ﻿using Burger_Customiser_BLL;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Burger_Customiser_DAL.Database {
-    public class ArticleDAL {
 
+    public class ArticleDAL {
         private readonly ApplicationDBContext context;
 
         public ArticleDAL(ApplicationDBContext context) {

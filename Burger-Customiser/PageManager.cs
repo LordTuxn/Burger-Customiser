@@ -3,21 +3,19 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Windows.Controls;
-using System.Windows.Navigation;
 
 namespace Burger_Customiser {
 
     public enum MenuPages {
-        StartSite = 0, 
-        OrderOption = 1, 
+        StartSite = 0,
+        OrderOption = 1,
         ArticleOption = 2,
         Catalogue = 3,
-        ShoppingCart = 4, 
+        ShoppingCart = 4,
         Confirmation = 5
     }
 
     public class PageManager {
-
         private readonly IHost serviceProvider;
 
         public PageManager(StartWindow startWindow, IHost serviceProvider) {
@@ -48,15 +46,19 @@ namespace Burger_Customiser {
                 case MenuPages.StartSite:
                     CurrentPage = serviceProvider.Services.GetService<StartSitePage>();
                     break;
+
                 case MenuPages.OrderOption:
                     CurrentPage = serviceProvider.Services.GetService<OrderOptionPage>();
                     break;
+
                 case MenuPages.ArticleOption:
                     CurrentPage = serviceProvider.Services.GetService<ArticleOptionPage>();
                     break;
+
                 case MenuPages.Catalogue:
                     CurrentPage = serviceProvider.Services.GetService<CataloguePage>();
                     break;
+
                 case MenuPages.ShoppingCart:
                     CurrentPage = serviceProvider.Services.GetService<ShoppingCartPage>();
                     break;

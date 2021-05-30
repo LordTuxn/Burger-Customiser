@@ -1,8 +1,8 @@
 ﻿using Burger_Customiser_BLL;
 
 namespace Burger_Customiser_DAL.Database {
-    public class BurgerDAL {
 
+    public class BurgerDAL {
         private readonly ApplicationDBContext context;
 
         public BurgerDAL(ApplicationDBContext context) {

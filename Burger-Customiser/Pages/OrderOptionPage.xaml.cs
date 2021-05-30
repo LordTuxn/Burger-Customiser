@@ -7,13 +7,12 @@ namespace Burger_Customiser.Pages {
     /// Interaction logic for Bestelloption.xaml
     /// </summary>
     public partial class OrderOptionPage : Page {
-
         private readonly PageManager pageManager;
         private readonly OrderManager orderManager;
 
         public OrderOptionPage(PageManager pageManager) {
             this.pageManager = pageManager;
-        //    this.orderManager = orderManager;
+            //    this.orderManager = orderManager;
 
             InitializeComponent();
         }

@@ -1,21 +1,17 @@
 ﻿using Burger_Customiser_BLL;
 using Burger_Customiser_BLL.Relationships;
 using Burger_Customiser_DAL.Database;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Burger_Customiser {
-    public class OrderManager {
 
+    public class OrderManager {
         private readonly OrderDAL orderDAL;
 
         public Order Order { get; set; }
-        
+
         public OrderManager(OrderDAL orderDAL) {
             this.orderDAL = orderDAL;
-            
+
             Order = new Order();
         }
 
@@ -28,14 +24,6 @@ namespace Burger_Customiser {
                     Amount = amount
                 });
         }
-
-        //public void UpdateProduct(Product product, int amount) {
-        //    OrderProduct productOrder;
-        //    if(Order.ProductOrders.Where(x => x.Product == product).First() != null) {
-        //        productOrder = 
-        //    }
-        //    Order.ProductOrders.Remove(Order.ProductOrders.Where(x => x.Product == product).First());
-        //}
 
         public void AddBurger(Burger burger, int amount) {
             Order.BurgerOrders.Add(

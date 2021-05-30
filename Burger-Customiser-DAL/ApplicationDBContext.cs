@@ -3,8 +3,8 @@ using Burger_Customiser_BLL.Relationships;
 using Microsoft.EntityFrameworkCore;
 
 namespace Burger_Customiser_DAL {
-    public class ApplicationDBContext : DbContext {
 
+    public class ApplicationDBContext : DbContext {
         public DbSet<Article> Article { get; set; }
         public DbSet<Ingredient> Ingredient { get; set; }
         public DbSet<Product> Product { get; set; }

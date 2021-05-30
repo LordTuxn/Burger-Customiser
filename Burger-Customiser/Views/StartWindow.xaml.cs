@@ -1,11 +1,8 @@
-﻿using Burger_Customiser.Pages;
-using Burger_Customiser.UserControls;
+﻿using Burger_Customiser.UserControls;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System.Windows;
-using Microsoft.Extensions.DependencyInjection;
-using System.Windows.Input;
-using System.Windows.Navigation;
 
 namespace Burger_Customiser {
 
@@ -13,7 +10,6 @@ namespace Burger_Customiser {
     /// Interaction logic for StartWindow.xaml
     /// </summary>
     public partial class StartWindow : Window {
-
         private readonly IHost host;
 
         public StartWindow(ILogger<StartWindow> logger, IHost host) {

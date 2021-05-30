@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Burger_Customiser_BLL {
+
     public class Article {
 
         [Key, Column("A_ID")]
@@ -30,13 +31,11 @@ namespace Burger_Customiser_BLL {
 
     // [Table("Ingredient")]
     public class Ingredient : Article {
-
         public List<BurgerIngredient> BurgerIngredients { get; set; }
     }
 
     //[Table("Product")]
     public class Product : Article {
-
         public List<OrderProduct> ProductOrders { get; set; }
     }
 }
