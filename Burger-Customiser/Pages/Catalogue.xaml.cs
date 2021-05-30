@@ -1,5 +1,6 @@
 ﻿using Burger_Customiser.UserControls;
 using Burger_Customiser_DAL.Database;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -30,9 +31,12 @@ namespace Burger_Customiser.Pages
         private readonly PageManager pageManager;
         private readonly ArticleDAL articleDAL;
 
-        public Catalogue(PageManager pm, ArticleDAL articleDAL, CategoryDAL categoryDAL) {
+        private readonly ILogger<Catalogue> logger;
+
+        public Catalogue(ILogger<Catalogue> logger, PageManager pm, ArticleDAL articleDAL, CategoryDAL categoryDAL) {
             this.pageManager = pm;
             this.articleDAL = articleDAL;
+            this.logger = logger;
             this.Type = pm.CatalogueType == 0 ? CatalogueType.Ingredient : CatalogueType.Product; //TODO: Get that somehow else...
 
             InitializeComponent();
@@ -52,8 +56,8 @@ namespace Burger_Customiser.Pages
 
         public CatalogueType Type { get; set; }
 
-        public void Dispose()
-        {
+        public void Dispose() {
+            logger.LogInformation("Disposed!");
             this.Dispose();
         }
     }

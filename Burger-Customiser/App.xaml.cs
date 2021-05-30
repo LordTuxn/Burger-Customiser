@@ -28,33 +28,33 @@ namespace Burger_Customiser {
                 })
                 .ConfigureServices((context, services) => {
 
-                    // Inject Database
-                    string connectionString =
-                        $@"server={config["Data:Server"]}; " +
-                        $@"port={config["Data:Port"]}; " +
-                        $@"database={config["Data:Database"]}; " +
-                        $@"user={config["Data:Username"]}; " +
-                        $@"password={config["Data:Password"]}; " +
-                        "Persist Security Info=False; Connect Timeout=300;";
-                    services.AddDbContextPool<ApplicationDBContext>(options =>
-                        options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+                // Inject Database
+                string connectionString =
+                    $@"server={config["Data:Server"]}; " +
+                    $@"port={config["Data:Port"]}; " +
+                    $@"database={config["Data:Database"]}; " +
+                    $@"user={config["Data:Username"]}; " +
+                    $@"password={config["Data:Password"]}; " +
+                    "Persist Security Info=False; Connect Timeout=300;";
+                services.AddDbContextPool<ApplicationDBContext>(options =>
+                    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
-                    // Inject Database DALs
-                    services.AddSingleton<ArticleDAL>();
-                    services.AddSingleton<BurgerDAL>();
-                    services.AddSingleton<CategoryDAL>();
+                // Inject Database DALs
+                services.AddSingleton<ArticleDAL>();
+                services.AddSingleton<BurgerDAL>();
+                services.AddSingleton<CategoryDAL>();
 
-                    // Inject Pages
-                    services.AddScoped<StartSitePage>();
-                    services.AddScoped<OrderOptionPage>();
-                    services.AddScoped<ArticleOptionPage>();
-                    services.AddScoped<Catalogue>();
+                // Inject Pages
+                services.AddTransient<StartSitePage>();
+                services.AddTransient<OrderOptionPage>();
+                services.AddTransient<ArticleOptionPage>();
+                services.AddTransient<Catalogue>();
 
-                    // Inject Application Window and Managers
-                    services.AddSingleton<OrderManager>();
-                    services.AddSingleton<PageManager>();
+                // Inject Application Window and Managers
+                services.AddSingleton<OrderManager>();
+                services.AddSingleton<PageManager>();
 
-                    services.AddSingleton<StartWindow>();
+                services.AddSingleton<StartWindow>();
                 })
                 .ConfigureLogging(logging => {
                     logging.AddConfiguration(config.GetSection("Logging"));
