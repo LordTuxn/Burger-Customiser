@@ -8,6 +8,8 @@ using System;
 using Burger_Customiser_DAL.Database;
 using Microsoft.EntityFrameworkCore;
 using Burger_Customiser.Pages;
+using Ninject;
+using Ninject.Modules;
 
 namespace Burger_Customiser {
 
@@ -19,6 +21,8 @@ namespace Burger_Customiser {
         private readonly IHost host;
         private IConfiguration config;
 
+        private IKernel kernal;
+
         public App() {
             host = new HostBuilder()
                 .ConfigureAppConfiguration((context, configurationBuilder) => {
@@ -26,48 +30,24 @@ namespace Burger_Customiser {
                     configurationBuilder.AddJsonFile("appsettings.json", optional: false);
                     config = configurationBuilder.Build();
                 })
-                .ConfigureServices((context, services) => {
-
-                    // Inject Database
-                    string connectionString =
-                        $@"server={config["Data:Server"]}; " +
-                        $@"port={config["Data:Port"]}; " +
-                        $@"database={config["Data:Database"]}; " +
-                        $@"user={config["Data:Username"]}; " +
-                        $@"password={config["Data:Password"]}; " +
-                        "Persist Security Info=False; Connect Timeout=300;";
-                    services.AddDbContextPool<ApplicationDBContext>(options =>
-                        options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
-
-                    // Inject Database DALs
-                    services.AddSingleton<ArticleDAL>();
-                    services.AddSingleton<BurgerDAL>();
-                    services.AddSingleton<CategoryDAL>();
-
-                    // Inject Pages
-                    services.AddScoped<StartSitePage>();
-                    services.AddScoped<OrderOptionPage>();
-                    services.AddScoped<ArticleOptionPage>();
-                    services.AddScoped<BurgerCustomiserPage>();
-
-                    // Inject Application Window and Managers
-                    services.AddSingleton<OrderManager>();
-                    services.AddSingleton<PageManager>();
-
-                    services.AddSingleton<StartWindow>();
-                })
                 .ConfigureLogging(logging => {
                     logging.AddConfiguration(config.GetSection("Logging"));
                     logging.AddDebug();
                 })
                 .Build();
+
+            kernal = new StandardKernel();
+            
+
+            kernal.Bind<StartWindow>().ToSelf().InSingletonScope();
         }
 
         private async void Application_Startup(object sender, StartupEventArgs args) {
             await host.StartAsync();
 
-            host.Services.GetService<PageManager>().Navigate(MenuPages.StartSite);
-            host.Services.GetService<StartWindow>().Show();
+            kernal.Get<StartWindow>().Show();
+            //host.Services.GetService<PageManager>().Navigate(MenuPages.StartSite);
+            //host.Services.GetService<StartWindow>().Show();
         }
 
         private async void Application_Exit(object sender, ExitEventArgs e) {

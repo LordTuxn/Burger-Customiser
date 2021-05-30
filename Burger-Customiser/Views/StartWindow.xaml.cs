@@ -12,13 +12,13 @@ namespace Burger_Customiser {
     /// </summary>
     public partial class StartWindow : Window {
 
-        public StartWindow(ILogger<StartWindow> logger, IHost host) {
-            logger.LogInformation("Starting Application...");
+        public StartWindow(ILogger<StartWindow> logger) {
+            //logger.LogInformation("Starting Application...");
 
             InitializeComponent();
 
             //Add Navigation Footer
-            MainGrid.Children.Add(new NavigationFooter(new PageManager(this, host)));
+            //MainGrid.Children.Add(new NavigationFooter(new PageManager(this, host)));
         }
     }
 }

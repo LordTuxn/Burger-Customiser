@@ -5,10 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Burger_Customiser"
         xmlns:controls="clr-namespace:Burger_Customiser.UserControls"
-        d:DataContext="{d:DesignInstance Type=local:StartWindow, IsDesignTimeCreatable=True}"
+        d:DataContext="{Binding Path=StartWindow, Source={StaticResource ServiceLocator}}"
         mc:Ignorable="d"
-        Title="Burger-Customiser" Height="800" Width="600"
-        >
+        Title="Burger-Customiser" Height="800" Width="600">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="70" />
     </WindowChrome.WindowChrome>
