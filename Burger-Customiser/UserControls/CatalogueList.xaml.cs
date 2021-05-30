@@ -10,7 +10,6 @@ namespace Burger_Customiser.UserControls {
     /// <summary>
     /// User Control List of all Products/Ingredients of one category
     /// </summary>
-    /// 
 
     public partial class CatalogueList : UserControl {
 
@@ -33,7 +32,6 @@ namespace Burger_Customiser.UserControls {
         
         public void UpdateList() {
             ClearListItems();
-
             List<Article> articles = Type == CatalogueType.Product ?
                 articleDAL.GetProductsByCategory(CurrentCategory).ConvertAll(x => new Article { Name = x.Name, Price = x.Price }) :
                 articleDAL.GetIngredientsByCategory(CurrentCategory).ConvertAll(x => new Article { Name = x.Name, Price = x.Price }); // "Cast" the whole Product and Ingredient List to a universal Article List
@@ -55,7 +53,7 @@ namespace Burger_Customiser.UserControls {
             // Clear every single child including the grid
             ProductListWrapPanel.Children.Clear();
 
-            // Add the grid back again
+            // Add back the grid again
             Grid grid = new Grid { Width = 800 };
             grid.ColumnDefinitions.Add(new ColumnDefinition());
             ProductListWrapPanel.Children.Add(grid);

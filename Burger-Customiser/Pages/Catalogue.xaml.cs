@@ -37,6 +37,9 @@ namespace Burger_Customiser.Pages
 
             InitializeComponent();
 
+            // Set Header
+            title.Text = Type == CatalogueType.Ingredient ? "Burger Customiser" : "Produkt Katalog";
+
             // Add ItemList
             // Set default category, that the user will see first
             
