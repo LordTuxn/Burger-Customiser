@@ -14,11 +14,55 @@
             <RowDefinition Height="35"/>
             <RowDefinition Height="50"/>
             <RowDefinition/>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="25"/>
             <RowDefinition Height="150"/>
         </Grid.RowDefinitions>
         <TextBlock x:Name="title" Text="Warenkorb" Style="{StaticResource Header1}"  Grid.Row="1"/>
-        <Grid Grid.Row="5" Background="#3B3B3B">
+
+        <!-- Order List -->
+        <Grid x:Name="listGrid" Grid.Row="3" Background="#3B3B3B">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="15"/>
+                <RowDefinition/>
+                <RowDefinition Height="15"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled" Grid.Row="1" Grid.Column="1">
+                <WrapPanel Name="OrderListWrapPanel" Orientation="Vertical">
+                    <Grid Width="593">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </WrapPanel>
+            </ScrollViewer>
+        </Grid>
+
+        <!-- Order Summary -->
+        <Grid x:Name="summaryGrid" Grid.Row="5" Background="#3B3B3B">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="15"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition/>
+                <RowDefinition Height="15"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Endsumme:" Style="{StaticResource Header2}" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1"/>
+            <TextBlock Text="17.75€" Style="{StaticResource Header2}" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Row="1" Grid.Column="2"/>
+            <TextBlock Text="19.62 CHF" Style="{StaticResource Description}" HorizontalAlignment="Right" Grid.Row="2" Grid.Column="2"/>
+            <TextBlock Text="Zum Mitnehmen" Style="{StaticResource Description}" Grid.Row="3" Grid.Column="1"/>
+            <Button Content="BESTELLEN" Style="{StaticResource OrderButton}" Grid.Column="2" Grid.Row="3"/>
         </Grid>
     </Grid>
 </Page>
