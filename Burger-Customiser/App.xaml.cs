@@ -48,7 +48,8 @@ namespace Burger_Customiser {
                 services.AddTransient<StartSitePage>();
                 services.AddTransient<OrderOptionPage>();
                 services.AddTransient<ArticleOptionPage>();
-                services.AddTransient<Catalogue>();
+                services.AddTransient<CataloguePage>();
+                services.AddTransient<ShoppingCartPage>();
 
                 // Inject Application Window and Managers
                 services.AddSingleton<OrderManager>();

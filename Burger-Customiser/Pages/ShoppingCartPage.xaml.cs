@@ -11,15 +11,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Burger_Customiser.Pages
-{
+namespace Burger_Customiser.Pages {
     /// <summary>
     /// Interaction logic for ShoppingCartPage.xaml
     /// </summary>
-    public partial class ShoppingCartPage : Page
-    {
-        public ShoppingCartPage()
-        {
+    public partial class ShoppingCartPage : Page {
+        public ShoppingCartPage() {
             InitializeComponent();
         }
     }

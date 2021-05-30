@@ -55,7 +55,10 @@ namespace Burger_Customiser {
                     CurrentPage = serviceProvider.Services.GetService<ArticleOptionPage>();
                     break;
                 case MenuPages.Catalogue:
-                    CurrentPage = serviceProvider.Services.GetService<Catalogue>();
+                    CurrentPage = serviceProvider.Services.GetService<CataloguePage>();
+                    break;
+                case MenuPages.ShoppingCart:
+                    CurrentPage = serviceProvider.Services.GetService<ShoppingCartPage>();
                     break;
             }
 

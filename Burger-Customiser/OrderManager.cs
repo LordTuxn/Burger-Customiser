@@ -29,9 +29,13 @@ namespace Burger_Customiser {
                 });
         }
 
-        public void UpdateProduct(Product product, int amount) {
-            //Order.ProductOrders.Remove(Order.ProductOrders.);
-        }
+        //public void UpdateProduct(Product product, int amount) {
+        //    OrderProduct productOrder;
+        //    if(Order.ProductOrders.Where(x => x.Product == product).First() != null) {
+        //        productOrder = 
+        //    }
+        //    Order.ProductOrders.Remove(Order.ProductOrders.Where(x => x.Product == product).First());
+        //}
 
         public void AddBurger(Burger burger, int amount) {
             Order.BurgerOrders.Add(

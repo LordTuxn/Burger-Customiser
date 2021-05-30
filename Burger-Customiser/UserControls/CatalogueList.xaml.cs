@@ -4,7 +4,6 @@ using Burger_Customiser_DAL.Database;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using static Burger_Customiser.Pages.Catalogue;
 
 namespace Burger_Customiser.UserControls {
     /// <summary>
@@ -12,6 +11,7 @@ namespace Burger_Customiser.UserControls {
     /// </summary>
 
     public partial class CatalogueList : UserControl {
+        public Dictionary<Article, int> articleOrders = new Dictionary<Article, int>();
 
         private readonly ArticleDAL articleDAL;
 
@@ -29,15 +29,15 @@ namespace Burger_Customiser.UserControls {
             Grid.SetRow(this, 7);
             UpdateList();
         }
-        
+
         public void UpdateList() {
             ClearListItems();
             List<Article> articles = Type == CatalogueType.Product ?
                 articleDAL.GetProductsByCategory(CurrentCategory).ConvertAll(x => new Article { Name = x.Name, Price = x.Price }) :
                 articleDAL.GetIngredientsByCategory(CurrentCategory).ConvertAll(x => new Article { Name = x.Name, Price = x.Price }); // "Cast" the whole Product and Ingredient List to a universal Article List
-            
+
             foreach (Article article in articles) {
-                ProductListWrapPanel.Children.Add(new ProductItem(article, 0) {
+                ProductListWrapPanel.Children.Add(new ProductItem(this, article, 0) {
                     Height = 60,
                     Margin = new Thickness(10, 10, 10, 0)
                 });
