@@ -1,0 +1,21 @@
+﻿<Page x:Class="Burger_Customiser.Navigation.Pages.Start.StartPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:local="clr-namespace:Burger_Customiser.Navigation.Pages.Start"
+      mc:Ignorable="d"
+      d:DataContext="{d:DesignInstance local:StartPageVM, IsDesignTimeCreatable=True}"
+      d:DesignHeight="774" d:DesignWidth="650"
+      Title="StartPage">
+
+    <Grid x:Name="IdleScreen" MouseLeftButtonDown="StartPage_Click" >
+        <Image Source="/Resources/LandingPageBurger.jpg"
+                       Stretch="UniformToFill"
+                       Opacity="0.6"/>
+        <StackPanel VerticalAlignment="Center">
+            <TextBlock Text="Berühren, um zu beginnen..." TextWrapping="Wrap" Style="{StaticResource Header1}" />
+            <TextBlock Text="Touch to begin..." TextWrapping="Wrap" Style="{StaticResource Header1}" />
+        </StackPanel>
+    </Grid>
+</Page>

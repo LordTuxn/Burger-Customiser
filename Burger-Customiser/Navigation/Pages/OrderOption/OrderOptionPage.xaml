@@ -1,0 +1,41 @@
+﻿<Page x:Class="Burger_Customiser.Navigation.Pages.OrderOption.OrderOptionPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:local="clr-namespace:Burger_Customiser.Navigation.Pages.OrderOption"
+      mc:Ignorable="d"
+      d:DataContext="{d:DesignInstance local:OrderOptionPageVM, IsDesignTimeCreatable=True}"
+      d:DesignHeight="774" d:DesignWidth="650"
+      Title="OrderPageView">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="35" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid MouseLeftButtonDown="EatHere_Click">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="35" />
+                <RowDefinition Height="35" />
+            </Grid.RowDefinitions>
+            <Image Source="/Resources/EatHereBackground.jpg" Stretch="UniformToFill" Grid.RowSpan="3" Opacity="0.6" MouseLeftButtonDown="EatHereLMBDown" />
+            <TextBlock Text="Zum Hier Essen" Style="{DynamicResource Header1}" VerticalAlignment="Bottom" Grid.Row="0" />
+            <TextBlock Text="Eat Here" Style="{DynamicResource Header1}" VerticalAlignment="Bottom" Grid.Row="1" />
+        </Grid>
+
+        <Grid Grid.Row="2" MouseLeftButtonDown="Takeaway_Click">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="35" />
+                <RowDefinition Height="35" />
+            </Grid.RowDefinitions>
+            <Image Source="/Resources/TakeawayBackground.jpg" Stretch="UniformToFill" Grid.RowSpan="3" Opacity="0.6" MouseLeftButtonDown="TakeawayLMBDown" />
+            <TextBlock Text="Zum Mitnehmen" Style="{StaticResource Header1}" VerticalAlignment="Bottom" Grid.Row="0" />
+            <TextBlock Text="Takeaway" Style="{StaticResource Header1}" VerticalAlignment="Bottom" Grid.Row="1" />
+        </Grid>
+    </Grid>
+</Page>

@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:orderOptionPage="clr-namespace:Burger_Customiser.Navigation.Pages.OrderOption"
+                    xmlns:startPage="clr-namespace:Burger_Customiser.Navigation.Pages.Start">
+
+    <DataTemplate DataType="{x:Type startPage:StartPageVM}">
+        <startPage:StartPage />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type orderOptionPage:OrderOptionPageVM}">
+        <orderOptionPage:OrderOptionPage />
+    </DataTemplate>
+</ResourceDictionary>
