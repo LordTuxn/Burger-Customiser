@@ -6,8 +6,7 @@
       xmlns:local="clr-namespace:Burger_Customiser.Navigation.Pages.OrderOption"
       mc:Ignorable="d"
       d:DataContext="{d:DesignInstance local:OrderOptionPageVM, IsDesignTimeCreatable=True}"
-      d:DesignHeight="774" d:DesignWidth="650"
-      Title="OrderPageView">
+      d:DesignHeight="774" d:DesignWidth="650">
 
     <Grid>
         <Grid.RowDefinitions>

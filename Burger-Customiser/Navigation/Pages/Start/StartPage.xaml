@@ -6,8 +6,7 @@
       xmlns:local="clr-namespace:Burger_Customiser.Navigation.Pages.Start"
       mc:Ignorable="d"
       d:DataContext="{d:DesignInstance local:StartPageVM, IsDesignTimeCreatable=True}"
-      d:DesignHeight="774" d:DesignWidth="650"
-      Title="StartPage">
+      d:DesignHeight="774" d:DesignWidth="650">
 
     <Grid x:Name="IdleScreen" MouseLeftButtonDown="StartPage_Click" >
         <Image Source="/Resources/LandingPageBurger.jpg"

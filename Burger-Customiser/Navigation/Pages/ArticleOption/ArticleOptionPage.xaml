@@ -6,8 +6,7 @@
       xmlns:local="clr-namespace:Burger_Customiser.Navigation.Pages.ArticleOption"
       mc:Ignorable="d" 
       d:DataContext="{d:DesignInstance local:ArticleOptionPageVM, IsDesignTimeCreatable=True}"
-      d:DesignHeight="774" d:DesignWidth="650"
-      Title="ArticleOrderPage">
+      d:DesignHeight="774" d:DesignWidth="650">
 
     <Grid>
         <Grid.RowDefinitions>

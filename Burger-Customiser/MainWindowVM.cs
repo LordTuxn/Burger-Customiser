@@ -1,5 +1,6 @@
 ﻿using Burger_Customiser.Navigation.Messages;
 using Burger_Customiser.Navigation.Pages.ArticleOption;
+using Burger_Customiser.Navigation.Pages.Catalogue;
 using Burger_Customiser.Navigation.Pages.OrderOption;
 using Burger_Customiser.Navigation.Pages.Start;
 using GalaSoft.MvvmLight;
@@ -38,20 +39,21 @@ namespace Burger_Customiser {
         /// Register all view models
         /// </summary>
         private readonly StartPageVM startPageVM;
-
         private readonly OrderOptionPageVM orderOptionPageVM;
-
         private readonly ArticleOptionPageVM articleOptionPageVM;
+        private readonly CataloguePageVM cataloguePageVM;
 
-        public MainWindowVM(StartPageVM startPageVM, OrderOptionPageVM orderOptionPageVM, ArticleOptionPageVM articleOptionPageVM) {
+        public MainWindowVM(StartPageVM startPageVM, OrderOptionPageVM orderOptionPageVM,
+                            ArticleOptionPageVM articleOptionPageVM, CataloguePageVM cataloguePageVM) {
             this.startPageVM = startPageVM;
             this.orderOptionPageVM = orderOptionPageVM;
             this.articleOptionPageVM = articleOptionPageVM;
+            this.cataloguePageVM = cataloguePageVM;
 
             ShowStartPageCommand = new RelayCommand(ShowStartPage);
             ShowOrderOptionPageCommand = new RelayCommand(ShowOrderOptionPage);
 
-            ShowStartPage();
+            ShowCataloguePage();
 
             // Register messanger for all pages
             Messenger.Default.Register<ChangePageMessage>(this, ChangePage);
@@ -69,6 +71,10 @@ namespace Burger_Customiser {
             CurrentViewModel = articleOptionPageVM;
         }
 
+        private void ShowCataloguePage() {
+            CurrentViewModel = cataloguePageVM;
+        }
+
         [Obsolete("Only for design data!", true)]
         public MainWindowVM() {
             if (!IsInDesignMode) {
@@ -83,6 +89,8 @@ namespace Burger_Customiser {
                 ShowOrderOptionPage();
             } else if(page.ViewModelType == typeof(ArticleOptionPageVM)) {
                 ShowArticleOptionPage();
+            } else if(page.ViewModelType == typeof(CataloguePageVM)) {
+                ShowCataloguePage();
             }
         }
 

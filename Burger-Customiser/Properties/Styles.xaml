@@ -63,4 +63,5 @@
         <Setter Property="FontSize" Value="18" />
         <Setter Property="Background" Value="white" />
     </Style>
+
 </ResourceDictionary>

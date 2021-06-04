@@ -68,7 +68,7 @@
             </Button>
             <Button Content="WEITER" Grid.Column="2" Grid.Row="1"
                     Style="{StaticResource CornerButton}"
-                    Command="{Binding ShowOrderOptionPageCommand, Mode=OneTime}">
+                    Command="{Binding ShowOrderOptionPageCommand}">
                 <!-- Bind to Order Option Page -->
             </Button>
         </Grid>
