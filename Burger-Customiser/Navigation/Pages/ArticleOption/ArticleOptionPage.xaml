@@ -1,0 +1,41 @@
+﻿<Page x:Class="Burger_Customiser.Navigation.Pages.ArticleOption.ArticleOptionPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Burger_Customiser.Navigation.Pages.ArticleOption"
+      mc:Ignorable="d" 
+      d:DataContext="{d:DesignInstance local:ArticleOptionPageVM, IsDesignTimeCreatable=True}"
+      d:DesignHeight="774" d:DesignWidth="650"
+      Title="ArticleOrderPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="35" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid MouseLeftButtonDown="BurgerCustomiser_Click">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="35" />
+                <RowDefinition Height="35" />
+            </Grid.RowDefinitions>
+            <Image Source="/Resources/BurgerCustomiserBackground.jpg" Stretch="UniformToFill" Grid.RowSpan="3" Opacity="0.6" />
+            <TextBlock Text="Burger Zusammenstellen" Style="{StaticResource Header1}" VerticalAlignment="Bottom" Grid.Row="0" />
+            <TextBlock Text="Burger Customiser" Style="{StaticResource Header1}" VerticalAlignment="Bottom" Grid.Row="1" />
+        </Grid>
+
+        <Grid Grid.Row="2" MouseLeftButtonDown="ProductCatalogue_Click">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="35" />
+                <RowDefinition Height="35" />
+            </Grid.RowDefinitions>
+            <Image Source="/Resources/AddSidedishBackground.jpg" Stretch="UniformToFill" Grid.RowSpan="3" Opacity="0.6" />
+            <TextBlock Text="Beilagen Hinzufügen" Style="{StaticResource Header1}" VerticalAlignment="Bottom" Grid.Row="0" />
+            <TextBlock Text="Add Side Dish" Style="{StaticResource Header1}" VerticalAlignment="Bottom" Grid.Row="1" />
+        </Grid>
+    </Grid>
+</Page>
