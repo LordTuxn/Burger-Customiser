@@ -1,4 +1,5 @@
-﻿using Burger_Customiser.Navigation.Pages.OrderOption;
+﻿using Burger_Customiser.Navigation.Pages.ArticleOption;
+using Burger_Customiser.Navigation.Pages.OrderOption;
 using Burger_Customiser.Navigation.Pages.Start;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,6 +25,7 @@ namespace Burger_Customiser {
 
                     services.AddScoped<StartPageVM>();
                     services.AddScoped<OrderOptionPageVM>();
+                    services.AddScoped<ArticleOptionPageVM>();
 
                     services.AddScoped<MainWindow>();
                 })

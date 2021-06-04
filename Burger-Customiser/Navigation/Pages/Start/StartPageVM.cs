@@ -1,7 +1,4 @@
-﻿using Burger_Customiser.Navigation.Messages;
-using Burger_Customiser.Navigation.Pages.OrderOption;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Messaging;
+﻿using GalaSoft.MvvmLight;
 using Microsoft.Extensions.Logging;
 using System;
 
@@ -17,14 +14,14 @@ namespace Burger_Customiser.Navigation.Pages.Start {
         }
 
         public StartPageVM(ILogger<StartPageVM> logger) {
-            logger.LogInformation("Success!");
+            logger.LogInformation($"Successfully Registered: {nameof(StartPageVM)}");
         }
 
-        public void NextPage() {
-            Messenger.Default.Send(new ChangePageMessage(typeof(OrderOptionPageVM)));
+        public void ContinuePage() {
+            throw new NotImplementedException();
         }
 
-        public void PreviousPage() {
+        public void BackPage() {
             throw new NotImplementedException();
         }
     }

@@ -1,4 +1,7 @@
-﻿using System.Windows.Controls;
+﻿using Burger_Customiser.Navigation.Messages;
+using Burger_Customiser.Navigation.Pages.ArticleOption;
+using GalaSoft.MvvmLight.Messaging;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Burger_Customiser.Navigation.Pages.OrderOption {
@@ -12,12 +15,16 @@ namespace Burger_Customiser.Navigation.Pages.OrderOption {
             InitializeComponent();
         }
 
-        private void EatHereLMBDown(object sender, MouseButtonEventArgs e) {
-            // TODO: Set order option and send to next page
+        private void EatHere_Click(object sender, MouseButtonEventArgs e) {
+            // TODO: Set order option
+
+            Messenger.Default.Send(new ChangePageMessage(typeof(ArticleOptionPageVM)));
         }
 
-        private void TakeawayLMBDown(object sender, MouseButtonEventArgs e) {
-            // TODO: Set order option and send to next page
+        private void Takeaway_Click(object sender, MouseButtonEventArgs e) {
+            // TODO: Set order option
+
+            Messenger.Default.Send(new ChangePageMessage(typeof(ArticleOptionPageVM)));
         }
     }
 }

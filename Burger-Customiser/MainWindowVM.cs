@@ -1,23 +1,38 @@
 ﻿using Burger_Customiser.Navigation.Messages;
+using Burger_Customiser.Navigation.Pages.ArticleOption;
 using Burger_Customiser.Navigation.Pages.OrderOption;
 using Burger_Customiser.Navigation.Pages.Start;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Messaging;
 using System;
+using System.Windows.Controls;
 
 namespace Burger_Customiser {
 
     public class MainWindowVM : ViewModelBase {
+        
         private ViewModelBase currentViewModel;
-
         public ViewModelBase CurrentViewModel {
             get { return currentViewModel; }
             set { Set(ref currentViewModel, value); }
         }
 
+        private Button continueButton;
+        public Button ContinueButton {
+            get { return continueButton; }
+            set { Set(ref continueButton, value); }
+        }
+
+        private Button backButton;
+        public Button BackButton {
+            get { return backButton; }
+            set { Set(ref backButton, value); }
+        }
+
         public RelayCommand ShowStartPageCommand { get; private set; }
         public RelayCommand ShowOrderOptionPageCommand { get; private set; }
+        public RelayCommand ShowArticleOptionPageCommand { get; private set; }
 
         /// <summary>
         /// Register all view models
@@ -26,9 +41,12 @@ namespace Burger_Customiser {
 
         private readonly OrderOptionPageVM orderOptionPageVM;
 
-        public MainWindowVM(StartPageVM startPageVM, OrderOptionPageVM orderOptionPageVM) {
+        private readonly ArticleOptionPageVM articleOptionPageVM;
+
+        public MainWindowVM(StartPageVM startPageVM, OrderOptionPageVM orderOptionPageVM, ArticleOptionPageVM articleOptionPageVM) {
             this.startPageVM = startPageVM;
             this.orderOptionPageVM = orderOptionPageVM;
+            this.articleOptionPageVM = articleOptionPageVM;
 
             ShowStartPageCommand = new RelayCommand(ShowStartPage);
             ShowOrderOptionPageCommand = new RelayCommand(ShowOrderOptionPage);
@@ -47,6 +65,10 @@ namespace Burger_Customiser {
             CurrentViewModel = orderOptionPageVM;
         }
 
+        private void ShowArticleOptionPage() {
+            CurrentViewModel = articleOptionPageVM;
+        }
+
         [Obsolete("Only for design data!", true)]
         public MainWindowVM() {
             if (!IsInDesignMode) {
@@ -59,6 +81,15 @@ namespace Burger_Customiser {
                 ShowStartPage();
             } else if (page.ViewModelType == typeof(OrderOptionPageVM)) {
                 ShowOrderOptionPage();
+            } else if(page.ViewModelType == typeof(ArticleOptionPageVM)) {
+                ShowArticleOptionPage();
+            }
+        }
+
+        private void ContinueButton_Click() {
+            if(CurrentViewModel is ArticleOptionPageVM) {
+                articleOptionPageVM.ContinuePage();
+                
             }
         }
     }

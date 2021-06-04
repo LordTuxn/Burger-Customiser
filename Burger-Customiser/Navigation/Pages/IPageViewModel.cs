@@ -2,8 +2,7 @@
 
     internal interface IPageViewModel {
 
-        public void NextPage();
-
-        public void PreviousPage();
+        void ContinuePage();
+        void BackPage();
     }
 }

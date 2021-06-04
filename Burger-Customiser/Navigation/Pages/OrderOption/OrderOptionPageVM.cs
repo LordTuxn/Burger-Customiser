@@ -14,14 +14,14 @@ namespace Burger_Customiser.Navigation.Pages.OrderOption {
         }
 
         public OrderOptionPageVM(ILogger<OrderOptionPageVM> logger) {
-            logger.LogInformation("Success!");
+            logger.LogInformation($"Successfully Registered: {nameof(OrderOptionPageVM)}");
         }
 
-        public void NextPage() {
+        public void ContinuePage() {
             throw new NotImplementedException();
         }
 
-        public void PreviousPage() {
+        public void BackPage() {
             throw new NotImplementedException();
         }
     }

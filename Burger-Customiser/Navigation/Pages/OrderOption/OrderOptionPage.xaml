@@ -22,9 +22,9 @@
                 <RowDefinition Height="35" />
                 <RowDefinition Height="35" />
             </Grid.RowDefinitions>
-            <Image Source="/Resources/EatHereBackground.jpg" Stretch="UniformToFill" Grid.RowSpan="3" Opacity="0.6" MouseLeftButtonDown="EatHereLMBDown" />
-            <TextBlock Text="Zum Hier Essen" Style="{DynamicResource Header1}" VerticalAlignment="Bottom" Grid.Row="0" />
-            <TextBlock Text="Eat Here" Style="{DynamicResource Header1}" VerticalAlignment="Bottom" Grid.Row="1" />
+            <Image Source="/Resources/EatHereBackground.jpg" Stretch="UniformToFill" Grid.RowSpan="3" Opacity="0.6"/>
+            <TextBlock Text="Zum Hier Essen" Style="{StaticResource Header1}" VerticalAlignment="Bottom" Grid.Row="0" />
+            <TextBlock Text="Eat Here" Style="{StaticResource Header1}" VerticalAlignment="Bottom" Grid.Row="1" />
         </Grid>
 
         <Grid Grid.Row="2" MouseLeftButtonDown="Takeaway_Click">
@@ -33,7 +33,7 @@
                 <RowDefinition Height="35" />
                 <RowDefinition Height="35" />
             </Grid.RowDefinitions>
-            <Image Source="/Resources/TakeawayBackground.jpg" Stretch="UniformToFill" Grid.RowSpan="3" Opacity="0.6" MouseLeftButtonDown="TakeawayLMBDown" />
+            <Image Source="/Resources/TakeawayBackground.jpg" Stretch="UniformToFill" Grid.RowSpan="3" Opacity="0.6" MouseLeftButtonDown="Takeaway_Click" />
             <TextBlock Text="Zum Mitnehmen" Style="{StaticResource Header1}" VerticalAlignment="Bottom" Grid.Row="0" />
             <TextBlock Text="Takeaway" Style="{StaticResource Header1}" VerticalAlignment="Bottom" Grid.Row="1" />
         </Grid>
