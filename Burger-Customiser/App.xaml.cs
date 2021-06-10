@@ -1,7 +1,4 @@
-﻿using Burger_Customiser.Navigation.Pages.ArticleOption;
-using Burger_Customiser.Navigation.Pages.Catalogue;
-using Burger_Customiser.Navigation.Pages.OrderOption;
-using Burger_Customiser.Navigation.Pages.Start;
+﻿using Burger_Customiser.Navigation.Pages.Catalogue;
 using Burger_Customiser_DAL;
 using Burger_Customiser_DAL.Database;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +7,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System.Windows;
+using Burger_Customiser.Pages.ArticleOption;
+using Burger_Customiser.Pages.OrderOption;
+using Burger_Customiser.Pages.Start;
 
 namespace Burger_Customiser {
 
@@ -25,7 +25,7 @@ namespace Burger_Customiser {
                     config = configurationBuilder.Build();
                 })
                 .ConfigureServices(services => {
-                    services.AddScoped<ApplicationDBContext>();
+                    services.AddScoped<ApplicationDbContext>();
 
                     services.AddScoped<CategoryDAL>();
                     services.AddScoped<ArticleDAL>();

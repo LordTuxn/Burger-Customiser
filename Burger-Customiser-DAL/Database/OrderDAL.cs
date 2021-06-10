@@ -3,9 +3,9 @@
 namespace Burger_Customiser_DAL.Database {
 
     public class OrderDAL {
-        private readonly ApplicationDBContext context;
+        private readonly ApplicationDbContext context;
 
-        public OrderDAL(ApplicationDBContext context) {
+        public OrderDAL(ApplicationDbContext context) {
             this.context = context;
         }
 

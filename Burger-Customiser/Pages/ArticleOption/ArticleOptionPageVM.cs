@@ -1,11 +1,11 @@
-﻿using Burger_Customiser.Navigation.Messages;
-using Burger_Customiser.Navigation.Pages.OrderOption;
+﻿using System;
+using Burger_Customiser.Messages;
+using Burger_Customiser.Pages.OrderOption;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Extensions.Logging;
-using System;
 
-namespace Burger_Customiser.Navigation.Pages.ArticleOption {
+namespace Burger_Customiser.Pages.ArticleOption {
     public class ArticleOptionPageVM : ViewModelBase, IPageViewModel {
 
         [Obsolete("Only for design data!", true)]

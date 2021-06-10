@@ -1,11 +1,11 @@
-﻿<Page x:Class="Burger_Customiser.Navigation.Pages.Start.StartPage"
+﻿<Page x:Class="Burger_Customiser.Pages.Start.StartPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:local="clr-namespace:Burger_Customiser.Navigation.Pages.Start"
+      xmlns:start="clr-namespace:Burger_Customiser.Pages.Start"
       mc:Ignorable="d"
-      d:DataContext="{d:DesignInstance local:StartPageVM, IsDesignTimeCreatable=True}"
+      d:DataContext="{d:DesignInstance start:StartPageVM, IsDesignTimeCreatable=True}"
       d:DesignHeight="774" d:DesignWidth="650">
 
     <Grid x:Name="IdleScreen" MouseLeftButtonDown="StartPage_Click" >

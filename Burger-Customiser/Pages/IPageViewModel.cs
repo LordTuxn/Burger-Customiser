@@ -1,4 +1,4 @@
-﻿namespace Burger_Customiser.Navigation.Pages {
+﻿namespace Burger_Customiser.Pages {
 
     internal interface IPageViewModel {
 

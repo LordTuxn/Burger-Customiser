@@ -1,4 +1,4 @@
-﻿namespace Burger_Customiser.Navigation.Messages {
+﻿namespace Burger_Customiser.Messages {
     public class ChangeCatalogueTypeMessage {
 
         public enum CatalogueType {

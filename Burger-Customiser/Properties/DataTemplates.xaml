@@ -1,23 +1,23 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:utils="clr-namespace:Burger_Customiser.Utils"
-                    xmlns:startPage="clr-namespace:Burger_Customiser.Navigation.Pages.Start"
-                    xmlns:orderOptionPage="clr-namespace:Burger_Customiser.Navigation.Pages.OrderOption"
-                    xmlns:articleOptionPage="clr-namespace:Burger_Customiser.Navigation.Pages.ArticleOption"
-                    xmlns:cataloguePage="clr-namespace:Burger_Customiser.Navigation.Pages.Catalogue">
+                    xmlns:cataloguePage="clr-namespace:Burger_Customiser.Navigation.Pages.Catalogue"
+                    xmlns:start="clr-namespace:Burger_Customiser.Pages.Start"
+                    xmlns:orderOption="clr-namespace:Burger_Customiser.Pages.OrderOption"
+                    xmlns:articleOption="clr-namespace:Burger_Customiser.Pages.ArticleOption">
 
     <utils:URLPathCoverter x:Key="URLPathConverter"/>
 
-    <DataTemplate DataType="{x:Type startPage:StartPageVM}">
-        <startPage:StartPage />
+    <DataTemplate DataType="{x:Type start:StartPageVM}">
+        <start:StartPage />
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type orderOptionPage:OrderOptionPageVM}">
-        <orderOptionPage:OrderOptionPage />
+    <DataTemplate DataType="{x:Type orderOption:OrderOptionPageVM}">
+        <orderOption:OrderOptionPage />
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type articleOptionPage:ArticleOptionPageVM}">
-        <articleOptionPage:ArticleOptionPage />
+    <DataTemplate DataType="{x:Type articleOption:ArticleOptionPageVM}">
+        <articleOption:ArticleOptionPage />
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type cataloguePage:CataloguePageVM}">

@@ -1,11 +1,11 @@
-﻿using Burger_Customiser.Navigation.Messages;
+﻿using System.Windows.Controls;
+using System.Windows.Input;
+using Burger_Customiser.Messages;
 using Burger_Customiser.Navigation.Pages.Catalogue;
 using GalaSoft.MvvmLight.Messaging;
-using System.Windows.Controls;
-using System.Windows.Input;
-using static Burger_Customiser.Navigation.Messages.ChangeCatalogueTypeMessage;
+using static Burger_Customiser.Messages.ChangeCatalogueTypeMessage;
 
-namespace Burger_Customiser.Navigation.Pages.ArticleOption {
+namespace Burger_Customiser.Pages.ArticleOption {
     /// <summary>
     /// Interaction logic for ArticleOptionPage.xaml
     /// </summary>

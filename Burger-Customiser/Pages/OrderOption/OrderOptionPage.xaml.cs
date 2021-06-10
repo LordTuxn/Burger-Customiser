@@ -1,10 +1,10 @@
-﻿using Burger_Customiser.Navigation.Messages;
-using Burger_Customiser.Navigation.Pages.ArticleOption;
-using GalaSoft.MvvmLight.Messaging;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using System.Windows.Input;
+using Burger_Customiser.Messages;
+using Burger_Customiser.Pages.ArticleOption;
+using GalaSoft.MvvmLight.Messaging;
 
-namespace Burger_Customiser.Navigation.Pages.OrderOption {
+namespace Burger_Customiser.Pages.OrderOption {
 
     /// <summary>
     /// Interaction logic for OrderPageView.xaml

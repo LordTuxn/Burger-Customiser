@@ -1,20 +1,20 @@
-﻿using GalaSoft.MvvmLight;
+﻿using System;
+using GalaSoft.MvvmLight;
 using Microsoft.Extensions.Logging;
-using System;
 
-namespace Burger_Customiser.Navigation.Pages.Start {
+namespace Burger_Customiser.Pages.OrderOption {
 
-    public class StartPageVM : ViewModelBase, IPageViewModel {
+    public class OrderOptionPageVM : ViewModelBase, IPageViewModel {
 
         [Obsolete("Only for design data!", true)]
-        public StartPageVM() {
+        public OrderOptionPageVM() {
             if (!IsInDesignMode) {
                 throw new Exception("Use only for design mode");
             }
         }
 
-        public StartPageVM(ILogger<StartPageVM> logger) {
-            logger.LogInformation($"Successfully Registered: {nameof(StartPageVM)}");
+        public OrderOptionPageVM(ILogger<OrderOptionPageVM> logger) {
+            logger.LogInformation($"Successfully Registered: {nameof(OrderOptionPageVM)}");
         }
 
         public void ContinuePage() {

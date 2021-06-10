@@ -6,9 +6,9 @@ using System.Linq;
 namespace Burger_Customiser_DAL.Database {
 
     public class CategoryDAL {
-        private readonly ApplicationDBContext context;
+        private readonly ApplicationDbContext context;
 
-        public CategoryDAL(ApplicationDBContext context) {
+        public CategoryDAL(ApplicationDbContext context) {
             this.context = context;
         }
 

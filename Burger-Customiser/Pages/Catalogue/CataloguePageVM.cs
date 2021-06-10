@@ -1,5 +1,4 @@
-﻿using Burger_Customiser.Navigation.Messages;
-using Burger_Customiser_BLL;
+﻿using Burger_Customiser_BLL;
 using Burger_Customiser_DAL.Database;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -7,7 +6,9 @@ using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using static Burger_Customiser.Navigation.Messages.ChangeCatalogueTypeMessage;
+using Burger_Customiser.Messages;
+using Burger_Customiser.Pages;
+using static Burger_Customiser.Messages.ChangeCatalogueTypeMessage;
 
 namespace Burger_Customiser.Navigation.Pages.Catalogue {
     public class CataloguePageVM : ViewModelBase, IPageViewModel {

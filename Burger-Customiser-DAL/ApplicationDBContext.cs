@@ -8,9 +8,9 @@ using System.Windows;
 
 namespace Burger_Customiser_DAL {
 
-    public class ApplicationDBContext : DbContext {
-        private readonly IConfiguration config;
-        private ILogger<ApplicationDBContext> logger;
+    public sealed class ApplicationDbContext : DbContext {
+        private readonly IConfiguration _config;
+        private readonly ILogger<ApplicationDbContext> _logger;
 
         public DbSet<Article> Article { get; set; }
         public DbSet<Ingredient> Ingredient { get; set; }
@@ -19,9 +19,9 @@ namespace Burger_Customiser_DAL {
 
         public DbSet<BurgerIngredient> BurgerIngredients { get; set; }
 
-        public ApplicationDBContext(ILogger<ApplicationDBContext> logger, IConfiguration config) {
-            this.config = config;
-            this.logger = logger;
+        public ApplicationDbContext(ILogger<ApplicationDbContext> logger, IConfiguration config) {
+            this._config = config;
+            this._logger = logger;
 
             Database.EnsureCreated();
         }
@@ -29,20 +29,20 @@ namespace Burger_Customiser_DAL {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
             do {
                 try {
-                    string connectionString =
-                        $@"server={config["Data:Server"]}; " +
-                        $@"port={config["Data:Port"]}; " +
-                        $@"database={config["Data:Database"]}; " +
-                        $@"user={config["Data:Username"]}; " +
-                        $@"password={config["Data:Password"]}; " +
+                    var connectionString =
+                        $@"server={_config["Data:Server"]}; " +
+                        $@"port={_config["Data:Port"]}; " +
+                        $@"database={_config["Data:Database"]}; " +
+                        $@"user={_config["Data:Username"]}; " +
+                        $@"password={_config["Data:Password"]}; " +
                         "Persist Security Info=False; Connect Timeout=300;";
 
                     optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 
-                    logger.LogInformation("Successfully connected to database!");
+                    _logger.LogInformation("Successfully connected to database!");
                     break;
                 } catch (MySqlConnector.MySqlException) {
-                    MessageBoxResult result = MessageBox.Show("Could not connect to database!\n\nDo you want to retry?", "No Connection", MessageBoxButton.YesNo, MessageBoxImage.Error);
+                    var result = MessageBox.Show("Could not connect to database!\n\nDo you want to retry?", "No Connection", MessageBoxButton.YesNo, MessageBoxImage.Error);
 
                     if (MessageBoxResult.No == result) Process.GetCurrentProcess().Kill(); // Application.Current.Shutdown(); doesn't work for some reason...
                 }

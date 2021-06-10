@@ -1,13 +1,13 @@
-﻿using Burger_Customiser.Navigation.Messages;
-using Burger_Customiser.Navigation.Pages.ArticleOption;
-using Burger_Customiser.Navigation.Pages.Catalogue;
-using Burger_Customiser.Navigation.Pages.OrderOption;
-using Burger_Customiser.Navigation.Pages.Start;
+﻿using Burger_Customiser.Navigation.Pages.Catalogue;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Windows.Controls;
+using Burger_Customiser.Messages;
+using Burger_Customiser.Pages.ArticleOption;
+using Burger_Customiser.Pages.OrderOption;
+using Burger_Customiser.Pages.Start;
 
 namespace Burger_Customiser {
 
