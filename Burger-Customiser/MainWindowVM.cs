@@ -4,7 +4,7 @@ using Burger_Customiser.Navigation.Pages.Catalogue;
 using Burger_Customiser.Navigation.Pages.OrderOption;
 using Burger_Customiser.Navigation.Pages.Start;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Windows.Controls;

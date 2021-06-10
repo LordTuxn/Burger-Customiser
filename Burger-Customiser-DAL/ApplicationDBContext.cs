@@ -3,6 +3,8 @@ using Burger_Customiser_BLL.Relationships;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using System.Diagnostics;
+using System.Windows;
 
 namespace Burger_Customiser_DAL {
 
@@ -17,15 +19,17 @@ namespace Burger_Customiser_DAL {
 
         public DbSet<BurgerIngredient> BurgerIngredients { get; set; }
 
-        public ApplicationDBContext(ILogger<ApplicationDBContext> loggger, IConfiguration config) {
+        public ApplicationDBContext(ILogger<ApplicationDBContext> logger, IConfiguration config) {
             this.config = config;
+            this.logger = logger;
 
             Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
-            try {
-                string connectionString =
+            do {
+                try {
+                    string connectionString =
                         $@"server={config["Data:Server"]}; " +
                         $@"port={config["Data:Port"]}; " +
                         $@"database={config["Data:Database"]}; " +
@@ -33,12 +37,16 @@ namespace Burger_Customiser_DAL {
                         $@"password={config["Data:Password"]}; " +
                         "Persist Security Info=False; Connect Timeout=300;";
 
-                optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+                    optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 
-                logger.LogInformation("Successfully connected to database!");
-            } catch {
-                // TODO: Send information and close window
-            }
+                    logger.LogInformation("Successfully connected to database!");
+                    break;
+                } catch (MySqlConnector.MySqlException) {
+                    MessageBoxResult result = MessageBox.Show("Could not connect to database!\n\nDo you want to retry?", "No Connection", MessageBoxButton.YesNo, MessageBoxImage.Error);
+
+                    if (MessageBoxResult.No == result) Process.GetCurrentProcess().Kill(); // Application.Current.Shutdown(); doesn't work for some reason...
+                }
+            } while (true); 
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {

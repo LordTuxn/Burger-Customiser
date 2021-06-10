@@ -9,7 +9,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Windows;
 
 namespace Burger_Customiser {
@@ -17,10 +16,6 @@ namespace Burger_Customiser {
     public partial class App : Application {
         private IHost host;
         private IConfiguration config;
-
-        public App() {
-           InitializeHost();
-        }
 
         private void InitializeHost() {
             host = new HostBuilder()
@@ -51,7 +46,9 @@ namespace Burger_Customiser {
                 .Build();
         }
 
-        private async void Application_Startup(object sender, StartupEventArgs args) {
+        private async void Application_Startup(object sender, StartupEventArgs e) {
+            InitializeHost();
+
             await host.StartAsync();
 
             host.Services.GetService<MainWindow>().Show();

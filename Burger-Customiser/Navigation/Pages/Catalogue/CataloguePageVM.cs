@@ -2,7 +2,7 @@
 using Burger_Customiser_BLL;
 using Burger_Customiser_DAL.Database;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Extensions.Logging;
 using System;
