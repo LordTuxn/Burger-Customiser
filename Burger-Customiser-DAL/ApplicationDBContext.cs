@@ -20,8 +20,8 @@ namespace Burger_Customiser_DAL {
         public DbSet<BurgerIngredient> BurgerIngredients { get; set; }
 
         public ApplicationDbContext(ILogger<ApplicationDbContext> logger, IConfiguration config) {
-            this._config = config;
-            this._logger = logger;
+            _config = config;
+            _logger = logger;
 
             Database.EnsureCreated();
         }
@@ -38,13 +38,13 @@ namespace Burger_Customiser_DAL {
                         "Persist Security Info=False; Connect Timeout=300;";
 
                     optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
-
+                    
                     _logger.LogInformation("Successfully connected to database!");
                     break;
                 } catch (MySqlConnector.MySqlException) {
                     var result = MessageBox.Show("Could not connect to database!\n\nDo you want to retry?", "No Connection", MessageBoxButton.YesNo, MessageBoxImage.Error);
 
-                    if (MessageBoxResult.No == result) Process.GetCurrentProcess().Kill(); // Application.Current.Shutdown(); doesn't work for some reason...
+                    if (MessageBoxResult.No == result) Process.GetCurrentProcess().Kill(); // Application.Current.Shutdown() doesn't work, because MainWindow is not initialized
                 }
             } while (true); 
         }

@@ -13,22 +13,10 @@ namespace Burger_Customiser {
 
     public class MainWindowVM : ViewModelBase {
         
-        private ViewModelBase currentViewModel;
+        private ViewModelBase _currentViewModel;
         public ViewModelBase CurrentViewModel {
-            get { return currentViewModel; }
-            set { Set(ref currentViewModel, value); }
-        }
-
-        private Button continueButton;
-        public Button ContinueButton {
-            get { return continueButton; }
-            set { Set(ref continueButton, value); }
-        }
-
-        private Button backButton;
-        public Button BackButton {
-            get { return backButton; }
-            set { Set(ref backButton, value); }
+            get => _currentViewModel;
+            set => Set(ref _currentViewModel, value);
         }
 
         public RelayCommand ShowStartPageCommand { get; private set; }
@@ -38,41 +26,41 @@ namespace Burger_Customiser {
         /// <summary>
         /// Register all view models
         /// </summary>
-        private readonly StartPageVM startPageVM;
-        private readonly OrderOptionPageVM orderOptionPageVM;
-        private readonly ArticleOptionPageVM articleOptionPageVM;
-        private readonly CataloguePageVM cataloguePageVM;
+        private readonly StartPageVM _startPageVm;
+        private readonly OrderOptionPageVM _orderOptionPageVm;
+        private readonly ArticleOptionPageVM _articleOptionPageVm;
+        private readonly CataloguePageVM _cataloguePageVm;
 
         public MainWindowVM(StartPageVM startPageVM, OrderOptionPageVM orderOptionPageVM,
                             ArticleOptionPageVM articleOptionPageVM, CataloguePageVM cataloguePageVM) {
-            this.startPageVM = startPageVM;
-            this.orderOptionPageVM = orderOptionPageVM;
-            this.articleOptionPageVM = articleOptionPageVM;
-            this.cataloguePageVM = cataloguePageVM;
+            _startPageVm = startPageVM;
+            _orderOptionPageVm = orderOptionPageVM;
+            _articleOptionPageVm = articleOptionPageVM;
+            _cataloguePageVm = cataloguePageVM;
 
             ShowStartPageCommand = new RelayCommand(ShowStartPage);
             ShowOrderOptionPageCommand = new RelayCommand(ShowOrderOptionPage);
 
             ShowCataloguePage();
 
-            // Register messanger for changing pages
+            // Register messenger for changing pages
             Messenger.Default.Register<ChangePageMessage>(this, ChangePage);
         }
 
         private void ShowStartPage() {
-            CurrentViewModel = startPageVM;
+            CurrentViewModel = _startPageVm;
         }
 
         private void ShowOrderOptionPage() {
-            CurrentViewModel = orderOptionPageVM;
+            CurrentViewModel = _orderOptionPageVm;
         }
 
         private void ShowArticleOptionPage() {
-            CurrentViewModel = articleOptionPageVM;
+            CurrentViewModel = _articleOptionPageVm;
         }
 
         private void ShowCataloguePage() {
-            CurrentViewModel = cataloguePageVM;
+            CurrentViewModel = _cataloguePageVm;
         }
 
         [Obsolete("Only for design data!", true)]
@@ -98,7 +86,7 @@ namespace Burger_Customiser {
 
         private void ContinueButton_Click() {
             if(CurrentViewModel is ArticleOptionPageVM) {
-                articleOptionPageVM.ContinuePage();
+                _articleOptionPageVm.ContinuePage();
                 
             }
         }
