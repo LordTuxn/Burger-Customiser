@@ -55,7 +55,7 @@ namespace Burger_Customiser {
 
             ShowCataloguePage();
 
-            // Register messanger for all pages
+            // Register messanger for changing pages
             Messenger.Default.Register<ChangePageMessage>(this, ChangePage);
         }
 
@@ -91,6 +91,8 @@ namespace Burger_Customiser {
                 ShowArticleOptionPage();
             } else if(page.ViewModelType == typeof(CataloguePageVM)) {
                 ShowCataloguePage();
+            } else if(page.ViewModelType == typeof(CataloguePageVM)) {
+                // TODO: Show Confirmation Page
             }
         }
 

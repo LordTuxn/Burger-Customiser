@@ -1,10 +1,15 @@
 ﻿using Burger_Customiser_BLL;
 using Burger_Customiser_BLL.Relationships;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
 namespace Burger_Customiser_DAL {
 
     public class ApplicationDBContext : DbContext {
+        private readonly IConfiguration config;
+        private ILogger<ApplicationDBContext> logger;
+
         public DbSet<Article> Article { get; set; }
         public DbSet<Ingredient> Ingredient { get; set; }
         public DbSet<Product> Product { get; set; }
@@ -12,8 +17,28 @@ namespace Burger_Customiser_DAL {
 
         public DbSet<BurgerIngredient> BurgerIngredients { get; set; }
 
-        public ApplicationDBContext(DbContextOptions<ApplicationDBContext> options) : base(options) {
+        public ApplicationDBContext(ILogger<ApplicationDBContext> loggger, IConfiguration config) {
+            this.config = config;
+
             Database.EnsureCreated();
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
+            try {
+                string connectionString =
+                        $@"server={config["Data:Server"]}; " +
+                        $@"port={config["Data:Port"]}; " +
+                        $@"database={config["Data:Database"]}; " +
+                        $@"user={config["Data:Username"]}; " +
+                        $@"password={config["Data:Password"]}; " +
+                        "Persist Security Info=False; Connect Timeout=300;";
+
+                optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+
+                logger.LogInformation("Successfully connected to database!");
+            } catch {
+                // TODO: Send information and close window
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {

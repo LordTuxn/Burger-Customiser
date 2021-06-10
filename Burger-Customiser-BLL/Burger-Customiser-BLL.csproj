@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Burger_Customiser_BLL</RootNamespace>
+    <UseWPF>true</UseWPF>
   </PropertyGroup>
 
   <ItemGroup>

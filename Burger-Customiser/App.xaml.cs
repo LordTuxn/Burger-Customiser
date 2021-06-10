@@ -9,15 +9,20 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Windows;
 
 namespace Burger_Customiser {
 
     public partial class App : Application {
-        private readonly IHost host;
+        private IHost host;
         private IConfiguration config;
 
         public App() {
+           InitializeHost();
+        }
+
+        private void InitializeHost() {
             host = new HostBuilder()
                 .ConfigureAppConfiguration((context, configurationBuilder) => {
                     configurationBuilder.SetBasePath(context.HostingEnvironment.ContentRootPath);
@@ -25,16 +30,7 @@ namespace Burger_Customiser {
                     config = configurationBuilder.Build();
                 })
                 .ConfigureServices(services => {
-                    // Inject Database
-                    string connectionString =
-                        $@"server={config["Data:Server"]}; " +
-                        $@"port={config["Data:Port"]}; " +
-                        $@"database={config["Data:Database"]}; " +
-                        $@"user={config["Data:Username"]}; " +
-                        $@"password={config["Data:Password"]}; " +
-                        "Persist Security Info=False; Connect Timeout=300;";
-                    services.AddDbContextPool<ApplicationDBContext>(options =>
-                        options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+                    services.AddScoped<ApplicationDBContext>();
 
                     services.AddScoped<CategoryDAL>();
                     services.AddScoped<ArticleDAL>();

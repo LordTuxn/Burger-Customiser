@@ -36,12 +36,10 @@
 
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <!-- 
-                        Content: Bind to name of the category
+                        <!-- Content: Bind to name of the category
                         Command: Set click event for each category
                         CommandParameter: Pass category name to click event handler
-                        Background: Convert URL path to image
-                        -->
+                        Background: Convert URL path to image -->
                         <Button 
                             Content="{Binding Name}"
                             Command="{Binding Path=DataContext.SwitchCatalogueCategory, RelativeSource={RelativeSource AncestorType={x:Type Page}}}"
@@ -69,15 +67,21 @@
 
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
+                        <Grid Width="500">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="5"/>
+                            </Grid.ColumnDefinitions>
+                            
                             <Rectangle x:Name="BackgroundRect" Fill="#595959" RadiusX="20" RadiusY="20" Grid.ColumnSpan="2"/>
 
-                            <TextBlock Text="{Binding Name}" Margin="20,0,0,0" Style="{StaticResource Header2}" Height="24" Width="300" HorizontalAlignment="Left" />
+                                <TextBlock Text="{Binding Name}" Margin="20,0,0,0" Style="{StaticResource Header2}" Height="24" Width="300" HorizontalAlignment="Left" Grid.Column="2"/>
 
-                            <TextBlock Text="{Binding Price}" Style="{StaticResource Header2}" HorizontalAlignment="Right" Height="24" />
-                            <Button Content="-" Style="{StaticResource Button1}" />
-                            <TextBlock Text="1" Style="{StaticResource Header2}" />
-                            <Button Content="+" Style="{StaticResource Button1}" />
+                                <TextBlock Text="{Binding Price}" Style="{StaticResource Header2}" HorizontalAlignment="Right" Height="24" Grid.Column="3"/>
+                                <Button Content="-" Style="{StaticResource Button1}" Grid.Column="4"/>
+                                <TextBlock Text="1" Style="{StaticResource Header2}" Grid.Column="5"/>
+                            <Button Content="+" Style="{StaticResource Button1}" Grid.Column="6"/>
                         </Grid>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
