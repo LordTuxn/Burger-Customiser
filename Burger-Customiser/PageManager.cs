@@ -1,49 +1,66 @@
 ﻿using Burger_Customiser.Pages;
-using Burger_Customiser_DAL.Database;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System;
 using System.Windows.Controls;
 
 namespace Burger_Customiser {
 
     public enum MenuPages {
-        StartSite, OrderOption, ArticleOption, BurgerCustomiser, ShoppingCart, Catalogue, Confirmation
+        StartSite = 0,
+        OrderOption = 1,
+        ArticleOption = 2,
+        Catalogue = 3,
+        ShoppingCart = 4,
+        Confirmation = 5
     }
 
     public class PageManager {
+        private readonly IHost serviceProvider;
 
-        private readonly IngredientDAL ingredientDAL;
-
-        public PageManager(StartWindow startWindow, IngredientDAL ingredientDAL) {
+        public PageManager(StartWindow startWindow, IHost serviceProvider) {
             StartWindow = startWindow;
-
-            this.ingredientDAL = ingredientDAL;
+            this.serviceProvider = serviceProvider;
         }
 
-        public StartWindow StartWindow { get; set; } // TODO: Try to inject pages and create them using service provider
+        public StartWindow StartWindow { get; set; }
 
         public Page CurrentPage { get; private set; }
 
+        public int CatalogueType { get; set; }
+
+        public void NextPage() {
+            Navigate((MenuPages)(GetCurrentPageIndex() > Enum.GetValues(typeof(MenuPages)).Length ? 0 : GetCurrentPageIndex() + 1));
+        }
+
+        public void PreviousPage() {
+            Navigate((MenuPages)(GetCurrentPageIndex() < 0 ? Enum.GetValues(typeof(MenuPages)).Length : GetCurrentPageIndex() - 1));
+        }
+
+        private int GetCurrentPageIndex() {
+            return (int)Enum.Parse(typeof(MenuPages), CurrentPage.Title);
+        }
+
         public void Navigate(MenuPages page) {
-            switch(page) {
+            switch (page) {
                 case MenuPages.StartSite:
-                    CurrentPage = new StartSitePage(this);
+                    CurrentPage = serviceProvider.Services.GetService<StartSitePage>();
                     break;
+
                 case MenuPages.OrderOption:
-                    CurrentPage = new OrderOptionPage(this);
+                    CurrentPage = serviceProvider.Services.GetService<OrderOptionPage>();
                     break;
+
                 case MenuPages.ArticleOption:
-                    CurrentPage = new ArticleOptionPage(this);
+                    CurrentPage = serviceProvider.Services.GetService<ArticleOptionPage>();
                     break;
-                case MenuPages.BurgerCustomiser:
-                    CurrentPage = new BurgerCustomiserPage(this, ingredientDAL);
-                    break;
+
                 case MenuPages.Catalogue:
-
+                    CurrentPage = serviceProvider.Services.GetService<CataloguePage>();
                     break;
+
                 case MenuPages.ShoppingCart:
-
-                    break;
-                case MenuPages.Confirmation:
-
+                    CurrentPage = serviceProvider.Services.GetService<ShoppingCartPage>();
                     break;
             }
 

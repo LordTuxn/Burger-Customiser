@@ -4,19 +4,15 @@ using System.Windows.Input;
 namespace Burger_Customiser.Pages {
 
     /// <summary>
-    /// Interaction logic for StartSite.xaml
+    /// Interaction logic for ConfirmationPage.xaml
     /// </summary>
-    public partial class StartSitePage : Page {
-        private readonly PageManager pageManager;
+    public partial class ConfirmationPage : Page {
 
-        public StartSitePage(PageManager pageManager) {
-            this.pageManager = pageManager;
-
+        public ConfirmationPage() {
             InitializeComponent();
         }
 
         private void IdleScreenLMBDown(object sender, MouseButtonEventArgs e) {
-            pageManager.NextPage();
         }
     }
 }

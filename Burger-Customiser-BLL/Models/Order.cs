@@ -1,11 +1,13 @@
-﻿using System;
+﻿using Burger_Customiser_BLL.Relationships;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace Burger_Customiser_BLL {
+
     public class Order {
+
         [Key, Column("O_ID")]
         public int ID { get; set; }
 
@@ -14,5 +16,9 @@ namespace Burger_Customiser_BLL {
 
         [Column("ToTakeAway")]
         public bool ToTakeAway { get; set; }
+
+        public List<OrderProduct> ProductOrders { get; set; }
+
+        public List<OrderBurger> BurgerOrders { get; set; }
     }
 }

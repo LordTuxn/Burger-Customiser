@@ -12,9 +12,13 @@
 
   <ItemGroup>
     <None Remove="appsettings.json" />
+    <None Remove="Resources\AddSidedishBackground.jpg" />
+    <None Remove="Resources\BurgerCustomiserBackground.jpg" />
+    <None Remove="Resources\EatHereBackground.jpg" />
     <None Remove="Resources\LandingPageBurger.jpg" />
     <None Remove="Resources\Logo.png" />
     <None Remove="Resources\ShoppingCart.png" />
+    <None Remove="Resources\TakeawayBackground.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,6 +43,15 @@
     <Content Include="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\AddSidedishBackground.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\BurgerCustomiserBackground.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\EatHereBackground.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\LandingPageBurger.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -46,6 +59,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\ShoppingCart.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\TakeawayBackground.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

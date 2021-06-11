@@ -1,17 +1,16 @@
 ﻿<Window x:Class="Burger_Customiser.StartWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Burger_Customiser"
         d:DataContext="{d:DesignInstance Type=local:StartWindow, IsDesignTimeCreatable=True}"
         mc:Ignorable="d"
-        Title="Burger-Customiser" Height="800" Width="600"
-        >
+        Title="Burger-Customiser" Height="800" Width="600">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="70" />
     </WindowChrome.WindowChrome>
-    <Grid Background="#242424">
+    <Grid x:Name="MainGrid" Background="#242424" Loaded="MainGrid_Loaded">
         <Grid.RowDefinitions>
             <RowDefinition Height="70" />
             <RowDefinition Height="35" />
@@ -41,7 +40,7 @@
                 <ColumnDefinition Width="35" />
             </Grid.ColumnDefinitions>
             <Image Source="/Resources/Logo.png" Grid.Column="1" />
-            <TextBlock Text="Burger Customiser" Grid.Column="2" Margin="10,0,0,0" Style="{StaticResource Header2}"/>
+            <TextBlock Text="Burger Customiser" Grid.Column="2" Margin="10,0,0,0" Style="{StaticResource Header2}" />
             <Image Source="/Resources/ShoppingCart.png" Grid.Column="4" />
         </Grid>
 
@@ -51,12 +50,9 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="35" />
-                <ColumnDefinition Width="25" />
                 <ColumnDefinition />
-                <ColumnDefinition Width="25" />
                 <ColumnDefinition Width="35" />
             </Grid.ColumnDefinitions>
         </Grid>
     </Grid>
 </Window>
-   

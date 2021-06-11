@@ -1,13 +1,13 @@
-﻿using Burger_Customiser_DAL;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Configuration;
-using System.Windows;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Hosting;
-using System;
+﻿using Burger_Customiser.Pages;
+using Burger_Customiser_DAL;
 using Burger_Customiser_DAL.Database;
 using Microsoft.EntityFrameworkCore;
-using Burger_Customiser.Pages;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Windows;
 
 namespace Burger_Customiser {
 
@@ -15,7 +15,6 @@ namespace Burger_Customiser {
     /// Interaction logic for App.xaml
     /// </summary>
     public partial class App : Application {
-
         private readonly IHost host;
         private IConfiguration config;
 
@@ -27,6 +26,7 @@ namespace Burger_Customiser {
                     config = configurationBuilder.Build();
                 })
                 .ConfigureServices((context, services) => {
+                    // Inject Database
                     string connectionString =
                         $@"server={config["Data:Server"]}; " +
                         $@"port={config["Data:Port"]}; " +
@@ -34,15 +34,25 @@ namespace Burger_Customiser {
                         $@"user={config["Data:Username"]}; " +
                         $@"password={config["Data:Password"]}; " +
                         "Persist Security Info=False; Connect Timeout=300;";
-                    services.AddDbContextPool<ApplicationDBContext>(options => 
+                    services.AddDbContextPool<ApplicationDBContext>(options =>
                         options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
-                    services.AddScoped<ProductDAL>();
-                    services.AddScoped<IngredientDAL>();
+                    // Inject Database DALs
+                    services.AddScoped<ArticleDAL>();
+                    services.AddScoped<BurgerDAL>();
+                    services.AddScoped<CategoryDAL>();
 
-                    services.AddScoped<IDisposable, BurgerCustomiserPage>();
+                    // Inject Pages
+                    services.AddTransient<StartSitePage>();
+                    services.AddTransient<OrderOptionPage>();
+                    services.AddTransient<ArticleOptionPage>();
+                    services.AddTransient<CataloguePage>();
+                    services.AddTransient<ShoppingCartPage>();
 
+                    // Inject Application Window and Managers
+                    services.AddSingleton<OrderManager>();
                     services.AddSingleton<PageManager>();
+
                     services.AddSingleton<StartWindow>();
                 })
                 .ConfigureLogging(logging => {
@@ -55,9 +65,8 @@ namespace Burger_Customiser {
         private async void Application_Startup(object sender, StartupEventArgs args) {
             await host.StartAsync();
 
-            StartWindow window = host.Services.GetService<StartWindow>();
-            window.Main.Content = new StartSitePage(host.Services.GetService<PageManager>());
-            window.Show();
+            host.Services.GetService<PageManager>().Navigate(MenuPages.StartSite);
+            host.Services.GetService<StartWindow>().Show();
         }
 
         private async void Application_Exit(object sender, ExitEventArgs e) {

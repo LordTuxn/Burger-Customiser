@@ -2,40 +2,38 @@
 using Burger_Customiser_DAL.Database;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
-namespace Burger_Customiser.UserControls
-{
+namespace Burger_Customiser.UserControls {
+
     /// <summary>
     /// Interaction logic for Navigator.xaml
     /// </summary>
-    public partial class Navigator : UserControl
-    {
-        public Navigator(IngredientDAL ingredientDAL, ProductList productList)
-        {
+    public partial class Navigator : UserControl {
+        private readonly CategoryDAL categoryDAL;
+        private readonly CatalogueList catalogueList;
+        private readonly TextBlock categoryName;
+
+        private readonly List<Category> categories;
+
+        public Navigator(CategoryDAL categoryDAL, CatalogueList catalogueList, TextBlock categoryName) {
             InitializeComponent();
+
+            this.categoryDAL = categoryDAL;
+            this.catalogueList = catalogueList;
+            this.categoryName = categoryName;
+
+            categories = categoryDAL.GetCategoriesByType((int)catalogueList.Type);
+
             Grid.SetRow(this, 3);
-            this.productList = productList;
-            this.categories = ingredientDAL.GetCategories();
             SetNavigator(categories);
         }
 
-        private ProductList productList;
-        private List<Category> categories;
-
-        private void SetNavigator(List<Category> list)
-        {
-            foreach (Category item in list)
-            {
+        private void SetNavigator(List<Category> list) {
+            foreach (Category item in list) {
                 // Get Image
                 string url = item.BackgroundImage.Trim();
                 url = (url == "" ? $@"https://i.imgur.com/BnQNYQS.jpg" : item.BackgroundImage); // Check if there is a Background Image in the database, if not set default image
@@ -49,13 +47,23 @@ namespace Burger_Customiser.UserControls
                 img.Stretch = Stretch.UniformToFill;
                 img.Opacity = 0.7;
 
+                // Get Style
+                Style style = this.FindResource("NavigatorButton") as Style;
+
                 Button btn = new Button() {
-                    Width = 150,
+                    Style = style,
                     Content = item.Name,
                     Background = img
                 };
+                btn.Click += new RoutedEventHandler(BtnClick);
                 NavigationWrapPanel.Children.Add(btn);
             }
+        }
+
+        private void BtnClick(object sender, RoutedEventArgs e) {
+            Button button = (Button)sender;
+            categoryName.Text = button.Content.ToString();
+            catalogueList.ChangeCategory(categoryDAL.GetCategoryByName(categoryName.Text));
         }
     }
 }

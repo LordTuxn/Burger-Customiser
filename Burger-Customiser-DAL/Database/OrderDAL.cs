@@ -2,20 +2,20 @@
 
 namespace Burger_Customiser_DAL.Database {
 
-    public class BurgerDAL {
+    public class OrderDAL {
         private readonly ApplicationDBContext context;
 
-        public BurgerDAL(ApplicationDBContext context) {
+        public OrderDAL(ApplicationDBContext context) {
             this.context = context;
         }
 
-        public void AddBurger(Burger burger) {
-            context.Add(burger);
+        public void AddOrder(Order order) {
+            context.Add(order);
             context.SaveChanges();
         }
 
-        public void UpdateBurger(Burger burger) {
-            context.Update(burger);
+        public void UpdateOrder(Order order) {
+            context.Update(order);
             context.SaveChanges();
         }
     }
