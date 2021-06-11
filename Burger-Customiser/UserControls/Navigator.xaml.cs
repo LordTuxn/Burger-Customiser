@@ -47,6 +47,7 @@ namespace Burger_Customiser.UserControls
 
                 ImageBrush img = new ImageBrush(bitimg);
                 img.Stretch = Stretch.UniformToFill;
+                img.Opacity = 0.7;
 
                 Button btn = new Button() {
                     Width = 150,
