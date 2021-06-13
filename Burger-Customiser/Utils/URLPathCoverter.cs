@@ -24,6 +24,7 @@ namespace Burger_Customiser.Utils {
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {
+            // lmao xd not gonna be implemented
             throw new NotImplementedException();
         }
     }

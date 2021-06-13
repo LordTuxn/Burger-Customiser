@@ -40,7 +40,6 @@
         <Setter Property="Background" Value="#3AFF00" />
         <Setter Property="FontWeight" Value="Bold" />
     </Style>
-
     <Style x:Key="ButtonHoverEffect" TargetType="Button">
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
@@ -65,6 +64,12 @@
         </Setter>
         <Setter Property="FontSize" Value="17" />
         <Setter Property="Background" Value="white" />
+    </Style>
+    <Style x:Key="ArticleItem" TargetType="ItemsControl">
+        <Style.Setters>
+            <Setter Property="Grid.Row" Value="7" />
+            <Setter Property="Grid.Column" Value="7" />
+        </Style.Setters>
     </Style>
 
     <Style x:Key="ShoppingCartButton" TargetType="Button" BasedOn="{StaticResource DefaultButton}">
