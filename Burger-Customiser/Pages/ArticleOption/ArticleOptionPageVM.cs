@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Controls;
 using Burger_Customiser.Messages;
 using Burger_Customiser.Pages.OrderOption;
 using GalaSoft.MvvmLight;
@@ -6,7 +7,7 @@ using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Extensions.Logging;
 
 namespace Burger_Customiser.Pages.ArticleOption {
-    public class ArticleOptionPageVM : ViewModelBase, IPageViewModel {
+    public class ArticleOptionPageVM : PageViewModelBase {
 
         [Obsolete("Only for design data!", true)]
         public ArticleOptionPageVM() {
@@ -19,12 +20,12 @@ namespace Burger_Customiser.Pages.ArticleOption {
             logger.LogInformation($"Successfully Registered: {nameof(ArticleOptionPageVM)}");
         }
 
-        public void BackPage() {
-            Messenger.Default.Send(new ChangePageMessage(typeof(OrderOptionPageVM)));
+        public override NavigationButton GetBackButton() {
+            return new NavigationButton("ZURÜCK", onClick => {
+                Messenger.Default.Send(new ChangePageMessage(typeof(OrderOptionPageVM)));
+            });
         }
 
-        public void ContinuePage() {
-            throw new NotImplementedException();
-        }
+        public override NavigationButton GetContinueButton() { return null; }
     }
 }

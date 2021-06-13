@@ -1,10 +1,13 @@
 ﻿using System;
-using GalaSoft.MvvmLight;
+using Burger_Customiser.Messages;
+using Burger_Customiser.Pages.Start;
+using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Extensions.Logging;
 
 namespace Burger_Customiser.Pages.OrderOption {
 
-    public class OrderOptionPageVM : ViewModelBase, IPageViewModel {
+    public class OrderOptionPageVM : PageViewModelBase {
+        private readonly ILogger<OrderOptionPageVM> _logger;
 
         [Obsolete("Only for design data!", true)]
         public OrderOptionPageVM() {
@@ -14,15 +17,18 @@ namespace Burger_Customiser.Pages.OrderOption {
         }
 
         public OrderOptionPageVM(ILogger<OrderOptionPageVM> logger) {
+            _logger = logger;
             logger.LogInformation($"Successfully Registered: {nameof(OrderOptionPageVM)}");
         }
 
-        public void ContinuePage() {
-            throw new NotImplementedException();
+        public override NavigationButton GetBackButton() {
+            return new NavigationButton("ZURÜCK", onClick => {
+                _logger.LogInformation("Yes!");
+                Messenger.Default.Send(new ChangePageMessage(typeof(StartPageVM)));
+            });
         }
 
-        public void BackPage() {
-            throw new NotImplementedException();
-        }
+        public override NavigationButton GetContinueButton() { return null; }
+
     }
 }

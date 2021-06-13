@@ -1,10 +1,9 @@
 ﻿using System;
-using GalaSoft.MvvmLight;
 using Microsoft.Extensions.Logging;
 
 namespace Burger_Customiser.Pages.Start {
 
-    public class StartPageVM : ViewModelBase, IPageViewModel {
+    public class StartPageVM : PageViewModelBase {
 
         [Obsolete("Only for design data!", true)]
         public StartPageVM() {
@@ -17,12 +16,8 @@ namespace Burger_Customiser.Pages.Start {
             logger.LogInformation($"Successfully Registered: {nameof(StartPageVM)}");
         }
 
-        public void ContinuePage() {
-            throw new NotImplementedException();
-        }
+        public override NavigationButton GetBackButton() { return null; }
 
-        public void BackPage() {
-            throw new NotImplementedException();
-        }
+        public override NavigationButton GetContinueButton() { return null; }
     }
 }

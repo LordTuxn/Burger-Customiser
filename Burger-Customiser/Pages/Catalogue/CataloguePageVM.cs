@@ -1,41 +1,37 @@
-﻿using Burger_Customiser_BLL;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows;
+using Burger_Customiser.Messages;
+using Burger_Customiser.Pages.ArticleOption;
+using Burger_Customiser_BLL;
 using Burger_Customiser_DAL.Database;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using Burger_Customiser.Messages;
-using Burger_Customiser.Pages;
 using static Burger_Customiser.Messages.ChangeCatalogueTypeMessage;
 
-namespace Burger_Customiser.Navigation.Pages.Catalogue {
-    public class CataloguePageVM : ViewModelBase, IPageViewModel {
+namespace Burger_Customiser.Pages.Catalogue {
+    public class CataloguePageVM : PageViewModelBase {
 
-        public List<Category> Categories { get; private set; }
+        public List<Category> Categories { get; }
 
-        public List<Article> Articles { get; private set; }
+        public List<Article> Articles { get; }
 
-        private string title;
+        private string _title;
         public string Title {
-            get { return title; }
-            set { Set(ref title, value); }
+            get => _title;
+            set => Set(ref _title, value);
         }
 
-        private string categoryName;
+        private string _categoryName;
         public string CategoryName {
-            get { return categoryName; }
-            set { Set(ref categoryName, value); }
+            get => _categoryName;
+            set => Set(ref _categoryName, value);
         }
 
-        private CatalogueType catalogueType;
-        public CatalogueType CatalogueType {
-            get { return catalogueType; }
-            set { catalogueType = value; }
-        }
+        public CatalogueType CatalogueType { get; set; }
 
-        public RelayCommand<string> SwitchCatalogueCategory { get; private set; }
+        public RelayCommand<string> SwitchCatalogueCategory { get; }
 
         [Obsolete("Only for design data!", true)]
         public CataloguePageVM() {
@@ -61,14 +57,6 @@ namespace Burger_Customiser.Navigation.Pages.Catalogue {
             CategoryName = Categories[0].Name;
         }
 
-        public void BackPage() {
-            throw new NotImplementedException();
-        }
-
-        public void ContinuePage() {
-            throw new NotImplementedException();
-        }
-
         private void SwitchCategory(string categoryName) {
             CategoryName = categoryName;
 
@@ -77,6 +65,20 @@ namespace Burger_Customiser.Navigation.Pages.Catalogue {
 
         private void SetCatalogueType(ChangeCatalogueTypeMessage catalogueType) {
             CatalogueType = catalogueType.Type;
+        }
+
+        public override NavigationButton GetBackButton() {
+            return new NavigationButton("ZURÜCK", onClick => {
+                Messenger.Default.Send(new ChangePageMessage(typeof(ArticleOptionPageVM)));
+            });
+        }
+
+        public override NavigationButton GetContinueButton() {
+            return new NavigationButton("HINZUFÜGEN", onClick => {
+                // TODO: Add to shopping cart
+
+                Messenger.Default.Send(new ChangePageMessage(typeof(ArticleOptionPageVM)));
+            }, Application.Current.FindResource("ShoppingCartButton") as Style);
         }
     }
 }

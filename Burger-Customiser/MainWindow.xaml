@@ -11,7 +11,7 @@
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="70" />
     </WindowChrome.WindowChrome>
-    <Grid x:Name="MainGrid" Background="#242424">
+    <Grid Background="#242424">
         <Grid.RowDefinitions>
             <RowDefinition Height="70" />
             <RowDefinition Height="35" />
@@ -56,21 +56,23 @@
                 <RowDefinition Height="15" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
+                <ColumnDefinition Width="7*" />
+                <ColumnDefinition Width="33*"/>
                 <ColumnDefinition Width="200" />
-                <ColumnDefinition />
+                <ColumnDefinition Width="33*" />
+                <ColumnDefinition Width="7*"/>
             </Grid.ColumnDefinitions>
 
-            <Button Content="ZURÜCK" Grid.Column="0" Grid.Row="1"
-                    Style="{StaticResource CornerButton}"
-                    Command="{Binding ContinueButton}">
-                <!-- Bind to Start Page -->
+            <Button Content="{Binding BackButton.Content}" Grid.Column="1" Grid.Row="1" 
+                    HorizontalAlignment="Left" BorderThickness="0" Padding="0"
+                    Style="{Binding BackButton.Style}"
+                    Command="{Binding BackButtonCommand}">
             </Button>
-            <Button Content="WEITER" Grid.Column="2" Grid.Row="1"
-                    Style="{StaticResource CornerButton}"
-                    Command="{Binding ShowOrderOptionPageCommand}">
-                <!-- Bind to Order Option Page -->
-            </Button>
+
+            <Button Content="{Binding ContinueButton.Content}" Grid.Column="3" Grid.Row="1" 
+                    HorizontalAlignment="Left" BorderThickness="0" Padding="0"
+                    Style="{Binding ContinueButton.Style}"
+                    Command="{Binding ContinueButtonCommand}"/>
         </Grid>
     </Grid>
 </Window>

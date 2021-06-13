@@ -4,7 +4,8 @@
                     xmlns:cataloguePage="clr-namespace:Burger_Customiser.Navigation.Pages.Catalogue"
                     xmlns:start="clr-namespace:Burger_Customiser.Pages.Start"
                     xmlns:orderOption="clr-namespace:Burger_Customiser.Pages.OrderOption"
-                    xmlns:articleOption="clr-namespace:Burger_Customiser.Pages.ArticleOption">
+                    xmlns:articleOption="clr-namespace:Burger_Customiser.Pages.ArticleOption"
+                    xmlns:catalogue="clr-namespace:Burger_Customiser.Pages.Catalogue">
 
     <utils:URLPathCoverter x:Key="URLPathConverter"/>
 
@@ -20,7 +21,7 @@
         <articleOption:ArticleOptionPage />
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type cataloguePage:CataloguePageVM}">
+    <DataTemplate DataType="{x:Type catalogue:CataloguePageVM}">
         <cataloguePage:CataloguePage />
     </DataTemplate>
 </ResourceDictionary>

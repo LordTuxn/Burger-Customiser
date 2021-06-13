@@ -1,7 +1,7 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Input;
 using Burger_Customiser.Messages;
-using Burger_Customiser.Navigation.Pages.Catalogue;
+using Burger_Customiser.Pages.Catalogue;
 using GalaSoft.MvvmLight.Messaging;
 using static Burger_Customiser.Messages.ChangeCatalogueTypeMessage;
 
