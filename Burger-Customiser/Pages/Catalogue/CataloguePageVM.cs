@@ -74,6 +74,7 @@ namespace Burger_Customiser.Pages.Catalogue {
         }
 
         private void SwitchCatalogueType(ChangeCatalogueTypeMessage type) {
+            ShoppingCart.Clear();
             CatalogueType = type.CatalogueType;
 
             PageTitle = CatalogueType == CatalogueType.Product ?
