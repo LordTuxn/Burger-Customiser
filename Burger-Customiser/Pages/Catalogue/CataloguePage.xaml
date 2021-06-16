@@ -3,7 +3,6 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Burger_Customiser.Navigation.Pages.Catalogue"
       xmlns:catalogue="clr-namespace:Burger_Customiser.Pages.Catalogue"
       mc:Ignorable="d" 
       d:DataContext="{d:DesignInstance catalogue:CataloguePageVM, IsDesignTimeCreatable=True}"

@@ -85,7 +85,10 @@ namespace Burger_Customiser.Pages.Catalogue {
         }
 
         private void SwitchCategory(int categoryId) {
-            CategoryName = _categoryDAL.GetCategoryById(categoryId).Name;
+            string newCategoryName = _categoryDAL.GetCategoryById(categoryId).Name;
+
+            if (CategoryName == newCategoryName) return;
+            CategoryName = newCategoryName;
 
             UpdateArticles(categoryId);
         }
@@ -142,9 +145,9 @@ namespace Burger_Customiser.Pages.Catalogue {
                 _articleDAL.GetIngredientsByCategory(categoryId).ConvertAll(x => new Article { Name = x.Name, Price = x.Price, BackgroundImage = x.BackgroundImage });
 
             // Convert articles to articleItem and set amount in Shopping Cart
-            var items = new List<ArticleItem>();
+            List<ArticleItem> items = new List<ArticleItem>();
             foreach (var article in articles) {
-                var articleItem = new ArticleItem(article);
+                ArticleItem articleItem = new ArticleItem(article);
 
                 if (ShoppingCart.Keys.Any(shopItem => shopItem.Name == article.Name)) {
                     articleItem.Amount = ShoppingCart.FirstOrDefault(item => item.Key.Name == article.Name).Value;
