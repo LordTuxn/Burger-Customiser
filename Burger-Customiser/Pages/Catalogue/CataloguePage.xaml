@@ -21,8 +21,8 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <!-- Page Title -->
-        <TextBlock x:Name="PageTitle" Text="{Binding PageTitle}" Style="{StaticResource Header1}" Grid.Row="1" />
+        <!-- Catalogue Type -->
+        <TextBlock x:Name="CatalogueTypeTitle" Text="{Binding CatalogueTypeTitle}" Style="{StaticResource Header1}" Grid.Row="1" />
 
         <!-- Category Navigator -->
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" Grid.Row="3">
@@ -72,6 +72,7 @@
                                 <Grid HorizontalAlignment="Stretch">
                                     <TextBlock Text="{Binding Article.Name}" Margin="20,0,0,0" Style="{StaticResource Header2}"/>
 
+                                    <!-- Display article information -->
                                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="20,0,20,0">
                                         <TextBlock Text="{Binding FormattedPrice}" Style="{StaticResource Header2}"/>
                                         <Button Content="-" Style="{StaticResource Button1}" 

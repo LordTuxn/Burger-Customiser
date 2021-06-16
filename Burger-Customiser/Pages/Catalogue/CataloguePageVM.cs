@@ -22,12 +22,12 @@ namespace Burger_Customiser.Pages.Catalogue {
 
         public Dictionary<Article, int> ShoppingCart = new Dictionary<Article, int>();
 
-        private string _pageTitle;
-        public string PageTitle {
-            get => _pageTitle;
+        private string _catalogueTypeTitle;
+        public string CatalogueTypeTitle {
+            get => _catalogueTypeTitle;
             set {
-                Set(ref _pageTitle, value);
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PageTitle"));
+                Set(ref _catalogueTypeTitle, value);
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CatalogueTypeTitle"));
             }
         }
 
@@ -77,7 +77,7 @@ namespace Burger_Customiser.Pages.Catalogue {
             ShoppingCart.Clear();
             CatalogueType = type.CatalogueType;
 
-            PageTitle = CatalogueType == CatalogueType.Product ?
+            CatalogueTypeTitle = CatalogueType == CatalogueType.Product ?
                 "PRODUKT KATALOG" : "BURGER ZUSAMMENSTELLEN";
 
             UpdateCategories();
