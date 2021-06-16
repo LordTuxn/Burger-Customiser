@@ -16,13 +16,15 @@ namespace Burger_Customiser.Pages.ArticleOption {
         private void BurgerCustomiser_Click(object sender, MouseButtonEventArgs e) {
             // TODO: Set order option and send to next page
 
+            Messenger.Default.Send(new ChangeCatalogueTypeMessage(CatalogueType.Ingredient));
             Messenger.Default.Send(new ChangePageMessage(typeof(CataloguePageVM)));
         }
 
         private void ProductCatalogue_Click(object sender, MouseButtonEventArgs e) {
             // TODO: Set order option and send to next page
 
-            Messenger.Default.Send(new ChangePageMessage(typeof(CataloguePageVM), CatalogueType.Product));
+            Messenger.Default.Send(new ChangeCatalogueTypeMessage(CatalogueType.Product));
+            Messenger.Default.Send(new ChangePageMessage(typeof(CataloguePageVM)));
         }
     }
 }

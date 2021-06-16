@@ -2,7 +2,6 @@
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using System;
-using System.ComponentModel;
 using System.Windows.Controls;
 using Burger_Customiser.Messages;
 using Burger_Customiser.Pages;
@@ -10,7 +9,6 @@ using Burger_Customiser.Pages.ArticleOption;
 using Burger_Customiser.Pages.Catalogue;
 using Burger_Customiser.Pages.OrderOption;
 using Burger_Customiser.Pages.Start;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Burger_Customiser {
 
@@ -38,10 +36,17 @@ namespace Burger_Customiser {
 
         public RelayCommand ContinueButtonCommand { get; set; }
 
-        private readonly IServiceProvider services;
+        private readonly StartPageVM _startPage;
+        private readonly OrderOptionPageVM _orderOptionPage;
+        private readonly ArticleOptionPageVM _articleOptionPage;
+        private readonly CataloguePageVM _cataloguePage;
 
-        public MainWindowVM(IServiceProvider services) {
-            this.services = services;
+        public MainWindowVM(StartPageVM startPage, OrderOptionPageVM orderOptionPage, 
+            ArticleOptionPageVM articleOptionPage, CataloguePageVM cataloguePage) {
+            _startPage = startPage;
+            _orderOptionPage = orderOptionPage;
+            _articleOptionPage = articleOptionPage;
+            _cataloguePage = cataloguePage;
 
             BackButtonCommand = new RelayCommand(BackButton_Click);
             ContinueButtonCommand = new RelayCommand(ContinueButton_Click);
@@ -53,21 +58,19 @@ namespace Burger_Customiser {
         }
 
         private void ShowStartPage() {
-            CurrentViewModel = services.GetRequiredService<StartPageVM>();
+            CurrentViewModel = _startPage;
         }
 
         private void ShowOrderOptionPage() {
-            CurrentViewModel = services.GetRequiredService<OrderOptionPageVM>();
+            CurrentViewModel = _orderOptionPage;
         }
 
         private void ShowArticleOptionPage() {
-            CurrentViewModel = services.GetRequiredService<ArticleOptionPageVM>();
+            CurrentViewModel = _articleOptionPage;
         }
 
-        private void ShowCataloguePage(CatalogueType type) {
-            var catalogue = services.GetRequiredService<CataloguePageVM>();
-            catalogue.CatalogueType = type;
-            CurrentViewModel = catalogue;
+        private void ShowCataloguePage() {
+            CurrentViewModel = _cataloguePage;
         }
 
         [Obsolete("Only for design data!", true)]
@@ -85,7 +88,7 @@ namespace Burger_Customiser {
             } else if(page.ViewModelType == typeof(ArticleOptionPageVM)) {
                 ShowArticleOptionPage();
             } else if(page.ViewModelType == typeof(CataloguePageVM)) {
-                ShowCataloguePage(page.CatalogueType);
+                ShowCataloguePage();
             } else if(page.ViewModelType == typeof(CataloguePageVM)) {
                 // TODO: Show Confirmation Page
             }

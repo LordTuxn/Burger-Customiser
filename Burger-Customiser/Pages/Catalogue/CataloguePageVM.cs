@@ -13,11 +13,8 @@ using Microsoft.Extensions.Logging;
 
 namespace Burger_Customiser.Pages.Catalogue {
     public class CataloguePageVM : PageViewModelBase, INotifyPropertyChanged {
-        private readonly ILogger<CataloguePageVM> _logger;
-        private readonly CategoryDAL _categoryDAL;
-        private readonly ArticleDAL _articleDal;
 
-        public new event PropertyChangedEventHandler PropertyChanged;
+        public CatalogueType CatalogueType { get; set; }
 
         public List<Category> Categories { get; private set; }
 
@@ -43,9 +40,13 @@ namespace Burger_Customiser.Pages.Catalogue {
             }
         }
 
-        public CatalogueType CatalogueType { get; set; }
+        private readonly ILogger<CataloguePageVM> _logger;
+        private readonly CategoryDAL _categoryDAL;
+        private readonly ArticleDAL _articleDAL;
 
-        public RelayCommand<string> SwitchCatalogueCategory { get; }
+        public new event PropertyChangedEventHandler PropertyChanged;
+
+        public RelayCommand<int> SwitchCatalogueCategory { get; }
         public RelayCommand<string> AddArticleToShoppingCart { get; }
         public RelayCommand<string> RemoveArticleFromShoppingCart { get; }
 
@@ -59,29 +60,33 @@ namespace Burger_Customiser.Pages.Catalogue {
         public CataloguePageVM(ILogger<CataloguePageVM> logger, CategoryDAL categoryDAL, ArticleDAL articleDAL) {
             _logger = logger;
             _categoryDAL = categoryDAL;
-            _articleDal = articleDAL;
+            _articleDAL = articleDAL;
 
-            logger.LogInformation($"Successfully Registered: {nameof(CataloguePageVM)}");
-
-            SwitchCatalogueCategory = new RelayCommand<string>(SwitchCategory);
+            SwitchCatalogueCategory = new RelayCommand<int>(SwitchCategory);
 
             AddArticleToShoppingCart = new RelayCommand<string>(Add_ArticleToShoppingCart);
             RemoveArticleFromShoppingCart = new RelayCommand<string>(Remove_ArticleFromShoppingCart);
 
-            // "Cast" the whole Product and Ingredient List to a universal Article List
-            PageTitle = CatalogueType == CatalogueType.Product ?
-                "PRODUKT KATALOG" : "BURGER ZUSAMMENSTELLEN";
-            
-            UpdateCategories();
-            CategoryName = Categories[0].Name;
+            // Register messenger for changing catalogue type
+            Messenger.Default.Register<ChangeCatalogueTypeMessage>(this, SwitchCatalogueType);
 
-            UpdateArticles(Categories[0].ID);
+            logger.LogInformation($"Successfully Registered: {nameof(CataloguePageVM)}");
         }
 
-        private void SwitchCategory(string categoryName) {
-            CategoryName = categoryName;
+        private void SwitchCatalogueType(ChangeCatalogueTypeMessage type) {
+            CatalogueType = type.CatalogueType;
 
-            UpdateArticles(Categories.Find(c => c.Name == categoryName).ID);
+            PageTitle = CatalogueType == CatalogueType.Product ?
+                "PRODUKT KATALOG" : "BURGER ZUSAMMENSTELLEN";
+
+            UpdateCategories();
+            SwitchCategory(Categories[0].ID);
+        }
+
+        private void SwitchCategory(int categoryId) {
+            CategoryName = _categoryDAL.GetCategoryById(categoryId).Name;
+
+            UpdateArticles(categoryId);
         }
 
         public override NavigationButton GetBackButton() {
@@ -132,8 +137,8 @@ namespace Burger_Customiser.Pages.Catalogue {
         private void UpdateArticles(int categoryId) {
             _logger.LogInformation("CategoryType: " + CatalogueType);
             var articles = CatalogueType == CatalogueType.Product ?
-                _articleDal.GetProductsByCategory(categoryId).ConvertAll(x => new Article { Name = x.Name, Price = x.Price, BackgroundImage = x.BackgroundImage }) :
-                _articleDal.GetIngredientsByCategory(categoryId).ConvertAll(x => new Article { Name = x.Name, Price = x.Price, BackgroundImage = x.BackgroundImage });
+                _articleDAL.GetProductsByCategory(categoryId).ConvertAll(x => new Article { Name = x.Name, Price = x.Price, BackgroundImage = x.BackgroundImage }) :
+                _articleDAL.GetIngredientsByCategory(categoryId).ConvertAll(x => new Article { Name = x.Name, Price = x.Price, BackgroundImage = x.BackgroundImage });
 
             ArticleItems = articles.Select(article => new ArticleItem(article)).ToList();
 

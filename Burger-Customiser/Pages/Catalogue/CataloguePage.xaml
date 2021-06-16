@@ -9,8 +9,6 @@
       d:DataContext="{d:DesignInstance catalogue:CataloguePageVM, IsDesignTimeCreatable=True}"
       d:DesignHeight="774" d:DesignWidth="650">
 
-
-
     <Grid>
         <!-- Row Definitions -->
         <Grid.RowDefinitions>
@@ -46,7 +44,7 @@
                         <Button 
                             Content="{Binding Name}"
                             Command="{Binding Path=DataContext.SwitchCatalogueCategory, RelativeSource={RelativeSource AncestorType={x:Type Page}}}"
-                            CommandParameter="{Binding Name}"
+                            CommandParameter="{Binding ID}"
                             Background="{Binding BackgroundImage, Converter={StaticResource URLPathConverter}, IsAsync=True}"
                             Style="{StaticResource NavigatorButton}">
                         </Button>
