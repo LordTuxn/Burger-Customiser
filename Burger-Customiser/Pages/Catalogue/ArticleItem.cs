@@ -1,4 +1,5 @@
-﻿using Burger_Customiser_BLL;
+﻿using System.Collections.Generic;
+using Burger_Customiser_BLL;
 using GalaSoft.MvvmLight;
 
 namespace Burger_Customiser.Pages.Catalogue {

@@ -140,8 +140,19 @@ namespace Burger_Customiser.Pages.Catalogue {
                 _articleDAL.GetProductsByCategory(categoryId).ConvertAll(x => new Article { Name = x.Name, Price = x.Price, BackgroundImage = x.BackgroundImage }) :
                 _articleDAL.GetIngredientsByCategory(categoryId).ConvertAll(x => new Article { Name = x.Name, Price = x.Price, BackgroundImage = x.BackgroundImage });
 
-            ArticleItems = articles.Select(article => new ArticleItem(article)).ToList();
+            // Convert articles to articleItem and set amount in Shopping Cart
+            var items = new List<ArticleItem>();
+            foreach (var article in articles) {
+                var articleItem = new ArticleItem(article);
 
+                if (ShoppingCart.Keys.Any(shopItem => shopItem.Name == article.Name)) {
+                    articleItem.Amount = ShoppingCart.FirstOrDefault(item => item.Key.Name == article.Name).Value;
+                }
+
+                items.Add(articleItem);
+            }
+
+            ArticleItems = items;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ArticleItems"));
         }
     }
