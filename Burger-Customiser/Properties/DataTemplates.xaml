@@ -7,7 +7,8 @@
                     xmlns:articleOption="clr-namespace:Burger_Customiser.Pages.ArticleOption"
                     xmlns:catalogue="clr-namespace:Burger_Customiser.Pages.Catalogue">
 
-    <utils:UrlPathConverter x:Key="URLPathConverter"/>
+    <utils:UrlPathConverter x:Key="UrlPathConverter"/>
+    <utils:ArticleListRowsConverter x:Key="ArticleListRowsConverter"/>
 
     <DataTemplate DataType="{x:Type start:StartPageVM}">
         <start:StartPage />

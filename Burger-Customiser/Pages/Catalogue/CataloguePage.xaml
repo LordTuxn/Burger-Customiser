@@ -44,7 +44,7 @@
                             Content="{Binding Name}"
                             Command="{Binding Path=DataContext.SwitchCatalogueCategory, RelativeSource={RelativeSource AncestorType={x:Type Page}}}"
                             CommandParameter="{Binding ID}"
-                            Background="{Binding BackgroundImage, Converter={StaticResource URLPathConverter}, IsAsync=True}"
+                            Background="{Binding BackgroundImage, Converter={StaticResource UrlPathConverter}, IsAsync=True}"
                             Style="{StaticResource NavigatorButton}">
                         </Button>
                     </DataTemplate>
@@ -59,15 +59,15 @@
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Grid.Row="7" Padding="0,0,20,0">
             <ItemsControl ItemsSource="{Binding ArticleItems}" Margin="0,20,0,20">
                     <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate> 
-                            <UniformGrid Columns="1"/>
+                        <ItemsPanelTemplate>
+                        <UniformGrid x:Name="ArticleRows" Columns="1" Rows="{Binding ArticleItems.Count, Converter={StaticResource ArticleListRowsConverter}}"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
 
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <!-- Background: Convert URL path to image -->
-                            <Border Background="{Binding Article.BackgroundImage, Converter={StaticResource URLPathConverter}, IsAsync=True}"
+                            <Border Background="{Binding Article.BackgroundImage, Converter={StaticResource UrlPathConverter}, IsAsync=True}"
                                     BorderThickness="1" CornerRadius="20" Margin="0,0,0,10" Padding="0,7,0,7">
                                 <Grid HorizontalAlignment="Stretch">
                                     <TextBlock Text="{Binding Article.Name}" Margin="20,0,0,0" Style="{StaticResource Header2}"/>
