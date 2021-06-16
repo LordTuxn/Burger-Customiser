@@ -61,7 +61,7 @@ namespace Burger_Customiser.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of typeEnum System.Byte[].
         /// </summary>
         internal static byte[] AddSidedishBackground {
             get {
@@ -71,7 +71,7 @@ namespace Burger_Customiser.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of typeEnum System.Byte[].
         /// </summary>
         internal static byte[] BurgerCustomiserBackground {
             get {
@@ -81,7 +81,7 @@ namespace Burger_Customiser.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of typeEnum System.Byte[].
         /// </summary>
         internal static byte[] EatHereBackground {
             get {
@@ -91,7 +91,7 @@ namespace Burger_Customiser.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of typeEnum System.Byte[].
         /// </summary>
         internal static byte[] LandingPageBurger {
             get {
@@ -101,7 +101,7 @@ namespace Burger_Customiser.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of typeEnum System.Byte[].
         /// </summary>
         internal static byte[] Logo {
             get {
@@ -111,7 +111,7 @@ namespace Burger_Customiser.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of typeEnum System.Byte[].
         /// </summary>
         internal static byte[] ShoppingCart {
             get {
@@ -121,7 +121,7 @@ namespace Burger_Customiser.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of typeEnum System.Byte[].
         /// </summary>
         internal static byte[] TakeawayBackground {
             get {

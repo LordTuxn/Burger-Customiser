@@ -3,7 +3,6 @@ using System.Windows.Input;
 using Burger_Customiser.Messages;
 using Burger_Customiser.Pages.Catalogue;
 using GalaSoft.MvvmLight.Messaging;
-using static Burger_Customiser.Messages.ChangeCatalogueTypeMessage;
 
 namespace Burger_Customiser.Pages.ArticleOption {
     /// <summary>
@@ -17,15 +16,13 @@ namespace Burger_Customiser.Pages.ArticleOption {
         private void BurgerCustomiser_Click(object sender, MouseButtonEventArgs e) {
             // TODO: Set order option and send to next page
 
-            Messenger.Default.Send(new ChangeCatalogueTypeMessage(CatalogueType.Ingredient));
             Messenger.Default.Send(new ChangePageMessage(typeof(CataloguePageVM)));
         }
 
         private void ProductCatalogue_Click(object sender, MouseButtonEventArgs e) {
             // TODO: Set order option and send to next page
 
-            Messenger.Default.Send(new ChangeCatalogueTypeMessage(CatalogueType.Product));
-            Messenger.Default.Send(new ChangePageMessage(typeof(CataloguePageVM)));
+            Messenger.Default.Send(new ChangePageMessage(typeof(CataloguePageVM), CatalogueType.Product));
         }
     }
 }

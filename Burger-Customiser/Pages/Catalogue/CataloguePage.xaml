@@ -9,6 +9,8 @@
       d:DataContext="{d:DesignInstance catalogue:CataloguePageVM, IsDesignTimeCreatable=True}"
       d:DesignHeight="774" d:DesignWidth="650">
 
+
+
     <Grid>
         <!-- Row Definitions -->
         <Grid.RowDefinitions>
@@ -23,12 +25,12 @@
         </Grid.RowDefinitions>
 
         <!-- Page Title -->
-        <TextBlock x:Name="title" Text="{Binding Title}" Style="{StaticResource Header1}" Grid.Row="1" />
+        <TextBlock x:Name="PageTitle" Text="{Binding PageTitle}" Style="{StaticResource Header1}" Grid.Row="1" />
 
         <!-- Category Navigator -->
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" Grid.Row="3">
             <!-- Bind item list to categories -->
-            <ItemsControl x:Name="categories" ItemsSource="{Binding Categories}">
+            <ItemsControl ItemsSource="{Binding Categories}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Horizontal"/>
@@ -54,58 +56,40 @@
         </ScrollViewer>
 
         <!-- Category Title -->
-        <TextBlock x:Name="categoryName" Text="{Binding CategoryName}" Style="{StaticResource Header1}" Grid.Row="5"/>
+        <TextBlock x:Name="CategoryName" Text="{Binding CategoryName}" Style="{StaticResource Header1}" Grid.Row="5"/>
+
         <!-- Article List -->
-        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Grid.Row="7">
-            <!-- Bind item list to articles -->
-            <WrapPanel Grid.Row="7">
-                <Grid Width="650" Background="Red" Grid.Row="7">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <ItemsControl x:Name="articles" ItemsSource="{Binding Articles}" Grid.Column="0">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel Orientation="Vertical" VerticalAlignment="Center"/>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Grid.Row="7" Padding="0,0,20,0">
+            <ItemsControl ItemsSource="{Binding ArticleItems}" Margin="0,20,0,20">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate> 
+                            <UniformGrid Columns="1"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
 
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <!-- Background: Convert URL path to image -->
+                            <Border Background="{Binding Article.BackgroundImage, Converter={StaticResource URLPathConverter}, IsAsync=True}"
+                                    BorderThickness="1" CornerRadius="20" Margin="0,0,0,10" Padding="0,7,0,7">
+                                <Grid HorizontalAlignment="Stretch">
+                                    <TextBlock Text="{Binding Article.Name}" Margin="20,0,0,0" Style="{StaticResource Header2}"/>
 
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Grid Width="650">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="5"/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition Width="5"/>
-                                    </Grid.ColumnDefinitions>
-
-                                    <Rectangle x:Name="BackgroundRect" Fill="#595959" RadiusX="20" RadiusY="20" Grid.ColumnSpan="3"/>
-
-                                    <TextBlock Text="{Binding Name}" Margin="20,0,0,0" Style="{StaticResource Header2}" Height="24" Width="300" HorizontalAlignment="Left" Grid.Column="1"/>
-
-                                    <WrapPanel Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,10,0">
-                                        <TextBlock Text="{Binding Price}" Style="{StaticResource Header2}" HorizontalAlignment="Right" Height="24" Grid.Column="1"/>
-                                        <Button Content="-" Style="{StaticResource Button1}"/>
-                                        <TextBlock Text="1" Style="{StaticResource Header2}"/>
-                                        <Button Content="+" Style="{StaticResource Button1}"/>
+                                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="20,0,20,0">
+                                        <TextBlock Text="{Binding FormattedPrice}" Style="{StaticResource Header2}"/>
+                                        <Button Content="-" Style="{StaticResource Button1}" 
+                                            Command="{Binding Path=DataContext.RemoveArticleFromShoppingCart, RelativeSource={RelativeSource AncestorType={x:Type Page}}}"
+                                            CommandParameter="{Binding Article.Name}"/>
+                                        <TextBlock Text="{Binding Amount}" Style="{StaticResource Header2}"/>
+                                        <Button Content="+" Style="{StaticResource Button1}"
+                                                Command="{Binding Path=DataContext.AddArticleToShoppingCart, RelativeSource={RelativeSource AncestorType={x:Type Page}}}"
+                                                CommandParameter="{Binding Article.Name}"/>
                                     </WrapPanel>
                                 </Grid>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                        <ItemsControl.ItemContainerStyle>
-                            <Style>
-                                <Style.Setters>
-                                    <Setter Property="Grid.Column" Value="0" />
-                                </Style.Setters>
-                            </Style>
-                        </ItemsControl.ItemContainerStyle>
-
-
-                    </ItemsControl>
-                </Grid>
-            </WrapPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </ScrollViewer>
     </Grid>
 </Page>

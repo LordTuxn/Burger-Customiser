@@ -34,7 +34,7 @@ namespace Burger_Customiser {
                     services.AddScoped<StartPageVM>();
                     services.AddScoped<OrderOptionPageVM>();
                     services.AddScoped<ArticleOptionPageVM>();
-                    services.AddScoped<CataloguePageVM>();
+                    services.AddTransient<CataloguePageVM>();
 
                     services.AddScoped<MainWindow>();
                 })
