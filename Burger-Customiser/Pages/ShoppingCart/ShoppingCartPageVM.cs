@@ -1,33 +1,29 @@
 ﻿using System;
 using Burger_Customiser.Messages;
-using Burger_Customiser.Pages.Start;
+using Burger_Customiser.Pages.ArticleOption;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Extensions.Logging;
 
-namespace Burger_Customiser.Pages.OrderOption {
-
-    public class OrderOptionPageVM : PageViewModelBase {
-        private readonly ILogger<OrderOptionPageVM> _logger;
+namespace Burger_Customiser.Pages.ShoppingCart {
+    public class ShoppingCartPageVM : PageViewModelBase {
 
         [Obsolete("Only for design data!", true)]
-        public OrderOptionPageVM() {
+        public ShoppingCartPageVM() {
             if (!IsInDesignMode) {
                 throw new Exception("Use only for design mode");
             }
         }
 
-        public OrderOptionPageVM(ILogger<OrderOptionPageVM> logger) {
-            _logger = logger;
-            logger.LogInformation($"Successfully Registered: {nameof(OrderOptionPageVM)}");
+        public ShoppingCartPageVM(ILogger<ShoppingCartPageVM> logger) {
+
         }
 
         public override NavigationButton GetBackButton() {
             return new NavigationButton("ZURÜCK", onClick => {
-                Messenger.Default.Send(new ChangePageMessage(typeof(StartPageVM)));
+                Messenger.Default.Send(new ChangePageMessage(typeof(ArticleOptionPageVM)));
             });
         }
 
         public override NavigationButton GetContinueButton() { return null; }
-
     }
 }

@@ -1,5 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using System.Windows;
+using Burger_Customiser.Messages;
+using Burger_Customiser.Pages.ShoppingCart;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace Burger_Customiser {
 
@@ -13,6 +16,10 @@ namespace Burger_Customiser {
             InitializeComponent();
 
             DataContext = mainWindowVM;
+        }
+
+        private void ShoppingCart_Click(object sender, System.Windows.Input.MouseButtonEventArgs e) {
+            Messenger.Default.Send(new ChangePageMessage(typeof(ShoppingCartPageVM)));
         }
     }
 }

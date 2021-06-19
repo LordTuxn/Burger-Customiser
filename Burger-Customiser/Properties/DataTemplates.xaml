@@ -1,11 +1,12 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:utils="clr-namespace:Burger_Customiser.Utils"
-                    xmlns:cataloguePage="clr-namespace:Burger_Customiser.Navigation.Pages.Catalogue"
                     xmlns:start="clr-namespace:Burger_Customiser.Pages.Start"
                     xmlns:orderOption="clr-namespace:Burger_Customiser.Pages.OrderOption"
                     xmlns:articleOption="clr-namespace:Burger_Customiser.Pages.ArticleOption"
-                    xmlns:catalogue="clr-namespace:Burger_Customiser.Pages.Catalogue">
+                    xmlns:catalogue="clr-namespace:Burger_Customiser.Pages.Catalogue"
+                    xmlns:shoppingCart="clr-namespace:Burger_Customiser.Pages.ShoppingCart"
+                    xmlns:confirmation="clr-namespace:Burger_Customiser.Pages.Confirmation">
 
     <utils:UrlPathConverter x:Key="UrlPathConverter"/>
     <utils:ArticleListRowsConverter x:Key="ArticleListRowsConverter"/>
@@ -23,6 +24,14 @@
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type catalogue:CataloguePageVM}">
-        <cataloguePage:CataloguePage />
+        <catalogue:CataloguePage/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type shoppingCart:ShoppingCartPageVM}">
+        <shoppingCart:ShoppingCartPage/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type confirmation:ConfirmationPageVM}">
+        <confirmation:ConfirmationPage/>
     </DataTemplate>
 </ResourceDictionary>

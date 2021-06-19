@@ -2,12 +2,15 @@
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using System;
+using System.Windows;
 using System.Windows.Controls;
 using Burger_Customiser.Messages;
 using Burger_Customiser.Pages;
 using Burger_Customiser.Pages.ArticleOption;
 using Burger_Customiser.Pages.Catalogue;
+using Burger_Customiser.Pages.Confirmation;
 using Burger_Customiser.Pages.OrderOption;
+using Burger_Customiser.Pages.ShoppingCart;
 using Burger_Customiser.Pages.Start;
 
 namespace Burger_Customiser {
@@ -32,6 +35,13 @@ namespace Burger_Customiser {
             set => Set(ref _currentViewModel, value);
         }
 
+        private Visibility _isShoppingCartIconVisible;
+        public Visibility IsShoppingCartIconVisible {
+            get => _isShoppingCartIconVisible;
+            set => Set(ref _isShoppingCartIconVisible, value);
+        }
+
+
         public RelayCommand BackButtonCommand { get; set; }
 
         public RelayCommand ContinueButtonCommand { get; set; }
@@ -40,13 +50,18 @@ namespace Burger_Customiser {
         private readonly OrderOptionPageVM _orderOptionPage;
         private readonly ArticleOptionPageVM _articleOptionPage;
         private readonly CataloguePageVM _cataloguePage;
+        private readonly ShoppingCartPageVM _shoppingCartPage;
+        private readonly ConfirmationPageVM _confirmationPage;
 
         public MainWindowVM(StartPageVM startPage, OrderOptionPageVM orderOptionPage, 
-            ArticleOptionPageVM articleOptionPage, CataloguePageVM cataloguePage) {
+            ArticleOptionPageVM articleOptionPage, CataloguePageVM cataloguePage,
+            ShoppingCartPageVM shoppingCartPage, ConfirmationPageVM confirmationPage) {
             _startPage = startPage;
             _orderOptionPage = orderOptionPage;
             _articleOptionPage = articleOptionPage;
             _cataloguePage = cataloguePage;
+            _shoppingCartPage = shoppingCartPage;
+            _confirmationPage = confirmationPage;
 
             BackButtonCommand = new RelayCommand(BackButton_Click);
             ContinueButtonCommand = new RelayCommand(ContinueButton_Click);
@@ -73,6 +88,14 @@ namespace Burger_Customiser {
             CurrentViewModel = _cataloguePage;
         }
 
+        private void ShowShoppingCartPage() {
+            CurrentViewModel = _shoppingCartPage;
+        }
+
+        private void ShowConfirmationPage() {
+            CurrentViewModel = _confirmationPage;
+        }
+
         [Obsolete("Only for design data!", true)]
         public MainWindowVM() {
             if (!IsInDesignMode) {
@@ -89,8 +112,16 @@ namespace Burger_Customiser {
                 ShowArticleOptionPage();
             } else if(page.ViewModelType == typeof(CataloguePageVM)) {
                 ShowCataloguePage();
-            } else if(page.ViewModelType == typeof(CataloguePageVM)) {
-                // TODO: Show Confirmation Page
+            } else if(page.ViewModelType == typeof(ShoppingCartPageVM)) {
+                ShowShoppingCartPage();
+            } else {
+                ShowConfirmationPage();
+            }
+
+            if (page.ViewModelType == typeof(ArticleOptionPageVM) || page.ViewModelType == typeof(CataloguePageVM)) {
+                IsShoppingCartIconVisible = Visibility.Visible;
+            } else {
+                IsShoppingCartIconVisible = Visibility.Hidden;
             }
 
             BackButton = CurrentViewModel?.GetBackButton() != null ?

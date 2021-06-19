@@ -7,7 +7,9 @@ using Microsoft.Extensions.Logging;
 using System.Windows;
 using Burger_Customiser.Pages.ArticleOption;
 using Burger_Customiser.Pages.Catalogue;
+using Burger_Customiser.Pages.Confirmation;
 using Burger_Customiser.Pages.OrderOption;
+using Burger_Customiser.Pages.ShoppingCart;
 using Burger_Customiser.Pages.Start;
 
 namespace Burger_Customiser {
@@ -34,7 +36,9 @@ namespace Burger_Customiser {
                     services.AddScoped<StartPageVM>();
                     services.AddScoped<OrderOptionPageVM>();
                     services.AddScoped<ArticleOptionPageVM>();
-                    services.AddTransient<CataloguePageVM>();
+                    services.AddScoped<CataloguePageVM>();
+                    services.AddScoped<ShoppingCartPageVM>();
+                    services.AddScoped<ConfirmationPageVM>();
 
                     services.AddScoped<MainWindow>();
                 })

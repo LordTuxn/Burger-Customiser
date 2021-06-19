@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using Burger_Customiser.Messages;
 using Burger_Customiser.Pages.OrderOption;
+using Burger_Customiser.Pages.ShoppingCart;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Extensions.Logging;
@@ -26,6 +28,10 @@ namespace Burger_Customiser.Pages.ArticleOption {
             });
         }
 
-        public override NavigationButton GetContinueButton() { return null; }
+        public override NavigationButton GetContinueButton() {
+            return new NavigationButton("WARENKORB", onClick => {
+                Messenger.Default.Send(new ChangePageMessage(typeof(ShoppingCartPageVM)));
+            }, Application.Current.FindResource("ShoppingCartButton") as Style);
+        }
     }
 }

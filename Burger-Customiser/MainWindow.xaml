@@ -9,7 +9,7 @@
         Title="Burger-Customiser" Height="800" Width="600">
 
     <WindowChrome.WindowChrome>
-        <WindowChrome CaptionHeight="70" />
+        <WindowChrome CaptionHeight="70"/>
     </WindowChrome.WindowChrome>
     <Grid Background="#242424">
         <Grid.RowDefinitions>
@@ -34,7 +34,7 @@
         </Grid>
 
         <!-- Header -->
-        <Grid Background="#3B3B3B" Grid.ColumnSpan="3">
+        <Grid Background="#3B3B3B" Grid.Row="0" Grid.ColumnSpan="3" Grid.Column="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="35" />
                 <ColumnDefinition Width="25" />
@@ -45,11 +45,11 @@
             </Grid.ColumnDefinitions>
             <Image Source="/Resources/Logo.png" Grid.Column="1" />
             <TextBlock Text="Burger Customiser" Grid.Column="2" Margin="10,0,0,0" Style="{StaticResource Header2}" />
-            <Image Source="/Resources/ShoppingCart.png" Grid.Column="4" />
+            <Image Source="/Resources/ShoppingCart.png" Grid.Column="4" Visibility="{Binding IsShoppingCartIconVisible}" MouseLeftButtonDown="ShoppingCart_Click" WindowChrome.IsHitTestVisibleInChrome="True"/>
         </Grid>
 
         <!-- Footer -->
-        <Grid Background="#3B3B3B" Grid.ColumnSpan="3" Grid.Row="3" Grid.RowSpan="2" Margin="0,35,0,0">
+        <Grid Background="#3B3B3B" Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="3" Grid.RowSpan="2" Margin="0,35,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="15" />
                 <RowDefinition />
@@ -63,13 +63,13 @@
                 <ColumnDefinition Width="7*"/>
             </Grid.ColumnDefinitions>
 
-            <Button Content="{Binding BackButton.Content}" Grid.Column="1" Grid.Row="1" 
+            <Button Content="{Binding BackButton.Content}" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Center"
                     HorizontalAlignment="Left" BorderThickness="0" Padding="0"
                     Style="{Binding BackButton.Style}"
                     Command="{Binding BackButtonCommand}">
             </Button>
 
-            <Button Content="{Binding ContinueButton.Content}" Grid.Column="3" Grid.Row="1" 
+            <Button Content="{Binding ContinueButton.Content}" Grid.Column="3" Grid.Row="1" HorizontalContentAlignment="Center"
                     HorizontalAlignment="Left" BorderThickness="0" Padding="0"
                     Style="{Binding ContinueButton.Style}"
                     Command="{Binding ContinueButtonCommand}"/>
