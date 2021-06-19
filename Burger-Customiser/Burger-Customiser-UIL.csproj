@@ -6,7 +6,7 @@
     <RootNamespace>Burger_Customiser</RootNamespace>
     <UseWPF>true</UseWPF>
     <StartupObject></StartupObject>
-    <ApplicationIcon />
+    <ApplicationIcon>Logo.ico</ApplicationIcon>
     <Win32Resource />
   </PropertyGroup>
 
