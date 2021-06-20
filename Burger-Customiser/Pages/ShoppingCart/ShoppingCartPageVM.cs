@@ -39,13 +39,16 @@ namespace Burger_Customiser.Pages.ShoppingCart {
 
         public override NavigationButton GetContinueButton() { return null; }
 
-        private void UpdateShoppingCartItems()
+        public void UpdateShoppingCartItems()
         {
             // Update Products
+            List<ProductCartItem> orderProducts = new List<ProductCartItem>();
             foreach (OrderProduct orderProduct in orderManager.Order.ProductOrders)
             {
-                ProductCartItems.Add(new ProductCartItem(orderProduct.Product));
+                orderProducts.Add(new ProductCartItem(orderProduct.Product, orderProduct.Amount));
             }
+
+            ProductCartItems = orderProducts;
 
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ProductCartItems"));
             // Update Burgers

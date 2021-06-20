@@ -16,7 +16,6 @@ namespace Burger_Customiser.Pages.OrderOption {
         }
 
         private void EatHere_Click(object sender, MouseButtonEventArgs e) {
-            // TODO: Set order option
 
             Messenger.Default.Send(new ChangePageMessage(typeof(ArticleOptionPageVM)));
         }

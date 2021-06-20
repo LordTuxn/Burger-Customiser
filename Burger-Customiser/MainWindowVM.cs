@@ -66,7 +66,7 @@ namespace Burger_Customiser {
             BackButtonCommand = new RelayCommand(BackButton_Click);
             ContinueButtonCommand = new RelayCommand(ContinueButton_Click);
 
-            ChangePage(new ChangePageMessage(typeof(StartPageVM)));
+            ChangePage(new ChangePageMessage(typeof(ArticleOptionPageVM)));
             
             // Register messenger for changing pages
             Messenger.Default.Register<ChangePageMessage>(this, ChangePage);
@@ -116,6 +116,10 @@ namespace Burger_Customiser {
                 ShowShoppingCartPage();
             } else {
                 ShowConfirmationPage();
+            }
+
+            if (page.ViewModelType == typeof(ShoppingCartPageVM)) {
+                _shoppingCartPage.UpdateShoppingCartItems();
             }
 
             if (page.ViewModelType == typeof(ArticleOptionPageVM) || page.ViewModelType == typeof(CataloguePageVM)) {

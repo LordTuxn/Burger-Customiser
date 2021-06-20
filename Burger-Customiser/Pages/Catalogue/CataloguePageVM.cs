@@ -11,12 +11,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
+using Burger_Customiser_BLL.Relationships;
 
-namespace Burger_Customiser.Pages.Catalogue
-{
-    public class CataloguePageVM : PageViewModelBase, INotifyPropertyChanged
-    {
+namespace Burger_Customiser.Pages.Catalogue {
 
+    public class CataloguePageVM : PageViewModelBase, INotifyPropertyChanged {
         public CatalogueType CatalogueType { get; set; }
 
         public List<Category> Categories { get; private set; }
@@ -26,22 +25,20 @@ namespace Burger_Customiser.Pages.Catalogue
         public Dictionary<Article, int> ShoppingCart = new Dictionary<Article, int>();
 
         private string _catalogueTypeTitle;
-        public string CatalogueTypeTitle
-        {
+
+        public string CatalogueTypeTitle {
             get => _catalogueTypeTitle;
-            set
-            {
+            set {
                 Set(ref _catalogueTypeTitle, value);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CatalogueTypeTitle"));
             }
         }
 
         private string _categoryName;
-        public string CategoryName
-        {
+
+        public string CategoryName {
             get => _categoryName;
-            set
-            {
+            set {
                 Set(ref _categoryName, value);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CategoryName"));
             }
@@ -49,6 +46,8 @@ namespace Burger_Customiser.Pages.Catalogue
 
         private readonly CategoryDAL _categoryDAL;
         private readonly ArticleDAL _articleDAL;
+        private readonly BurgerDAL _burgerDAL;
+        private readonly OrderManager _orderManager;
 
         public new event PropertyChangedEventHandler PropertyChanged;
 
@@ -57,18 +56,16 @@ namespace Burger_Customiser.Pages.Catalogue
         public RelayCommand<string> RemoveArticleFromShoppingCart { get; }
 
         [Obsolete("Only for design data!", true)]
-        public CataloguePageVM()
-        {
-            if (!IsInDesignMode)
-            {
+        public CataloguePageVM() {
+            if (!IsInDesignMode) {
                 throw new Exception("Use only for design mode");
             }
         }
 
-        public CataloguePageVM(ILogger<CataloguePageVM> logger, CategoryDAL categoryDAL, ArticleDAL articleDAL)
-        {
+        public CataloguePageVM(ILogger<CataloguePageVM> logger, CategoryDAL categoryDAL, ArticleDAL articleDAL, OrderManager orderManager) {
             _categoryDAL = categoryDAL;
             _articleDAL = articleDAL;
+            _orderManager = orderManager;
 
             SwitchCatalogueCategory = new RelayCommand<int>(SwitchCategory);
 
@@ -81,8 +78,7 @@ namespace Burger_Customiser.Pages.Catalogue
             logger.LogInformation($"Successfully Registered: {nameof(CataloguePageVM)}");
         }
 
-        private void SwitchCatalogueType(ChangeCatalogueTypeMessage type)
-        {
+        private void SwitchCatalogueType(ChangeCatalogueTypeMessage type) {
             ShoppingCart.Clear();
             CatalogueType = type.CatalogueType;
 
@@ -93,15 +89,11 @@ namespace Burger_Customiser.Pages.Catalogue
             if (Categories.Count > 0) SwitchCategory(Categories[0].ID);
         }
 
-        private void SwitchCategory(int categoryId)
-        {
+        private void SwitchCategory(int categoryId) {
             string newCategoryName;
-            try
-            {
+            try {
                 newCategoryName = _categoryDAL.GetCategoryById(categoryId).Name;
-            }
-            catch (ConnectionFailedException)
-            {
+            } catch (ConnectionFailedException) {
                 return;
             }
 
@@ -111,89 +103,93 @@ namespace Burger_Customiser.Pages.Catalogue
             UpdateArticles(categoryId);
         }
 
-        public override NavigationButton GetBackButton()
-        {
-            return new NavigationButton("ZURÜCK", onClick =>
-            {
+        public override NavigationButton GetBackButton() {
+            return new NavigationButton("ZURÜCK", onClick => {
                 Messenger.Default.Send(new ChangePageMessage(typeof(ArticleOptionPageVM)));
             });
         }
 
-        public override NavigationButton GetContinueButton()
-        {
-            return new NavigationButton("HINZUFÜGEN", onClick =>
-            {
-                // TODO: Add to shopping cart
+        public override NavigationButton GetContinueButton() {
+            return new NavigationButton("HINZUFÜGEN", onClick => {
+                if (CatalogueType == CatalogueType.Ingredient) {
+                    Burger burger = new Burger();
+                    List<BurgerIngredient> burgerIngredients = new List<BurgerIngredient>();
+
+                    foreach (Article article in ShoppingCart.Keys) {
+                        burgerIngredients.Add(new BurgerIngredient {
+                            Amount = ShoppingCart[article],
+                            BurgerID = burger.ID,
+                            CategoryID = article.CategoryID,
+                            IngredientID = article.ID
+                        });
+                    }
+
+                    burger.BurgerIngredients = burgerIngredients;
+                    _orderManager.AddBurger(new Burger(), 1);
+                } else {
+                    foreach (Article article in ShoppingCart.Keys) {
+                        _orderManager.AddProduct(new Product {
+                            CategoryID = article.CategoryID,
+                            ID = article.ID,
+                            InStock = article.InStock,
+                            Name = article.Name,
+                            Price = article.Price
+                        }, ShoppingCart[article]);
+                    }
+                }
 
                 Messenger.Default.Send(new ChangePageMessage(typeof(ArticleOptionPageVM)));
             }, Application.Current.FindResource("ShoppingCartButton") as Style);
         }
 
-        private void Add_ArticleToShoppingCart(string articleName)
-        {
+        private void Add_ArticleToShoppingCart(string articleName) {
             var item = GetItemByArticle(articleName);
             if (!item.AddArticle()) return;
 
-            if (!ShoppingCart.ContainsKey(item.Article))
-            {
+            if (!ShoppingCart.ContainsKey(item.Article)) {
                 ShoppingCart.Add(item.Article, 1);
-            }
-            else
-            {
+            } else {
                 ShoppingCart[item.Article] = item.Amount;
             }
         }
 
-        private void Remove_ArticleFromShoppingCart(string articleName)
-        {
+        private void Remove_ArticleFromShoppingCart(string articleName) {
             var item = GetItemByArticle(articleName);
             if (!item.RemoveArticle()) return;
 
-            if (ShoppingCart.ContainsKey(item.Article) && item.Amount == 0)
-            {
+            if (ShoppingCart.ContainsKey(item.Article) && item.Amount == 0) {
                 ShoppingCart.Remove(item.Article);
-            }
-            else
-            {
+            } else {
                 ShoppingCart[item.Article] = item.Amount;
             }
         }
 
-        private ArticleItem GetItemByArticle(string articleName)
-        {
+        private ArticleItem GetItemByArticle(string articleName) {
             return ArticleItems.Find(arIt => arIt.Article.Name == articleName);
         }
 
-        private void UpdateCategories()
-        {
-            try
-            {
+        private void UpdateCategories() {
+            try {
                 Categories = _categoryDAL.GetCategoriesByType(CatalogueType == CatalogueType.Product ? 1 : 0);
-            }
-            catch (ConnectionFailedException)
-            {
+            } catch (ConnectionFailedException) {
                 Categories = new List<Category>();
             }
 
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Categories"));
         }
 
-        private void UpdateArticles(int categoryId)
-        {
-            try
-            {
+        private void UpdateArticles(int categoryId) {
+            try {
                 List<Article> articles = CatalogueType == CatalogueType.Product ?
                     _articleDAL.GetProductsByCategory(categoryId).ConvertAll(x => new Article { Name = x.Name, Price = x.Price, BackgroundImage = x.BackgroundImage }) :
                     _articleDAL.GetIngredientsByCategory(categoryId).ConvertAll(x => new Article { Name = x.Name, Price = x.Price, BackgroundImage = x.BackgroundImage });
 
                 // Convert articles to articleItem and set amount in Shopping Cart
                 List<ArticleItem> items = new List<ArticleItem>();
-                foreach (Article article in articles)
-                {
+                foreach (Article article in articles) {
                     ArticleItem articleItem = new ArticleItem(article);
 
-                    if (ShoppingCart.Keys.Any(shopItem => shopItem.Name == article.Name))
-                    {
+                    if (ShoppingCart.Keys.Any(shopItem => shopItem.Name == article.Name)) {
                         articleItem.Amount = ShoppingCart.FirstOrDefault(item => item.Key.Name == article.Name).Value;
                     }
 
@@ -201,9 +197,7 @@ namespace Burger_Customiser.Pages.Catalogue
                 }
 
                 ArticleItems = items;
-            }
-            catch (ConnectionFailedException)
-            {
+            } catch (ConnectionFailedException) {
                 ArticleItems = new List<ArticleItem>();
             }
 

@@ -11,6 +11,7 @@ using Burger_Customiser.Pages.Confirmation;
 using Burger_Customiser.Pages.OrderOption;
 using Burger_Customiser.Pages.ShoppingCart;
 using Burger_Customiser.Pages.Start;
+using Burger_Customiser_BLL;
 
 namespace Burger_Customiser {
 
@@ -30,8 +31,10 @@ namespace Burger_Customiser {
 
                     services.AddScoped<CategoryDAL>();
                     services.AddScoped<ArticleDAL>();
+                    services.AddScoped<OrderDAL>();
 
                     services.AddScoped<MainWindowVM>();
+                    services.AddSingleton<OrderManager>();
 
                     services.AddScoped<StartPageVM>();
                     services.AddScoped<OrderOptionPageVM>();
