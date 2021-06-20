@@ -27,13 +27,7 @@
         <Setter Property="Foreground" Value="White" />
     </Style>
     <Style x:Key="ProductItem" TargetType="Rectangle">
-        
-    </Style>
-    <Style x:Key="OrderButton" TargetType="Button">
-        <Setter Property="Height" Value="40" />
-        <Setter Property="VerticalAlignment" Value="Bottom" />
-        <Setter Property="Background" Value="#3AFF00" />
-        <Setter Property="FontWeight" Value="Bold" />
+
     </Style>
     <Style x:Key="ButtonHoverEffect" TargetType="Button">
         <Style.Triggers>
@@ -69,6 +63,13 @@
 
     <Style x:Key="ShoppingCartButton" TargetType="Button" BasedOn="{StaticResource DefaultButton}">
         <Setter Property="Background" Value="#3AFF00"></Setter>
+    </Style>
+
+    <Style x:Key="OrderButton" TargetType="Button" BasedOn="{StaticResource DefaultButton}">
+        <Setter Property="Height" Value="40" />
+        <Setter Property="VerticalAlignment" Value="Bottom" />
+        <Setter Property="Background" Value="#3AFF00" />
+        <Setter Property="FontWeight" Value="Bold" />
     </Style>
 
     <Style x:Key="Button1" TargetType="Button">

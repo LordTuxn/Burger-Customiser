@@ -22,6 +22,8 @@ namespace Burger_Customiser.Pages.ShoppingCart
         public ProductCartItem (Product product, int amount) {
             this.Product = product;
             Amount = amount;
+
+            FormattedPrice = $"{Product.Price} €";
         }
     }
 }
