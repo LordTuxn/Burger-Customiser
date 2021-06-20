@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Burger_Customiser.Messages;
 using Burger_Customiser_BLL;
 using Burger_Customiser_BLL.Relationships;
 using Burger_Customiser_DAL.Database;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace Burger_Customiser {
     public class OrderManager {
@@ -14,6 +16,8 @@ namespace Burger_Customiser {
             _orderDAL = orderDAL;
 
             Order = new Order { ProductOrders = new List<OrderProduct>(), BurgerOrders = new List<OrderBurger>() };
+
+            Messenger.Default.Register<ChangeToTakeAwayOptionMessage>(this, ChangeToTakeAwayOption);
         }
 
         public void AddProduct(Product product, int amount) {
@@ -38,6 +42,10 @@ namespace Burger_Customiser {
                     Burger = burger,
                     Amount = amount
                 });
+        }
+
+        public void ChangeToTakeAwayOption(ChangeToTakeAwayOptionMessage option) {
+            Order.ToTakeAway = option.ToTakeAway;
         }
     }
 }
