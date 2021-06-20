@@ -25,7 +25,7 @@
         <TextBlock x:Name="CatalogueTypeTitle" Text="{Binding CatalogueTypeTitle}" Style="{StaticResource Header1}" Grid.Row="1" />
 
         <!-- Category Navigator -->
-        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" Grid.Row="3">
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" Grid.Row="3" Background="#3B3B3B" Padding="0,0,10,0">
             <!-- Bind item list to categories -->
             <StackPanel>
                 <ItemsControl ItemsSource="{Binding Categories}">
@@ -46,7 +46,7 @@
                             Command="{Binding Path=DataContext.SwitchCatalogueCategory, RelativeSource={RelativeSource AncestorType={x:Type Page}}}"
                             CommandParameter="{Binding ID}"
                             Background="{Binding BackgroundImage, Converter={StaticResource UrlPathConverter}, IsAsync=True}"
-                            Style="{StaticResource NavigatorButton}">
+                            Style="{StaticResource CategoryButton}">
                             </Button>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
@@ -58,8 +58,8 @@
         <TextBlock x:Name="CategoryName" Text="{Binding CategoryName}" Style="{StaticResource Header1}" Grid.Row="5"/>
 
         <!-- Article List -->
-        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Grid.Row="7" Padding="0,0,20,0">
-            <ItemsControl ItemsSource="{Binding ArticleItems}" Margin="0,20,0,20">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Grid.Row="7" Padding="0,0,20,0" Background="#3B3B3B">
+            <ItemsControl ItemsSource="{Binding ArticleItems}" Margin="10,20,0,10">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                         <UniformGrid x:Name="ArticleRows" Columns="1" Rows="{Binding ArticleItems.Count, Converter={StaticResource ArticleListRowsConverter}}"/>
@@ -77,11 +77,11 @@
                                     <!-- Display article information -->
                                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="20,0,20,0">
                                         <TextBlock Text="{Binding FormattedPrice}" Style="{StaticResource Header2}"/>
-                                        <Button Content="-" Style="{StaticResource Button1}" 
+                                    <Button Content="-" Style="{StaticResource AmountButton}" 
                                             Command="{Binding Path=DataContext.RemoveArticleFromShoppingCart, RelativeSource={RelativeSource AncestorType={x:Type Page}}}"
                                             CommandParameter="{Binding Article.Name}"/>
                                         <TextBlock Text="{Binding Amount}" Style="{StaticResource Header2}"/>
-                                        <Button Content="+" Style="{StaticResource Button1}"
+                                    <Button Content="+" Style="{StaticResource AmountButton}"
                                                 Command="{Binding Path=DataContext.AddArticleToShoppingCart, RelativeSource={RelativeSource AncestorType={x:Type Page}}}"
                                                 CommandParameter="{Binding Article.Name}"/>
                                     </WrapPanel>
