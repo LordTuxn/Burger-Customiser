@@ -27,29 +27,31 @@
         <!-- Category Navigator -->
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" Grid.Row="3">
             <!-- Bind item list to categories -->
-            <ItemsControl ItemsSource="{Binding Categories}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
+            <StackPanel>
+                <ItemsControl ItemsSource="{Binding Categories}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
 
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <!-- Content: Bind to name of the category
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <!-- Content: Bind to name of the category
                         Command: Set click event for each category
                         CommandParameter: Pass category name to click event handler
                         Background: Convert URL path to image -->
-                        <Button 
+                            <Button 
                             Content="{Binding Name}"
                             Command="{Binding Path=DataContext.SwitchCatalogueCategory, RelativeSource={RelativeSource AncestorType={x:Type Page}}}"
                             CommandParameter="{Binding ID}"
                             Background="{Binding BackgroundImage, Converter={StaticResource UrlPathConverter}, IsAsync=True}"
                             Style="{StaticResource NavigatorButton}">
-                        </Button>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
         </ScrollViewer>
 
         <!-- Category Title -->

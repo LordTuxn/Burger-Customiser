@@ -140,13 +140,13 @@ namespace Burger_Customiser.Pages.Catalogue {
 
         private void UpdateArticles(int categoryId) {
             _logger.LogInformation("CategoryType: " + CatalogueType);
-            var articles = CatalogueType == CatalogueType.Product ?
+            List<Article> articles = CatalogueType == CatalogueType.Product ?
                 _articleDAL.GetProductsByCategory(categoryId).ConvertAll(x => new Article { Name = x.Name, Price = x.Price, BackgroundImage = x.BackgroundImage }) :
                 _articleDAL.GetIngredientsByCategory(categoryId).ConvertAll(x => new Article { Name = x.Name, Price = x.Price, BackgroundImage = x.BackgroundImage });
 
             // Convert articles to articleItem and set amount in Shopping Cart
             List<ArticleItem> items = new List<ArticleItem>();
-            foreach (var article in articles) {
+            foreach (Article article in articles) {
                 ArticleItem articleItem = new ArticleItem(article);
 
                 if (ShoppingCart.Keys.Any(shopItem => shopItem.Name == article.Name)) {
