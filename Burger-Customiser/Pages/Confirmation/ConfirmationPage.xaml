@@ -8,8 +8,13 @@
       d:DataContext="{d:DesignInstance confirmation:ConfirmationPageVM, IsDesignTimeCreatable=True}"
       d:DesignHeight="774" d:DesignWidth="650">
 
-
-    <Grid>
-        
+    <Grid MouseLeftButtonDown="ConfirmationPage_Click" >
+        <Image Source="/Resources/LandingPageBurger.jpg"
+               Stretch="UniformToFill"
+               Opacity="0.6"/>
+        <StackPanel VerticalAlignment="Center">
+            <TextBlock Text="Vielen Dank" TextWrapping="Wrap" Style="{StaticResource Header1}"/>
+            <TextBlock Text="für Ihre Bestellung!" TextWrapping="Wrap" Style="{StaticResource Header1}"/>
+        </StackPanel>
     </Grid>
 </Page>

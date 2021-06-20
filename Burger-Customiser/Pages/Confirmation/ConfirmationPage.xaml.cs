@@ -10,6 +10,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Burger_Customiser.Messages;
+using Burger_Customiser.Pages.Start;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace Burger_Customiser.Pages.Confirmation {
     /// <summary>
@@ -18,6 +21,10 @@ namespace Burger_Customiser.Pages.Confirmation {
     public partial class ConfirmationPage : Page {
         public ConfirmationPage() {
             InitializeComponent();
+        }
+
+        private void ConfirmationPage_Click(object sender, MouseButtonEventArgs e) {
+            Messenger.Default.Send(new ChangePageMessage(typeof(StartPageVM)));
         }
     }
 }
