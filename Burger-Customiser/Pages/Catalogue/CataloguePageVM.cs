@@ -120,7 +120,11 @@ namespace Burger_Customiser.Pages.Catalogue {
                             Amount = ShoppingCart[article],
                             BurgerID = burger.ID,
                             CategoryID = article.CategoryID,
-                            IngredientID = article.ID
+                            IngredientID = article.ID,
+                            Ingredient = new Ingredient {
+                                Name = article.Name,
+                                Price = article.Price
+                            }
                         });
                     }
 
