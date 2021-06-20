@@ -51,18 +51,27 @@
         <Setter Property="Background" Value="white" />
     </Style>
 
-    <!--<Style x:Key="ArticleItem" TargetType="ItemsControl">
-        <Style.Setters>
-            <Setter Property="Grid.Row" Value="7" />
-            <Setter Property="Grid.Column" Value="7" />
-        </Style.Setters>
-    </Style>-->
-
     <Style x:Key="ShoppingCartButton" TargetType="Button" BasedOn="{StaticResource DefaultButton}">
         <Setter Property="Background" Value="#3AFF00"></Setter>
     </Style>
 
-    <Style x:Key="Button1" TargetType="Button">
+    <Style x:Key="OrderButton" TargetType="Button" BasedOn="{StaticResource DefaultButton}">
+        <Setter Property="Height" Value="40" />
+        <Setter Property="VerticalAlignment" Value="Bottom" />
+        <Setter Property="Background" Value="#3AFF00" />
+        <Setter Property="FontWeight" Value="Bold" />
+    </Style>
+
+    <Style x:Key="CategoryButton" TargetType="Button" BasedOn="{StaticResource DefaultButton}">
+        <Setter Property="Height" Value="120" />
+        <Setter Property="Width" Value="120" />
+        <Setter Property="Margin" Value="10,10,0,10" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+
+    <Style x:Key="AmountButton" TargetType="Button">
         <Setter Property="Width" Value="40" />
         <Setter Property="Height" Value="40" />
         <Setter Property="Margin" Value="10,0,10,0" />
