@@ -16,13 +16,12 @@ namespace Burger_Customiser.Pages.OrderOption {
         }
 
         private void EatHere_Click(object sender, MouseButtonEventArgs e) {
-
+            Messenger.Default.Send(new ChangeToTakeAwayOptionMessage(false));
             Messenger.Default.Send(new ChangePageMessage(typeof(ArticleOptionPageVM)));
         }
 
         private void Takeaway_Click(object sender, MouseButtonEventArgs e) {
-            // TODO: Set order option
-
+            Messenger.Default.Send(new ChangeToTakeAwayOptionMessage(true));
             Messenger.Default.Send(new ChangePageMessage(typeof(ArticleOptionPageVM)));
         }
     }
