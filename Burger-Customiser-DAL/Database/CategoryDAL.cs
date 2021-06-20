@@ -1,23 +1,33 @@
-﻿using Burger_Customiser_BLL;
+﻿using System;
+using Burger_Customiser_BLL;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 namespace Burger_Customiser_DAL.Database {
 
     public class CategoryDAL {
-        private readonly ApplicationDbContext context;
+        private readonly ApplicationDbContext _context;
 
         public CategoryDAL(ApplicationDbContext context) {
-            this.context = context;
+            _context = context;
         }
 
         public Category GetCategoryById(int id) {
-            return context.Category.FromSqlRaw("SELECT * FROM category WHERE C_ID = {0}", id).ToList()[0];
+            try {
+                return _context.Category.FromSqlRaw("SELECT * FROM category WHERE C_ID = {0}", id).ToList()[0];
+            } catch (Exception) {
+                throw new ConnectionFailedException();
+            }
         }
 
         public List<Category> GetCategoriesByType(int typeId) {
-            return context.Category.FromSqlRaw("SELECT * FROM category WHERE type = {0}", typeId).ToList();
+            try {
+                return _context.Category.FromSqlRaw("SELECT * FROM category WHERE type = {0}", typeId).ToList();
+            } catch (Exception) {
+                throw new ConnectionFailedException();
+            }
         }
     }
 }

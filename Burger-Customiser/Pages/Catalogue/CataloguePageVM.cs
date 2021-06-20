@@ -6,6 +6,7 @@ using System.Windows;
 using Burger_Customiser.Messages;
 using Burger_Customiser.Pages.ArticleOption;
 using Burger_Customiser_BLL;
+using Burger_Customiser_DAL;
 using Burger_Customiser_DAL.Database;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
@@ -40,7 +41,6 @@ namespace Burger_Customiser.Pages.Catalogue {
             }
         }
 
-        private readonly ILogger<CataloguePageVM> _logger;
         private readonly CategoryDAL _categoryDAL;
         private readonly ArticleDAL _articleDAL;
 
@@ -58,7 +58,6 @@ namespace Burger_Customiser.Pages.Catalogue {
         }
 
         public CataloguePageVM(ILogger<CataloguePageVM> logger, CategoryDAL categoryDAL, ArticleDAL articleDAL) {
-            _logger = logger;
             _categoryDAL = categoryDAL;
             _articleDAL = articleDAL;
 
@@ -81,11 +80,16 @@ namespace Burger_Customiser.Pages.Catalogue {
                 "PRODUKT KATALOG" : "BURGER ZUSAMMENSTELLEN";
 
             UpdateCategories();
-            SwitchCategory(Categories[0].ID);
+            if (Categories.Count > 0) SwitchCategory(Categories[0].ID);
         }
 
         private void SwitchCategory(int categoryId) {
-            string newCategoryName = _categoryDAL.GetCategoryById(categoryId).Name;
+            string newCategoryName;
+            try {
+                newCategoryName = _categoryDAL.GetCategoryById(categoryId).Name;
+            } catch (ConnectionFailedException) {
+                return;
+            }
 
             if (CategoryName == newCategoryName) return;
             CategoryName = newCategoryName;
@@ -134,29 +138,38 @@ namespace Burger_Customiser.Pages.Catalogue {
         }
 
         private void UpdateCategories() {
-            Categories = _categoryDAL.GetCategoriesByType(CatalogueType == CatalogueType.Product ? 1 : 0);
+            try {
+                Categories = _categoryDAL.GetCategoriesByType(CatalogueType == CatalogueType.Product ? 1 : 0);
+            } catch (ConnectionFailedException) {
+                Categories = new List<Category>();
+            }
+
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Categories"));
         }
 
         private void UpdateArticles(int categoryId) {
-            _logger.LogInformation("CategoryType: " + CatalogueType);
-            var articles = CatalogueType == CatalogueType.Product ?
-                _articleDAL.GetProductsByCategory(categoryId).ConvertAll(x => new Article { Name = x.Name, Price = x.Price, BackgroundImage = x.BackgroundImage }) :
-                _articleDAL.GetIngredientsByCategory(categoryId).ConvertAll(x => new Article { Name = x.Name, Price = x.Price, BackgroundImage = x.BackgroundImage });
+            try {
+                var articles = CatalogueType == CatalogueType.Product ?
+                    _articleDAL.GetProductsByCategory(categoryId).ConvertAll(x => new Article { Name = x.Name, Price = x.Price, BackgroundImage = x.BackgroundImage }) :
+                    _articleDAL.GetIngredientsByCategory(categoryId).ConvertAll(x => new Article { Name = x.Name, Price = x.Price, BackgroundImage = x.BackgroundImage });
 
-            // Convert articles to articleItem and set amount in Shopping Cart
-            List<ArticleItem> items = new List<ArticleItem>();
-            foreach (var article in articles) {
-                ArticleItem articleItem = new ArticleItem(article);
+                // Convert articles to articleItem and set amount in Shopping Cart
+                List<ArticleItem> items = new List<ArticleItem>();
+                foreach (var article in articles) {
+                    ArticleItem articleItem = new ArticleItem(article);
 
-                if (ShoppingCart.Keys.Any(shopItem => shopItem.Name == article.Name)) {
-                    articleItem.Amount = ShoppingCart.FirstOrDefault(item => item.Key.Name == article.Name).Value;
+                    if (ShoppingCart.Keys.Any(shopItem => shopItem.Name == article.Name)) {
+                        articleItem.Amount = ShoppingCart.FirstOrDefault(item => item.Key.Name == article.Name).Value;
+                    }
+
+                    items.Add(articleItem);
                 }
 
-                items.Add(articleItem);
+                ArticleItems = items;
+            } catch (ConnectionFailedException) {
+                ArticleItems = new List<ArticleItem>();
             }
-
-            ArticleItems = items;
+            
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ArticleItems"));
         }
     }
