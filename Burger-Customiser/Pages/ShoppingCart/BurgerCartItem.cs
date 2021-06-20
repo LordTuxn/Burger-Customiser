@@ -1,4 +1,5 @@
 ﻿using Burger_Customiser_BLL;
+using Burger_Customiser_BLL.Relationships;
 using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,14 @@ namespace Burger_Customiser.Pages.ShoppingCart
         {
             this.Burger = burger;
             Amount = amount;
+            decimal price = 0;
+
+            foreach (BurgerIngredient item in Burger.BurgerIngredients)
+            {
+                price += item.Ingredient.Price * item.Amount;
+            }
+            Burger.Price = price;
+            FormattedPrice = $"{price} €";
         }
     }
 }

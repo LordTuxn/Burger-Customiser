@@ -63,14 +63,14 @@
                 <ColumnDefinition Width="7*"/>
             </Grid.ColumnDefinitions>
 
-            <Button Content="{Binding BackButton.Content}" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Center"
+            <Button Content="{Binding BackButton.Content}" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Left"
                     HorizontalAlignment="Left" BorderThickness="0" Padding="0"
                     Style="{Binding BackButton.Style}"
                     Command="{Binding BackButtonCommand}">
             </Button>
 
-            <Button Content="{Binding ContinueButton.Content}" Grid.Column="3" Grid.Row="1" HorizontalContentAlignment="Center"
-                    HorizontalAlignment="Left" BorderThickness="0" Padding="0"
+            <Button Content="{Binding ContinueButton.Content}" Grid.Column="3" Grid.Row="1" HorizontalContentAlignment="Right"
+                    HorizontalAlignment="Right" BorderThickness="0" Padding="0"
                     Style="{Binding ContinueButton.Style}"
                     Command="{Binding ContinueButtonCommand}"/>
         </Grid>

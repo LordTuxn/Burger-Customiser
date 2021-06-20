@@ -19,7 +19,7 @@ namespace Burger_Customiser.Pages.Catalogue {
         public ArticleItem(Article article) {
             Article = article;
 
-            FormattedPrice = Article.Price + " €";
+            FormattedPrice = $"{Article.Price} €";
         }
 
         public bool AddArticle() {

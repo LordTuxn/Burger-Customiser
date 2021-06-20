@@ -6,6 +6,7 @@ using Burger_Customiser.Pages.ArticleOption;
 using Burger_Customiser.Pages.Catalogue;
 using Burger_Customiser_BLL;
 using Burger_Customiser_BLL.Relationships;
+using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Extensions.Logging;
 
@@ -15,10 +16,35 @@ namespace Burger_Customiser.Pages.ShoppingCart {
         public List<ProductCartItem> ProductCartItems { get; private set; }
         public List<BurgerCartItem> BurgerCartItems { get; private set; }
 
+        public string TakeAwayOption
+        {
+            get {
+                return orderManager.Order.ToTakeAway ? "Zum Mitnehmen" : "Zum hier Essen";
+            }
+        }
+
+        decimal totalCostEUR = 0;
+        public string TotalCost
+        {
+            get {
+                decimal totalCost = 0;
+                foreach (ProductCartItem item in ProductCartItems)
+                {
+                    totalCost += item.Product.Price * item.Amount;
+                }
+                totalCostEUR = totalCost;
+                return $"{totalCost} €";
+            }
+        }
+
         private readonly ILogger<ShoppingCartPageVM> logger;
-        private OrderManager orderManager;
+        public OrderManager orderManager;
 
         public new event PropertyChangedEventHandler PropertyChanged;
+
+        public RelayCommand<string> AddArticleToShoppingCart { get; }
+        public RelayCommand<string> RemoveArticleFromShoppingCart { get; }
+        public RelayCommand CompleteOrder { get; }
 
         [Obsolete("Only for design data!", true)]
         public ShoppingCartPageVM() {
@@ -31,6 +57,10 @@ namespace Burger_Customiser.Pages.ShoppingCart {
         {
             this.logger = logger;
             this.orderManager = orderManager;
+
+            AddArticleToShoppingCart = new RelayCommand<string>(Add_ArticleToShoppingCart);
+            RemoveArticleFromShoppingCart = new RelayCommand<string>(Remove_ArticleFromShoppingCart);
+            CompleteOrder = new RelayCommand(Complete_Order);
         }
 
         public override NavigationButton GetBackButton() {
@@ -40,6 +70,24 @@ namespace Burger_Customiser.Pages.ShoppingCart {
         }
 
         public override NavigationButton GetContinueButton() { return null; }
+
+        private void Add_ArticleToShoppingCart(string articleName)
+        {
+            //TODO:
+            //update
+        }
+
+        private void Remove_ArticleFromShoppingCart(string articleName)
+        {
+            //TODO:
+            //Remove if 0
+            //update
+        }
+
+        private void Complete_Order()
+        {
+            //TODO:
+        }
 
         public void UpdateShoppingCartItems()
         {
