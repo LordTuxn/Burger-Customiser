@@ -125,7 +125,7 @@ namespace Burger_Customiser.Pages.Catalogue {
                     }
 
                     burger.BurgerIngredients = burgerIngredients;
-                    _orderManager.AddBurger(new Burger(), 1);
+                    _orderManager.AddBurger(burger, 1);
                 } else {
                     foreach (Article article in ShoppingCart.Keys) {
                         _orderManager.AddProduct(new Product {
