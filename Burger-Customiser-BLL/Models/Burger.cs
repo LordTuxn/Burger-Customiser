@@ -11,7 +11,7 @@ namespace Burger_Customiser_BLL {
 
         [Column("Price")]
         public decimal Price { get; set; }
-
+        
         public List<BurgerIngredient> BurgerIngredients { get; set; }
 
         public List<OrderBurger> BurgerOrders { get; set; }

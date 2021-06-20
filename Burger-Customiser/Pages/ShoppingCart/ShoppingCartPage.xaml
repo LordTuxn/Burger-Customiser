@@ -33,7 +33,7 @@
             </Grid.ColumnDefinitions>
 
             <!-- Listing -->
-            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Grid.Row="1" Grid.Column="1" Padding="0,0,20,0">
+            <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled" Grid.Row="1" Grid.Column="1" Padding="0,0,20,0">
                 <StackPanel>
                     <!-- Product List -->
                     <ItemsControl ItemsSource="{Binding ProductCartItems}" Margin="0,20,0,20">
@@ -63,6 +63,69 @@
                                         </WrapPanel>
                                     </Grid>
                                 </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <!-- Burger List -->
+                    <ItemsControl ItemsSource="{Binding BurgerCartItems}" Margin="0,20,0,20">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid x:Name="ArticleRows" Columns="1"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical" Background="Red">
+                                    <Border Background="#242424"
+                                    BorderThickness="1" CornerRadius="20" Margin="0,0,0,10" Padding="0,7,0,7">
+                                        <Grid HorizontalAlignment="Stretch">
+                                            <TextBlock Text="Craaaazyy Hamburger" Margin="20,0,0,0" Style="{StaticResource Header2}"/>
+
+                                            <!-- Display Article information -->
+                                            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="20,0,20,0">
+                                                <TextBlock Text="{Binding FormattedPrice}" Style="{StaticResource Header2}"/>
+                                                <Button Content="-" Style="{StaticResource Button1}" 
+                                            Command="{Binding Path=DataContext.RemoveArticleFromShoppingCart, RelativeSource={RelativeSource AncestorType={x:Type Page}}}"
+                                            CommandParameter="{Binding Burger.ID}"/>
+                                                <TextBlock Text="{Binding Amount}" Style="{StaticResource Header2}"/>
+                                                <Button Content="+" Style="{StaticResource Button1}"
+                                                Command="{Binding Path=DataContext.AddArticleToShoppingCart, RelativeSource={RelativeSource AncestorType={x:Type Page}}}"
+                                                CommandParameter="{Binding Burger.ID}"/>
+                                                <Button Content="Edit" Style="{StaticResource Button1}"
+                                                Command="{Binding Path=DataContext.AddArticleToShoppingCart, RelativeSource={RelativeSource AncestorType={x:Type Page}}}"
+                                                CommandParameter="{Binding Burger.ID}"/>
+                                            </WrapPanel>
+                                        </Grid>
+                                    </Border>
+                                    <!-- Burger Ingredients -->
+                                    <ItemsControl ItemsSource="{Binding Burger.BurgerIngredients}" Margin="0,20,0,20">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <UniformGrid x:Name="ArticleRows" Columns="1"/>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border Background="#242424"
+                                                    BorderThickness="1" CornerRadius="20" Margin="0,0,0,10" Padding="0,7,0,7">
+                                                    <Grid HorizontalAlignment="Stretch">
+                                                        <TextBlock Text="TEST" Style="{StaticResource Header2}"></TextBlock>
+                                                        <TextBlock Text="{Binding Ingredient.Name}" Margin="20,0,0,0" Style="{StaticResource Header2}"/>
+
+                                                        <!-- Display Article information -->
+                                                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="20,0,20,0">
+                                                            <TextBlock Text="{Binding Ingredient.Price}" Style="{StaticResource Header2}"/>
+                                                            <TextBlock Text="{Binding Amount}" Style="{StaticResource Header2}"/>
+                                                        </WrapPanel>
+                                                    </Grid>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
