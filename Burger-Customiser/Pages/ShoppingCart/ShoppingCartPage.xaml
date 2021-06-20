@@ -40,7 +40,6 @@
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Orientation="Vertical"/>
-                                <!--<UniformGrid x:Name="ArticleRows" Columns="1"/>-->
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
 
@@ -55,14 +54,14 @@
                                             <!-- Display Article information -->
                                             <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="20,0,20,0">
                                                 <TextBlock Text="{Binding FormattedPrice}" Style="{StaticResource Header2}"/>
-                                                <Button Content="-" Style="{StaticResource Button1}" 
+                                                <Button Content="-" Style="{StaticResource AmountButton}" 
                                             Command="{Binding Path=DataContext.RemoveArticleFromShoppingCart, RelativeSource={RelativeSource AncestorType={x:Type Page}}}"
                                             CommandParameter="{Binding Burger.ID}"/>
                                                 <TextBlock Text="{Binding Amount}" Style="{StaticResource Header2}"/>
-                                                <Button Content="+" Style="{StaticResource Button1}"
+                                                <Button Content="+" Style="{StaticResource AmountButton}"
                                                 Command="{Binding Path=DataContext.AddArticleToShoppingCart, RelativeSource={RelativeSource AncestorType={x:Type Page}}}"
                                                 CommandParameter="{Binding Burger.ID}"/>
-                                                <Button Content="Edit" Style="{StaticResource Button1}"
+                                                <Button Content="Edit" Style="{StaticResource AmountButton}"
                                                 Command="{Binding Path=DataContext.AddArticleToShoppingCart, RelativeSource={RelativeSource AncestorType={x:Type Page}}}"
                                                 CommandParameter="{Binding Burger.ID}"/>
                                             </WrapPanel>
@@ -73,7 +72,6 @@
                                         <ItemsControl.ItemsPanel>
                                             <ItemsPanelTemplate>
                                                 <StackPanel Orientation="Vertical"/>
-                                                <!--<UniformGrid x:Name="ArticleRows" Columns="1" Rows="1"/>-->
                                             </ItemsPanelTemplate>
                                         </ItemsControl.ItemsPanel>
 
@@ -117,11 +115,11 @@
                                         <!-- Display Article information -->
                                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="20,0,20,0">
                                             <TextBlock Text="{Binding FormattedPrice}" Style="{StaticResource Header2}"/>
-                                            <Button Content="-" Style="{StaticResource Button1}" 
+                                            <Button Content="-" Style="{StaticResource AmountButton}" 
                                             Command="{Binding Path=DataContext.RemoveArticleFromShoppingCart, RelativeSource={RelativeSource AncestorType={x:Type Page}}}"
                                             CommandParameter="{Binding Product.Name}"/>
                                             <TextBlock Text="{Binding Amount}" Style="{StaticResource Header2}"/>
-                                            <Button Content="+" Style="{StaticResource Button1}"
+                                            <Button Content="+" Style="{StaticResource AmountButton}"
                                                 Command="{Binding Path=DataContext.AddArticleToShoppingCart, RelativeSource={RelativeSource AncestorType={x:Type Page}}}"
                                                 CommandParameter="{Binding Product.Name}"/>
                                         </WrapPanel>
