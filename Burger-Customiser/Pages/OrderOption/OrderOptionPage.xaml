@@ -21,7 +21,7 @@
                 <RowDefinition Height="35" />
                 <RowDefinition Height="35" />
             </Grid.RowDefinitions>
-            <Image Source="/Resources/EatHereBackground.jpg" Stretch="UniformToFill" Grid.RowSpan="3" Opacity="0.6"/>
+            <Image Source="/Resources/EatHereBackground.jpg" Stretch="UniformToFill" Grid.RowSpan="3" Opacity="0.6" />
             <TextBlock Text="Zum Hier Essen" Style="{StaticResource Header1}" VerticalAlignment="Bottom" Grid.Row="0" />
             <TextBlock Text="Eat Here" Style="{StaticResource Header1}" VerticalAlignment="Bottom" Grid.Row="1" />
         </Grid>

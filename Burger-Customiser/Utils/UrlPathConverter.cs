@@ -5,11 +5,13 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Burger_Customiser.Utils {
+
     public class UrlPathConverter : IValueConverter {
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
             try {
                 string url = value.ToString().Trim();
-                url = (url == "" ? "https://i.imgur.com/BnQNYQS.jpg" : url); 
+                url = (url == "" ? "https://i.imgur.com/BnQNYQS.jpg" : url);
                 // Check if there is a Background Image in the database, if not set default image
 
                 BitmapImage bitmapImage = new BitmapImage();

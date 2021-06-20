@@ -1,5 +1,5 @@
-﻿using System;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
+using System;
 
 namespace Burger_Customiser.Pages.Start {
 
@@ -16,8 +16,12 @@ namespace Burger_Customiser.Pages.Start {
             logger.LogInformation($"Successfully Registered: {nameof(StartPageVM)}");
         }
 
-        public override NavigationButton GetBackButton() { return null; }
+        public override NavigationButton GetBackButton() {
+            return null;
+        }
 
-        public override NavigationButton GetContinueButton() { return null; }
+        public override NavigationButton GetContinueButton() {
+            return null;
+        }
     }
 }

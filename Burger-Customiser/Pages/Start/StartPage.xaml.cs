@@ -1,7 +1,7 @@
-﻿using System.Windows.Controls;
-using Burger_Customiser.Messages;
+﻿using Burger_Customiser.Messages;
 using Burger_Customiser.Pages.OrderOption;
 using GalaSoft.MvvmLight.Messaging;
+using System.Windows.Controls;
 
 namespace Burger_Customiser.Pages.Start {
 

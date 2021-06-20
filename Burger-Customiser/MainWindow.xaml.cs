@@ -1,8 +1,8 @@
-﻿using Microsoft.Extensions.Logging;
-using System.Windows;
-using Burger_Customiser.Messages;
+﻿using Burger_Customiser.Messages;
 using Burger_Customiser.Pages.ShoppingCart;
 using GalaSoft.MvvmLight.Messaging;
+using Microsoft.Extensions.Logging;
+using System.Windows;
 
 namespace Burger_Customiser {
 

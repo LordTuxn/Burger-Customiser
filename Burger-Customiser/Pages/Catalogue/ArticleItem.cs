@@ -1,18 +1,17 @@
-﻿using System.Collections.Generic;
-using Burger_Customiser_BLL;
+﻿using Burger_Customiser_BLL;
 using GalaSoft.MvvmLight;
 
 namespace Burger_Customiser.Pages.Catalogue {
-    public class ArticleItem : ViewModelBase {
 
+    public class ArticleItem : ViewModelBase {
         public Article Article { get; }
 
         private int _amount;
+
         public int Amount {
             get => _amount;
             set => Set(ref _amount, value);
         }
-
 
         public string FormattedPrice { get; }
 

@@ -1,10 +1,8 @@
-﻿using System;
-using Burger_Customiser.Messages;
-using Burger_Customiser.Pages.ArticleOption;
+﻿using Burger_Customiser.Messages;
 using Burger_Customiser.Pages.Start;
-using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace Burger_Customiser.Pages.OrderOption {
 
@@ -33,6 +31,8 @@ namespace Burger_Customiser.Pages.OrderOption {
             });
         }
 
-        public override NavigationButton GetContinueButton() { return null; }
+        public override NavigationButton GetContinueButton() {
+            return null;
+        }
     }
 }

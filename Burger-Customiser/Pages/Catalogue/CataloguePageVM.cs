@@ -1,6 +1,7 @@
 ﻿using Burger_Customiser.Messages;
 using Burger_Customiser.Pages.ArticleOption;
 using Burger_Customiser_BLL;
+using Burger_Customiser_BLL.Relationships;
 using Burger_Customiser_DAL;
 using Burger_Customiser_DAL.Database;
 using GalaSoft.MvvmLight.Command;
@@ -11,7 +12,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
-using Burger_Customiser_BLL.Relationships;
 
 namespace Burger_Customiser.Pages.Catalogue {
 
@@ -118,9 +118,8 @@ namespace Burger_Customiser.Pages.Catalogue {
                     foreach (Article article in ShoppingCart.Keys) {
                         burgerIngredients.Add(new BurgerIngredient {
                             Amount = ShoppingCart[article],
-                            BurgerID = burger.ID,
+                            Burger = burger,
                             CategoryID = article.CategoryID,
-                            IngredientID = article.ID,
                             Ingredient = new Ingredient {
                                 Name = article.Name,
                                 Price = article.Price

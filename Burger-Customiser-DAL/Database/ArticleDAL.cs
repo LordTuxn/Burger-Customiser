@@ -1,9 +1,8 @@
-﻿using System;
-using Burger_Customiser_BLL;
+﻿using Burger_Customiser_BLL;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 
 namespace Burger_Customiser_DAL.Database {
 

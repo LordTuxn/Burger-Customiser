@@ -1,17 +1,16 @@
-﻿using Burger_Customiser_DAL;
+﻿using Burger_Customiser.Pages.ArticleOption;
+using Burger_Customiser.Pages.Catalogue;
+using Burger_Customiser.Pages.Confirmation;
+using Burger_Customiser.Pages.OrderOption;
+using Burger_Customiser.Pages.ShoppingCart;
+using Burger_Customiser.Pages.Start;
+using Burger_Customiser_DAL;
 using Burger_Customiser_DAL.Database;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System.Windows;
-using Burger_Customiser.Pages.ArticleOption;
-using Burger_Customiser.Pages.Catalogue;
-using Burger_Customiser.Pages.Confirmation;
-using Burger_Customiser.Pages.OrderOption;
-using Burger_Customiser.Pages.ShoppingCart;
-using Burger_Customiser.Pages.Start;
-using Burger_Customiser_BLL;
 
 namespace Burger_Customiser {
 
@@ -31,6 +30,7 @@ namespace Burger_Customiser {
 
                     services.AddScoped<CategoryDAL>();
                     services.AddScoped<ArticleDAL>();
+                    services.AddScoped<BurgerDAL>();
                     services.AddScoped<OrderDAL>();
 
                     services.AddScoped<MainWindowVM>();

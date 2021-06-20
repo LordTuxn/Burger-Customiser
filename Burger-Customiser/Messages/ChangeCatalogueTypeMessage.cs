@@ -5,12 +5,10 @@
     }
 
     public class ChangeCatalogueTypeMessage {
-
         public CatalogueType CatalogueType { get; }
 
         public ChangeCatalogueTypeMessage(CatalogueType catalogueType) {
             CatalogueType = catalogueType;
         }
-
     }
 }

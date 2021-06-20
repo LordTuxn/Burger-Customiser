@@ -42,7 +42,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border CornerRadius="12" Background="{TemplateBinding Background}" BorderThickness="1" Padding="20,0,20,0">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -75,16 +75,16 @@
         <Setter Property="Width" Value="40" />
         <Setter Property="Height" Value="40" />
         <Setter Property="Margin" Value="10,0,10,0" />
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property="Background" Value="#3B3B3B"/>
-        <Setter Property="FontWeight" Value="Bold"/>
-        <Setter Property="FontSize" Value="18"/>
-        <Setter Property="BorderBrush" Value="#3B3B3B"/>
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Background" Value="#3B3B3B" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="BorderBrush" Value="#3B3B3B" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border CornerRadius="12" Background="{TemplateBinding Background}" BorderThickness="1">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -94,8 +94,8 @@
     <!-- SCROLL BAR -->
 
     <Style x:Key="ScrollBarThumb" TargetType="{x:Type Thumb}">
-        <Setter Property="OverridesDefaultStyle" Value="true"/>
-        <Setter Property="IsTabStop" Value="false"/>
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="IsTabStop" Value="false" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Thumb}">
@@ -105,7 +105,7 @@
                             CornerRadius="3"
                             Opacity="0.5"
                             Height="{TemplateBinding Height}"
-                            Width="{TemplateBinding Width}"/>
+                            Width="{TemplateBinding Width}" />
                     <ControlTemplate.Triggers>
                         <EventTrigger RoutedEvent="MouseEnter">
                             <BeginStoryboard>
@@ -127,14 +127,13 @@
         </Setter>
     </Style>
 
-
     <Style TargetType="{x:Type ScrollBar}">
-        <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
-        <Setter Property="Stylus.IsFlicksEnabled" Value="false"/>
-        <Setter Property="Width" Value="14"/>
+        <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false" />
+        <Setter Property="Stylus.IsFlicksEnabled" Value="false" />
+        <Setter Property="Width" Value="14" />
         <Setter Property="Padding" Value="0,100,0,0"></Setter>
         <Setter Property="Margin" Value="-14 0 0 0" />
-        <Setter Property="MinWidth" Value="{Binding Width, RelativeSource={RelativeSource Self}}"/>
+        <Setter Property="MinWidth" Value="{Binding Width, RelativeSource={RelativeSource Self}}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ScrollBar}">
@@ -162,10 +161,10 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="Orientation" Value="Horizontal">
-                <Setter Property="Width" Value="Auto"/>
-                <Setter Property="MinWidth" Value="0"/>
-                <Setter Property="Height" Value="18"/>
-                <Setter Property="MinHeight" Value="{Binding Height, RelativeSource={RelativeSource Self}}"/>
+                <Setter Property="Width" Value="Auto" />
+                <Setter Property="MinWidth" Value="0" />
+                <Setter Property="Height" Value="18" />
+                <Setter Property="MinHeight" Value="{Binding Height, RelativeSource={RelativeSource Self}}" />
                 <Setter Property="Margin" Value="0 -14 0 0" />
 
                 <Setter Property="Template">
@@ -174,13 +173,12 @@
                             <Grid x:Name="Bg" SnapsToDevicePixels="true">
                                 <Track x:Name="PART_Track"
                                     IsEnabled="{TemplateBinding IsMouseOver}"
-                                    Height="6"
-                                       >
+                                    Height="6">
                                     <Track.DecreaseRepeatButton>
-                                        <RepeatButton Opacity="0" Command="{x:Static ScrollBar.PageLeftCommand}"/>
+                                        <RepeatButton Opacity="0" Command="{x:Static ScrollBar.PageLeftCommand}" />
                                     </Track.DecreaseRepeatButton>
                                     <Track.IncreaseRepeatButton>
-                                        <RepeatButton Opacity="0" Command="{x:Static ScrollBar.PageRightCommand}"/>
+                                        <RepeatButton Opacity="0" Command="{x:Static ScrollBar.PageRightCommand}" />
                                     </Track.IncreaseRepeatButton>
                                     <Track.Thumb>
                                         <Thumb Style="{StaticResource ScrollBarThumb}" />

@@ -1,10 +1,4 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Messaging;
-using System;
-using System.Windows;
-using System.Windows.Controls;
-using Burger_Customiser.Messages;
+﻿using Burger_Customiser.Messages;
 using Burger_Customiser.Pages;
 using Burger_Customiser.Pages.ArticleOption;
 using Burger_Customiser.Pages.Catalogue;
@@ -12,35 +6,43 @@ using Burger_Customiser.Pages.Confirmation;
 using Burger_Customiser.Pages.OrderOption;
 using Burger_Customiser.Pages.ShoppingCart;
 using Burger_Customiser.Pages.Start;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
+using System;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace Burger_Customiser {
 
     public class MainWindowVM : ViewModelBase {
-
         private Button _continueButton;
+
         public Button ContinueButton {
             get => _continueButton;
             set => Set(ref _continueButton, value);
         }
 
         private Button _backButton;
+
         public Button BackButton {
             get => _backButton;
             set => Set(ref _backButton, value);
         }
 
         private PageViewModelBase _currentViewModel;
+
         public PageViewModelBase CurrentViewModel {
             get => _currentViewModel;
             set => Set(ref _currentViewModel, value);
         }
 
         private Visibility _isShoppingCartIconVisible;
+
         public Visibility IsShoppingCartIconVisible {
             get => _isShoppingCartIconVisible;
             set => Set(ref _isShoppingCartIconVisible, value);
         }
-
 
         public RelayCommand BackButtonCommand { get; set; }
 
@@ -53,7 +55,7 @@ namespace Burger_Customiser {
         private readonly ShoppingCartPageVM _shoppingCartPage;
         private readonly ConfirmationPageVM _confirmationPage;
 
-        public MainWindowVM(StartPageVM startPage, OrderOptionPageVM orderOptionPage, 
+        public MainWindowVM(StartPageVM startPage, OrderOptionPageVM orderOptionPage,
             ArticleOptionPageVM articleOptionPage, CataloguePageVM cataloguePage,
             ShoppingCartPageVM shoppingCartPage, ConfirmationPageVM confirmationPage) {
             _startPage = startPage;
@@ -66,8 +68,8 @@ namespace Burger_Customiser {
             BackButtonCommand = new RelayCommand(BackButton_Click);
             ContinueButtonCommand = new RelayCommand(ContinueButton_Click);
 
-            ChangePage(new ChangePageMessage(typeof(ArticleOptionPageVM)));
-            
+            ChangePage(new ChangePageMessage(typeof(StartPageVM)));
+
             // Register messenger for changing pages
             Messenger.Default.Register<ChangePageMessage>(this, ChangePage);
         }
@@ -108,11 +110,11 @@ namespace Burger_Customiser {
                 ShowStartPage();
             } else if (page.ViewModelType == typeof(OrderOptionPageVM)) {
                 ShowOrderOptionPage();
-            } else if(page.ViewModelType == typeof(ArticleOptionPageVM)) {
+            } else if (page.ViewModelType == typeof(ArticleOptionPageVM)) {
                 ShowArticleOptionPage();
-            } else if(page.ViewModelType == typeof(CataloguePageVM)) {
+            } else if (page.ViewModelType == typeof(CataloguePageVM)) {
                 ShowCataloguePage();
-            } else if(page.ViewModelType == typeof(ShoppingCartPageVM)) {
+            } else if (page.ViewModelType == typeof(ShoppingCartPageVM)) {
                 ShowShoppingCartPage();
             } else {
                 ShowConfirmationPage();

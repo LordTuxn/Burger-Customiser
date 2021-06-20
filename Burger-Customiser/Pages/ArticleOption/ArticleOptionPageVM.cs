@@ -1,14 +1,13 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Controls;
-using Burger_Customiser.Messages;
+﻿using Burger_Customiser.Messages;
 using Burger_Customiser.Pages.OrderOption;
 using Burger_Customiser.Pages.ShoppingCart;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Windows;
 
 namespace Burger_Customiser.Pages.ArticleOption {
+
     public class ArticleOptionPageVM : PageViewModelBase {
 
         [Obsolete("Only for design data!", true)]

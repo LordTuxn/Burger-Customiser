@@ -37,8 +37,9 @@ namespace Burger_Customiser_DAL {
                         $@"password={_config["Data:Password"]}; " +
                         "Persist Security Info=False; Connect Timeout=300;";
 
+                    optionsBuilder.EnableSensitiveDataLogging(true);
                     optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
-                    
+
                     _logger.LogInformation("Successfully connected to database!");
                     break;
                 } catch (MySqlConnector.MySqlException) {
@@ -46,7 +47,7 @@ namespace Burger_Customiser_DAL {
 
                     if (MessageBoxResult.No == result) Process.GetCurrentProcess().Kill(); // Application.Current.Shutdown() doesn't work, because MainWindow is not initialized
                 }
-            } while (true); 
+            } while (true);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {

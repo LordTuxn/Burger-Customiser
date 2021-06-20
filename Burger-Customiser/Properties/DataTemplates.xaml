@@ -1,15 +1,15 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:utils="clr-namespace:Burger_Customiser.Utils"
-                    xmlns:start="clr-namespace:Burger_Customiser.Pages.Start"
-                    xmlns:orderOption="clr-namespace:Burger_Customiser.Pages.OrderOption"
                     xmlns:articleOption="clr-namespace:Burger_Customiser.Pages.ArticleOption"
                     xmlns:catalogue="clr-namespace:Burger_Customiser.Pages.Catalogue"
+                    xmlns:confirmation="clr-namespace:Burger_Customiser.Pages.Confirmation"
+                    xmlns:orderOption="clr-namespace:Burger_Customiser.Pages.OrderOption"
                     xmlns:shoppingCart="clr-namespace:Burger_Customiser.Pages.ShoppingCart"
-                    xmlns:confirmation="clr-namespace:Burger_Customiser.Pages.Confirmation">
+                    xmlns:start="clr-namespace:Burger_Customiser.Pages.Start"
+                    xmlns:utils="clr-namespace:Burger_Customiser.Utils">
 
-    <utils:UrlPathConverter x:Key="UrlPathConverter"/>
-    <utils:ArticleListRowsConverter x:Key="ArticleListRowsConverter"/>
+    <utils:UrlPathConverter x:Key="UrlPathConverter" />
+    <utils:ArticleListRowsConverter x:Key="ArticleListRowsConverter" />
 
     <DataTemplate DataType="{x:Type start:StartPageVM}">
         <start:StartPage />
@@ -24,14 +24,14 @@
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type catalogue:CataloguePageVM}">
-        <catalogue:CataloguePage/>
+        <catalogue:CataloguePage />
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type shoppingCart:ShoppingCartPageVM}">
-        <shoppingCart:ShoppingCartPage/>
+        <shoppingCart:ShoppingCartPage />
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type confirmation:ConfirmationPageVM}">
-        <confirmation:ConfirmationPage/>
+        <confirmation:ConfirmationPage />
     </DataTemplate>
 </ResourceDictionary>

@@ -1,27 +1,23 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Burger_Customiser.Messages;
+﻿using Burger_Customiser.Messages;
 using Burger_Customiser_BLL;
 using Burger_Customiser_BLL.Relationships;
-using Burger_Customiser_DAL.Database;
 using GalaSoft.MvvmLight.Messaging;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Burger_Customiser {
-    public class OrderManager {
-        private readonly OrderDAL _orderDAL;
 
+    public class OrderManager {
         public Order Order { get; set; }
 
-        public OrderManager(OrderDAL orderDAL) {
-            _orderDAL = orderDAL;
-
+        public OrderManager() {
             Order = new Order { ProductOrders = new List<OrderProduct>(), BurgerOrders = new List<OrderBurger>() };
 
             Messenger.Default.Register<ChangeToTakeAwayOptionMessage>(this, ChangeToTakeAwayOption);
         }
 
         public void AddProduct(Product product, int amount) {
-            OrderProduct orderProduct = new OrderProduct() {
+            OrderProduct orderProduct = new OrderProduct {
                 Order = Order,
                 Product = product,
                 CategoryID = product.CategoryID,

@@ -1,14 +1,16 @@
-﻿using System.Windows.Controls;
-using System.Windows.Input;
-using Burger_Customiser.Messages;
+﻿using Burger_Customiser.Messages;
 using Burger_Customiser.Pages.Catalogue;
 using GalaSoft.MvvmLight.Messaging;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Burger_Customiser.Pages.ArticleOption {
+
     /// <summary>
     /// Interaction logic for ArticleOptionPage.xaml
     /// </summary>
     public partial class ArticleOptionPage : Page {
+
         public ArticleOptionPage() {
             InitializeComponent();
         }
