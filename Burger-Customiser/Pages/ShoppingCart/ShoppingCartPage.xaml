@@ -84,8 +84,8 @@
 
                                                         <!-- Display Article information -->
                                                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="20,0,20,0">
-                                                            <TextBlock Text="{Binding Ingredient.Price}" Style="{StaticResource Header2}"/>
-                                                            <TextBlock Text="{Binding Amount}" Style="{StaticResource Header2}"/>
+                                                            <TextBlock Text="{Binding Ingredient.Price, Converter={StaticResource PriceEURConverter}}" Style="{StaticResource Header2}"/>
+                                                            <TextBlock Text="{Binding Amount, Converter={StaticResource IngredientAmountConverter}}" Style="{StaticResource Header2}" Margin="10,0,0,0"/>
                                                         </WrapPanel>
                                                     </Grid>
                                                 </Border>

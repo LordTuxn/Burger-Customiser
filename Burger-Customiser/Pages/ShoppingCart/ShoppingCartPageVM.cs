@@ -32,6 +32,11 @@ namespace Burger_Customiser.Pages.ShoppingCart {
                 {
                     totalCost += item.Product.Price * item.Amount;
                 }
+
+                foreach (BurgerCartItem item in BurgerCartItems)
+                {
+                    totalCost += item.Burger.Price * item.Amount;
+                }
                 totalCostEUR = totalCost;
                 return $"{totalCost} €";
             }

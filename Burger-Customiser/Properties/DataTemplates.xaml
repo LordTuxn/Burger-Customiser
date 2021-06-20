@@ -10,6 +10,8 @@
 
     <utils:UrlPathConverter x:Key="UrlPathConverter"/>
     <utils:ArticleListRowsConverter x:Key="ArticleListRowsConverter"/>
+    <utils:IngredientAmountConverter x:Key="IngredientAmountConverter"/>
+    <utils:PriceEURConverter x:Key="PriceEURConverter"/>
 
     <DataTemplate DataType="{x:Type start:StartPageVM}">
         <start:StartPage />
